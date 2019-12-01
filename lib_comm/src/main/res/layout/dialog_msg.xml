@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <data>
+
+        <import type="android.view.View"/>
+        <variable
+            name="isSingleBtn"
+            type="boolean"/>
+        <variable
+            name="entity"
+            type="com.rwz.lib_comm.entity.turn.MsgDialogTurnEntity"/>
+    </data>
+
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/dialog_white_bg"
+        android:minWidth="@dimen/dialog_min_width"
+        >
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:orientation="vertical">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:text="@{entity.title}"
+                android:paddingTop="@dimen/h_22"
+                android:paddingBottom="@dimen/h_10"
+                android:textColor="@color/text_black_color"
+                android:textStyle="bold"
+                android:textSize="@dimen/text_16" />
+
+            <View
+                style="@style/line" />
+
+            <TextView
+                android:id="@+id/msg"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="@dimen/h_18"
+                android:layout_marginTop="@dimen/dialog_padding"
+                android:layout_marginLeft="@dimen/activity_horizontal_margin"
+                android:layout_marginRight="@dimen/activity_horizontal_margin"
+                android:gravity="center"
+                android:lineSpacingMultiplier="1.2"
+                android:minLines="2"
+                android:text="@{entity.msg}"
+                android:textColor="@color/text_dark_color"
+                android:textSize="@dimen/text_12" />
+
+            <View
+                style="@style/line"
+                />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:id="@+id/cancel"
+                    android:layout_width="0dp"
+                    android:layout_weight="1"
+                    android:layout_height="wrap_content"
+                    android:paddingBottom="@dimen/v_16"
+                    android:paddingTop="@dimen/v_16"
+                    android:gravity="center"
+                    android:text="@{entity.cancelText}"
+                    android:textColor="@color/colorPrimary"
+                    android:textSize="@dimen/text_16"
+                    android:visibility="@{isSingleBtn ? View.GONE : View.VISIBLE}"/>
+
+                <View
+                    style="@style/line_v"
+                    android:visibility="@{isSingleBtn ? View.GONE : View.VISIBLE}"/>
+
+                <TextView
+                    android:id="@+id/enter"
+                    android:layout_width="0dp"
+                    android:layout_weight="1"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:paddingBottom="@dimen/v_16"
+                    android:paddingTop="@dimen/v_16"
+                    android:text="@{entity.enterText}"
+                    android:textColor="@color/colorPrimary"
+                    android:textSize="@dimen/text_16" />
+            </LinearLayout>
+        </LinearLayout>
+    </FrameLayout>
+</layout>

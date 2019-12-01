@@ -1,0 +1,46 @@
+<resources>
+    <string name="app_name">lib_res</string>
+    <string name="apk">.apk</string>
+    <string name="jpg">.jpg</string>
+    <string name="png">.png</string>
+    <string name="jpeg">.jpeg</string>
+    <string name="gif">.gif</string>
+    <!-- 启动页 -->
+    <string name="go_to">跳过</string>
+    <!-- 版本升级 -->
+    <string name="download">下载</string>
+    <string name="download_start">开始下载</string>
+    <string name="version_update">版本升级</string>
+    <string name="download_complete">下载完成</string>
+    <string name="download_error_str">下载失败</string>
+    <string name="no_new_version">暂时没有新版本</string>
+    <string name="download_new_version">下载新版本中…</string>
+    <string name="download_completed_click_install">下载完成,点击安装</string>
+
+    <!-- 时间格式化 -->
+    <string name="at_once">刚刚</string>
+    <!-- 公共 -->
+    <string name="before_minute_default">%1$s分钟前</string>
+    <string name="tips_double_click">请不要快速连击</string>
+
+    <string name="copy">复制</string>
+    <string name="copy_text_completed">已复制到剪切板</string>
+    <string name="not_support_copy">android 3.0 以下不支持将文字复制到剪切板</string>
+
+
+    <!-- 用户操作相关 -->
+    <string name="cancel">取消</string>
+    <string name="enter">确定</string>
+    <string name="select_all">全选</string>
+    <string name="select_none">取消全选</string>
+    <string name="delete">删除</string>
+    <string name="save">保存</string>
+    <string name="saved">已保存</string>
+    <string name="share">分享</string>
+    <string name="share_to">分享到</string>
+    <!-- 空视图 -->
+    <string name="temp_loading">正在加载…</string>
+
+
+
+</resources>

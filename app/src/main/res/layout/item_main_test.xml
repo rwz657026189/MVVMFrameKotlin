@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:tools="http://schemas.android.com/tools"
+    xmlns:bind="http://schemas.android.com/apk/res-auto"
+    tools:ignore="MissingDefaultResource">
+    <data>
+
+        <variable
+            name="entity"
+            type="com.rwz.mvvm_kotlin_demo.entity.TestEntity" />
+    </data>
+
+    <LinearLayout
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <TextView
+            style="@style/text_main"
+            android:textSize="@dimen/text_14"
+            android:text="@{entity.title}"
+            android:padding="@dimen/h_10"
+            />
+
+        <ImageView
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/v_120"
+            android:scaleType="centerCrop"
+            bind:url="@{entity.url}"
+            />
+
+    </LinearLayout>
+
+</layout>

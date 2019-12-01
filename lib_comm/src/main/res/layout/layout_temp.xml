@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:bind="http://schemas.android.com/apk/res-auto">
+
+    <data>
+        <import type="com.rwz.lib_comm.entity.extension.TempEntity"/>
+        <import type="android.view.View"/>
+
+        <variable
+            name="entity"
+            type="TempEntity"/>
+        <variable
+            name="viewModule"
+            type="com.rwz.lib_comm.base.BaseViewModule"/>
+    </data>
+
+    <FrameLayout
+        android:id="@+id/layout_temp"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/white"
+        android:visibility="@{TempEntity.STATUS_DISMISS == entity.type ? View.GONE : View.VISIBLE}">
+
+        <LinearLayout
+            android:layout_width="@dimen/temp_loading_size"
+            android:layout_height="@dimen/temp_loading_size"
+            android:layout_marginTop="@dimen/h_30"
+            android:layout_marginBottom="@dimen/h_30"
+            android:background="@drawable/shape_loading_bg"
+            android:layout_gravity="center"
+            android:orientation="vertical"
+            android:gravity="center"
+            android:visibility="@{TempEntity.STATUS_LOADING == entity.type ? View.VISIBLE : View.GONE}">
+
+            <ProgressBar
+                android:id="@+id/progress"
+                android:layout_width="@dimen/h_40"
+                android:layout_height="@dimen/h_40"
+                android:layout_gravity="center"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/temp_loading"
+                android:textColor="@color/white"
+                android:layout_marginTop="@dimen/v_10"
+                android:textSize="@dimen/text_12"/>
+
+        </LinearLayout>
+
+        <!-- 加载数据为空或者失败 -->
+        <LinearLayout
+            android:orientation="vertical"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/v_10"
+            android:layout_marginBottom="@dimen/v_10"
+            android:layout_gravity="center"
+            android:visibility="@{TempEntity.STATUS_LOADING == entity.type ? View.GONE : View.VISIBLE, default=gone}">
+
+            <ImageView
+                android:id="@+id/img"
+                android:layout_width="@dimen/error_img_size"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:src="@{TempEntity.STATUS_NULL == entity.type ? entity.nullImgRes : entity.errorImgRes}"/>
+
+            <TextView
+                android:layout_marginTop="@dimen/v_10"
+                android:id="@+id/text"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:text="@{TempEntity.STATUS_NULL == entity.type ? entity.nullTipsStr : entity.errorTipsStr}"
+                android:textColor="@color/text_gray_color"
+                android:textSize="@dimen/text_12"/>
+
+            <TextView
+                android:id="@+id/reload"
+                style="@style/text_white"
+                android:layout_width="@dimen/h_180"
+                android:layout_height="@dimen/v_45"
+                android:layout_marginTop="@dimen/v_30"
+                android:background="@drawable/selector_comm_click_round"
+                android:gravity="center"
+                android:layout_gravity="center_horizontal"
+                android:text="@{TempEntity.STATUS_NULL == entity.type ? entity.nullBtnStr : entity.errorBtnStr}"
+                bind:clickCommand="@{viewModule.onClickEventCommand}"
+                android:visibility="@{entity.getShowErrorBtn(entity.type) || entity.getShowNullBtn(entity.type) ? View.VISIBLE : View.GONE, default=gone}"
+                />
+        </LinearLayout>
+
+    </FrameLayout>
+</layout>

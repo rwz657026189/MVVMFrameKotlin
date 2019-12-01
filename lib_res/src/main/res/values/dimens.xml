@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- 加载失败的空布局 -->
+    <dimen name="activity_horizontal_margin">@dimen/h_16</dimen>
+    <dimen name="activity_vertical_margin">@dimen/h_16</dimen>
+    <!-- 正在加载中 loading尺寸 -->
+    <dimen name="temp_loading_size">@dimen/h_120</dimen>
+    <!-- 加载失败 image 尺寸 -->
+    <dimen name="error_img_size">@dimen/h_200</dimen>
+
+    <!-- 线条 -->
+    <dimen name="line_size">@dimen/v_1</dimen>
+    <dimen name="line_size_thin">@dimen/v_0_5</dimen>
+    <dimen name="line_size_bold">@dimen/v_2</dimen>
+    <!-- 分割条 -->
+    <dimen name="space_size">@dimen/v_15</dimen>
+    <!-- 屏幕宽度，非真实 -->
+    <dimen name="screen_width">@dimen/h_800</dimen>
+    <!-- icon与文字的默认间隙 -->
+    <dimen name="drawable_padding">@dimen/h_5</dimen>
+    <!-- 头像圆角 -->
+    <dimen name="avatar_radius">@dimen/h_3</dimen>
+    <!-- 仅仅做为一个圆角,尺寸一般比图形更大就行 -->
+    <dimen name="circle_radius">@dimen/h_40</dimen>
+
+
+    <!-- dialog -->
+    <dimen name="dialog_padding">@dimen/h_16</dimen>
+    <!-- dialog背景圆角 -->
+    <dimen name="dialog_radius">@dimen/h_8</dimen>
+    <!-- tab高度 -->
+    <dimen name="tab_height">@dimen/v_50</dimen>
+    <!-- toolBar高度 -->
+    <dimen name="tool_bar_height">@dimen/h_44</dimen>
+    <!-- dialog水平margin -->
+    <dimen name="dialog_horizontal_margin">@dimen/h_16</dimen>
+    <!-- TabLayout高度 -->
+    <dimen name="tab_layout_height">@dimen/v_50</dimen>
+    <!-- 半圆半径，是一个相对值，并不唯一，只要比控件一半高即可 -->
+    <dimen name="semicircle">@dimen/h_50</dimen>
+    <!-- dialog最小宽度 -->
+    <dimen name="dialog_min_width">@dimen/h_300</dimen>
+    <!-- 默认阴影大小 -->
+    <dimen name="elevation_default">@dimen/v_3</dimen>
+
+</resources>

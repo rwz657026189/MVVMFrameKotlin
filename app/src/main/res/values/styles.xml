@@ -1,0 +1,14 @@
+<resources>
+
+    <style name="mine_item" parent="@style/text_black">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:padding">@dimen/activity_horizontal_margin</item>
+        <item name="android:background">@drawable/selector_comm_click</item>
+        <item name="android:drawableRight">@drawable/ic_arrow_right</item>
+        <item name="android:drawableLeft">@drawable/ic_collect</item>
+        <item name="android:gravity">center_vertical</item>
+        <item name="android:drawablePadding">@dimen/h_8</item>
+        <item name="android:textSize">@dimen/text_14</item>
+    </style>
+
+</resources>

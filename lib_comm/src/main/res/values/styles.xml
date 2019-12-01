@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <!-- 圆点指示器, 白色背景 -->
+    <style name="sliding_tab_layout_white">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">@dimen/tab_layout_height</item>
+        <item name="android:background">@color/white</item>
+        <item name="android:layout_marginBottom">@dimen/v_2</item>
+        <item name="tl_textsize">@dimen/text_17</item>
+        <item name="tl_textSelectColor">@color/colorPrimary</item>
+        <item name="tl_textUnselectColor">@color/text_art_color</item>
+        <item name="tl_indicator_color">@color/colorPrimary</item>
+        <item name="tl_indicator_width">@dimen/h_7</item>
+        <item name="tl_indicator_height">@dimen/h_7</item>
+        <item name="tl_tab_space_equal">true</item>
+        <item name="tl_indicator_corner_radius">@dimen/h_7</item>
+    </style>
+
+    <!-- 圆点指示器 主题色背景-->
+    <style name="sliding_tab_layout_primary">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">@dimen/tab_layout_height</item>
+        <item name="android:background">@color/colorPrimary</item>
+        <item name="tl_textsize">@dimen/text_16</item>
+        <item name="tl_textSelectColor">@color/white</item>
+        <item name="tl_textUnselectColor">@color/colorPrimary</item>
+        <item name="tl_indicator_width_equal_title">true</item>
+        <item name="tl_indicator_color">@color/white</item>
+        <item name="tl_indicator_width">@dimen/h_7</item>
+        <item name="tl_indicator_height">@dimen/h_7</item>
+        <item name="tl_indicator_corner_radius">@dimen/h_7</item>
+        <item name="tl_tab_space_equal">true</item>
+        <item name="android:layout_marginBottom">@dimen/v_2</item>
+    </style>
+
+    <style name="sliding_tab_layout_white_line">
+        <item name="android:background">@color/white</item>
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_marginBottom">@dimen/v_2</item>
+        <item name="android:layout_height">@dimen/tab_layout_height</item>
+        <item name="tl_tab_space_equal">true</item>
+        <item name="tl_textsize">@dimen/text_17</item>
+        <item name="tl_indicator_height">@dimen/v_2</item>
+        <item name="tl_indicator_width_equal_title">true</item>
+        <item name="tl_indicator_corner_radius">@dimen/v_2</item>
+        <item name="tl_indicator_color">@color/colorPrimary</item>
+        <item name="tl_textSelectColor">@color/colorPrimary</item>
+        <item name="tl_textUnselectColor">@color/text_art_color</item>
+    </style>
+
+</resources>

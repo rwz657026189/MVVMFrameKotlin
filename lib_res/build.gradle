@@ -1,0 +1,81 @@
+apply plugin: 'com.android.library'
+android {
+
+    compileSdkVersion rootProject.ext.android.compileSdkVersion
+    buildToolsVersion rootProject.ext.android.buildToolsVersion
+
+    defaultConfig {
+        minSdkVersion rootProject.ext.android.minSdkVersion
+        targetSdkVersion rootProject.ext.android.targetSdkVersion
+        versionCode rootProject.ext.android.versionCode
+        versionName rootProject.ext.android.versionName
+        testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
+    }
+
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+        }
+    }
+
+}
+
+dependencies {
+    api fileTree(dir: 'libs', include: ['*.jar'])
+    testApi 'junit:junit:4.12'
+
+//    api rootProject.ext.dependencies["support_annotations"]
+//    api rootProject.ext.dependencies["espresso_core"]
+//    api rootProject.ext.dependencies["appcompat_v7"]
+
+    api rootProject.ext.dependencies["logger"]
+    api rootProject.ext.dependencies["gson"]
+    api rootProject.ext.dependencies["glide"]
+    api rootProject.ext.dependencies["glide-transformations"]
+    api rootProject.ext.dependencies["gpuimage-library"]
+    api rootProject.ext.dependencies["multidex"]
+    api rootProject.ext.dependencies["rxjava2"]
+    api rootProject.ext.dependencies["rxandroid"]
+    api rootProject.ext.dependencies["retrofit2"]
+    api rootProject.ext.dependencies["converter-gson"]
+    api rootProject.ext.dependencies["adapter-rxjava2"]
+    api rootProject.ext.dependencies["rxpermissions"]
+
+    api rootProject.ext.dependencies["SmartRefreshLayout"]
+    api rootProject.ext.dependencies["androidx"]
+    api rootProject.ext.dependencies["androidx_kotlin"]
+    api rootProject.ext.dependencies["recyclerview"]
+    api rootProject.ext.dependencies["constraintlayout"]
+    api rootProject.ext.dependencies["swipebacklayout"]
+    api rootProject.ext.dependencies["TabLayout"]
+    api rootProject.ext.dependencies["banner"]
+
+
+
+
+//    api deps.androidx
+//    api deps.androidx_kotlin
+//
+//    // Support libraries
+////    api deps.support.app_compat
+////    api deps.support.v4
+////    api deps.support.design
+////    api deps.support.recyclerview
+//
+//    //http
+//    api deps.retrofit.runtime
+//    api deps.retrofit.gson
+//    api deps.retrofit.adapter_rxjava2
+//    api deps.okhttp.okhttp3
+//    api deps.okhttp.okhttp3_logging_interceptor
+//
+//    api deps.glide
+//
+//    // RxJava
+////    implementation deps.rxjava2
+//    api deps.rx_android
+//
+//    //router
+//    api deps.arouter.runtime
+}

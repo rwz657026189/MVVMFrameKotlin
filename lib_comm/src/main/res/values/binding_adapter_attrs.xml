@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <!-- dataBinding 自定义属性  无实际意思, 仅方便xml提示 -->
+
+    <attr name="onCheckedChange" format="reference"/>
+    <attr name="clickCommand" format="reference"/>
+    <attr name="setEntity" format="reference"/>
+    <attr name="scale" format="float"/>
+    <attr name="viewWidth" format="integer"/>
+
+    <attr name="url" format="string"/>
+    <attr name="placeHolder" format="reference"/>
+    <attr name="errorDrawable" format="reference"/>
+    <attr name="isCenterCrop" format="boolean"/>
+    <attr name="circle" format="boolean"/>
+    <attr name="square" format="boolean"/>
+    <attr name="rounded" format="integer"/>
+    <attr name="blur" format="integer"/>
+    <attr name="imgRes" format="integer|reference"/>
+
+    <declare-styleable name="View">
+        <attr name="clickCommand"/>
+        <attr name="scale"/>
+        <attr name="viewWidth"/>
+        <attr name="setEntity"/>
+    </declare-styleable>
+
+    <declare-styleable name="CompoundButton">
+        <attr name="onCheckedChange"/>
+        <attr name="setEntity"/>
+    </declare-styleable>
+
+    <declare-styleable name="ImageView">
+        <attr name="url"/>
+        <attr name="placeHolder"/>
+        <attr name="errorDrawable"/>
+        <attr name="isCenterCrop"/>
+        <attr name="circle"/>
+        <attr name="rounded"/>
+        <attr name="blur"/>
+        <attr name="square"/>
+        <attr name="imgRes"/>
+    </declare-styleable>
+
+</resources>

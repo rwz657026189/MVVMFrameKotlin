@@ -1,0 +1,201 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <!-- Base application theme. -->
+    <style name="AppTheme" parent="Theme.AppCompat.Light">
+        <!-- Customize your theme here. -->
+        <item name="colorPrimary">@color/colorPrimary</item>
+        <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
+        <item name="colorAccent">@color/colorAccent</item>
+        <item name="actionMenuTextColor">@color/white</item>
+        <item name="windowActionBar">false</item>
+        <item name="windowNoTitle">true</item>
+        <item name="android:windowBackground">@color/page_bg</item>
+    </style>
+
+    <!-- Base application theme. -->
+    <style name="activityTheme" parent="Theme.AppCompat.Light">
+        <!-- Customize your theme here. -->
+        <item name="colorPrimary">@color/colorPrimary</item>
+        <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
+        <item name="colorAccent">@color/colorAccent</item>
+        <item name="actionMenuTextColor">@color/white</item>
+        <item name="windowActionBar">false</item>
+        <item name="windowNoTitle">true</item>
+    </style>
+
+    <style name="CommonDialog" parent="Theme.AppCompat.Light.Dialog.Alert">
+        <item name="android:windowFrame">@null</item>
+        <item name="android:windowNoTitle">true</item>
+        <item name="android:windowIsFloating">true</item>
+        <item name="android:windowContentOverlay">@null</item>
+    </style>
+
+    <!-- 水平分割线 -->
+    <style name="line">
+        <item name="android:layout_height">@dimen/line_size_thin</item>
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:background">@color/line_color</item>
+    </style>
+
+    <!-- 垂直分割线 -->
+    <style name="line_v">
+        <item name="android:layout_height">match_parent</item>
+        <item name="android:layout_width">@dimen/line_size_thin</item>
+        <item name="android:background">@color/line_color</item>
+    </style>
+    <!-- 水平分割条 -->
+    <style name="space">
+        <item name="android:layout_height">@dimen/space_size</item>
+        <item name="android:layout_width">match_parent</item>
+    </style>
+
+    <!-- 虚线 -->
+    <style name="line_dash">
+        <item name="android:layout_height">@dimen/v_2</item>
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:background">@drawable/shape_dash_line</item>
+        <item name="android:layerType">software</item>
+    </style>
+
+    <!-- 定位点 -->
+    <style name="point">
+        <item name="android:layout_height">0.1dp</item>
+        <item name="android:layout_width">0.1dp</item>
+        <item name="android:visibility">invisible</item>
+    </style>
+
+
+    <style name="wrap_wrap">
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_width">wrap_content</item>
+    </style>
+
+    <style name="match_wrap">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+    </style>
+
+    <style name="remain_wrap">
+        <item name="android:layout_width">0dp</item>
+        <item name="android:layout_weight">1</item>
+        <item name="android:layout_height">wrap_content</item>
+    </style>
+
+    <style name="remain_match">
+        <item name="android:layout_width">0dp</item>
+        <item name="android:layout_weight">1</item>
+        <item name="android:layout_height">match_parent</item>
+    </style>
+
+    <style name="text_base" parent="wrap_wrap">
+        <item name="android:maxLines">1</item>
+        <item name="android:ellipsize">end</item>
+    </style>
+
+    <style name="text_primary" parent="text_base">
+        <item name="android:textColor">@color/colorPrimary</item>
+    </style>
+
+    <style name="text_white" parent="text_base">
+        <item name="android:textColor">@color/white</item>
+    </style>
+
+    <style name="text_gray" parent="text_base">
+        <item name="android:textColor">@color/text_gray_color</item>
+    </style>
+
+    <style name="text_main" parent="text_base">
+        <item name="android:textColor">@color/text_main_color</item>
+    </style>
+
+    <style name="text_art" parent="text_base">
+        <item name="android:textColor">@color/text_art_color</item>
+    </style>
+
+    <style name="text_black" parent="text_base">
+        <item name="android:textColor">@color/text_black_color</item>
+    </style>
+
+    <style name="text_dark" parent="text_base">
+        <item name="android:textColor">@color/text_dark_color</item>
+    </style>
+
+    <!-- 带icon的TextView -->
+    <style name="text_icon" parent="text_main">
+        <item name="android:drawablePadding">@dimen/drawable_padding</item>
+        <item name="android:padding">@dimen/drawable_padding</item>
+        <item name="android:gravity">bottom</item>
+        <item name="android:textSize">@dimen/text_12</item>
+        <item name="android:text">999</item>
+    </style>
+
+    <!-- toolbar左右icon -->
+    <style name="toolbar_icon" parent="text_base">
+        <item name="android:layout_height">match_parent</item>
+        <item name="android:paddingLeft">@dimen/activity_horizontal_margin</item>
+        <item name="android:paddingRight">@dimen/activity_horizontal_margin</item>
+        <item name="android:gravity">center_vertical</item>
+        <item name="android:textSize">@dimen/text_16</item>
+        <item name="android:textColor">@color/toolbar_text</item>
+    </style>
+
+
+    <!-- 单行输入框 -->
+    <style name="edit_single" parent="match_wrap">
+        <item name="android:background">@null</item>
+        <item name="android:drawablePadding">@dimen/h_8</item>
+        <item name="android:textColorHint">@color/text_hint</item>
+        <item name="android:textColor">@color/text_dark_color</item>
+        <item name="android:textSize">@dimen/text_14</item>
+        <item name="android:gravity">center_vertical</item>
+        <item name="android:lines">1</item>
+        <item name="android:paddingTop">@dimen/v_6</item>
+        <item name="android:paddingBottom">@dimen/v_6</item>
+    </style>
+
+    <!-- 多行输入框 -->
+    <style name="edit_mul" parent="match_wrap">
+        <item name="android:background">@null</item>
+        <item name="android:textColorHint">@color/text_hint</item>
+        <item name="android:textColor">@color/text_black_color</item>
+        <item name="android:textSize">@dimen/text_14</item>
+        <item name="android:padding">@dimen/h_10</item>
+        <item name="android:gravity">top|left</item>
+    </style>
+
+    <!-- 图片 -->
+    <style name="img_normal" parent="wrap_wrap">
+        <item name="android:scaleType">centerCrop</item>
+    </style>
+
+    <!--dialog进出动画-->
+    <style name="dialogAnim" parent="android:Animation">
+    </style>
+
+    <!-- 简单列表item， text居中展示 -->
+    <style name="item_simple">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">@dimen/tab_height</item>
+        <item name="android:textSize">@dimen/text_15</item>
+        <item name="android:textColor">@color/text_black_color</item>
+        <item name="android:gravity">center</item>
+        <item name="android:background">@drawable/selector_comm_click</item>
+    </style>
+
+    <!-- 简单tab item, 水平均分展示 -->
+    <style name="item_tab" parent="remain_wrap">
+        <item name="android:textSize">@dimen/text_12</item>
+        <item name="android:textColor">@color/text_gray_color</item>
+        <item name="android:drawablePadding">@dimen/drawable_padding</item>
+        <item name="android:gravity">center</item>
+    </style>
+
+    <!-- 加载中...(小号) -->
+    <style name="loading_small">
+        <item name="android:layout_width">@dimen/h_20</item>
+        <item name="android:layout_height">@dimen/h_20</item>
+        <item name="android:indeterminateDrawable">@drawable/shape_comm_loading</item>
+    </style>
+
+</resources>

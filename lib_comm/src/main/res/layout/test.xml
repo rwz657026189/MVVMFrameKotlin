@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:bind="http://schemas.android.com/apk/res-auto">
+
+    <!-- 该布局无实际意义， 仅需要BR.entity BR.viewModule R.id.reload -->
+    <data>
+        <variable
+            name="entity"
+            type="Object"/>
+        <variable
+            name="viewModule"
+            type="Object"/>
+        <variable
+            name="position"
+            type="int"/>
+    </data>
+
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <TextView
+            android:id="@+id/reload"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            />
+
+    </FrameLayout>
+</layout>

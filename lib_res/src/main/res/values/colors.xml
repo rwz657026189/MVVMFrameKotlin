@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <color name="colorPrimary">#0092FF</color>
+    <color name="colorPrimaryDark">#667ab1</color>
+    <color name="colorPrimaryLight">#00B1FF</color>
+    <color name="colorPrimary_50">#7f889ce3</color>
+    <color name="colorAccent">#FF4081</color>
+
+    <!-- 页面默认背景色 -->
+    <color name="page_bg">#f2f2f2</color>
+    <!-- dialog默认背景色 -->
+    <color name="dialog_bg">@color/color_black_trans_30</color>
+    <!-- 页面加载loading背景色 -->
+    <color name="loading_bg">#444</color>
+    <!-- toolbar背景色 -->
+    <color name="toolbar_bg">#0092FF</color>
+    <!-- toolbar text颜色 -->
+    <color name="toolbar_text">@color/white</color>
+
+    <!-- 水波纹色值 -->
+    <color name="ripple_default_color">#4f000000</color>
+    <!-- 灰色背景 -->
+    <color name="background_gray">#c7c7c7</color>
+    <!-- 线条颜色 -->
+    <color name="line_color">#eee</color>
+    <!-- 分隔条颜色 -->
+    <color name="space_color">@color/page_bg</color>
+
+    <!-- 基本颜色值 -->
+    <color name="black">#000</color>
+    <color name="white">#fff</color>
+    <color name="blue">#7092ff</color>
+    <color name="green">#67f14c</color>
+    <color name="cyan">#0ff</color>
+    <color name="yellow">#fa8b00</color>
+    <color name="violet">#da70d6</color>
+    <color name="red">#fe3d83</color>
+
+    <!-- 文字基本颜色值 -->
+    <color name="text_gray_color">#999</color>
+    <color name="text_main_color">#9599a6</color>
+    <color name="text_black_color">#433f3e</color> 
+    <color name="text_art_color">#aaa</color>    
+    <color name="text_dark_color">#333</color>   
+
+    <!-- EditText隐藏文本颜色 -->
+    <color name="text_hint">#ddd</color>
+    <!-- 透明色 -->
+    <color name="color_trans">#0000</color>
+    <!-- 带透明度的色值 _XX 表示透明度 -->
+    <color name="color_black_trans_10">#19000000</color>
+    <color name="color_black_trans_20">#30000000</color>
+    <color name="color_black_trans_30">#4d000000</color>
+    <color name="color_black_trans_35">#8a000000</color>
+    <color name="color_black_trans_40">#66000000</color>
+    <color name="color_black_trans_50">#7f000000</color>
+    <color name="color_black_trans_60">#99000000</color>
+    <color name="color_black_trans_70">#b2000000</color>
+    <color name="color_black_trans_75">#c0000000</color>
+    <color name="color_black_trans_80">#cc000000</color>
+    <color name="color_black_trans_90">#e5000000</color>
+
+    <color name="color_white_trans_20">#30ffffff</color>
+    <color name="color_white_trans_50">#7fffffff</color>
+    <color name="color_white_trans_70">#b2ffffff</color>
+    <color name="color_white_trans_80">#ccffffff</color>
+    <color name="color_white_trans_90">#e5ffffff</color>
+</resources>

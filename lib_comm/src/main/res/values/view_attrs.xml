@@ -1,0 +1,395 @@
+<resources>
+    <!--圆角图片-->
+    <declare-styleable name="RoundedCornerRecyclingImageView">
+        <attr name="left_top" format="dimension"/>
+        <attr name="left_bottom" format="dimension"/>
+        <attr name="right_top" format="dimension"/>
+        <attr name="right_bottom" format="dimension"/>
+    </declare-styleable>
+
+    <declare-styleable name="SubsamplingScaleImageView">
+        <attr name="src" format="reference"/>
+        <attr name="assetName" format="string"/>
+        <attr name="panEnabled" format="boolean"/>
+        <attr name="zoomEnabled" format="boolean"/>
+        <attr name="quickScaleEnabled" format="boolean"/>
+        <attr name="tileBackgroundColor" format="color"/>
+    </declare-styleable>
+
+    <!--手势的imgview-->
+    <declare-styleable name="GestureImageView">
+        <attr name="start_x" format="dimension" />
+        <attr name="start_y" format="dimension" />
+        <attr name="start_scale" format="float" />
+        <attr name="min_scale" format="float" />
+        <attr name="max_scale" format="float" />
+        <attr name="strict" format="boolean" />
+        <attr name="recycle" format="boolean" />
+    </declare-styleable>
+
+    <!--带图标的TextView-->
+    <declare-styleable name="IconText">
+        <attr name="icon_h" format="dimension" />
+        <attr name="icon_w" format="dimension" />
+        <attr name="left_drawable" format="reference" />
+        <attr name="right_drawable" format="reference" />
+    </declare-styleable>
+
+    <!--下载数量小圆点-->
+    <declare-styleable name="RedDotLayout">
+        <attr name="rd_color" format="color" />
+        <attr name="rd_radius" format="dimension" />
+        <attr name="rd_text" format="string" />
+    </declare-styleable>
+
+    <!--评论回复界面属性-->
+    <declare-styleable name="ReplyText">
+        <attr name="rt_textColor" format="color" />
+        <attr name="rt_otherTxColor" format="color" />
+    </declare-styleable>
+    <!--5.0下水波纹效果-->
+    <declare-styleable name="MaterialRippleLayout">
+        <attr name="mrl_rippleColor" format="color" localization="suggested" />
+        <attr name="mrl_rippleDimension" format="dimension" localization="suggested" />
+        <attr name="mrl_rippleOverlay" format="boolean" localization="suggested" />
+        <attr name="mrl_rippleAlpha" format="float" localization="suggested" />
+        <attr name="mrl_rippleDuration" format="integer" localization="suggested" />
+        <attr name="mrl_rippleFadeDuration" format="integer" localization="suggested" />
+        <attr name="mrl_rippleHover" format="boolean" localization="suggested" />
+        <attr name="mrl_rippleBackground" format="color" localization="suggested" />
+        <attr name="mrl_rippleDelayClick" format="boolean" localization="suggested" />
+        <attr name="mrl_ripplePersistent" format="boolean" localization="suggested" />
+        <attr name="mrl_rippleInAdapter" format="boolean" localization="suggested" />
+        <attr name="mrl_rippleRoundedCorners" format="dimension" localization="suggested" />
+    </declare-styleable>
+
+    <declare-styleable name="FlowLayout">
+        <attr name="horizontal_spacing" format="dimension" />
+        <attr name="vertical_spacing" format="dimension" />
+    </declare-styleable>
+
+    <!--5.0发送概念按钮-->
+    <declare-styleable name="SendCommentButton">
+        <attr name="send_bt_clickColor" format="color" localization="suggested" />
+        <attr name="send_bt_defaultColor" format="color" localization="suggested" />
+    </declare-styleable>
+
+    <!--跳过按钮-->
+    <declare-styleable name="JumpBt">
+        <attr name="jump_text_color" format="color" />
+        <attr name="jump_text" format="string" />
+        <attr name="max_second" format="integer" />
+    </declare-styleable>
+
+    <!--横向进度条-->
+    <declare-styleable name="HorizontalProgressBarWithNumber">
+        <attr name="progress_unreached_color" format="color" />
+        <attr name="progress_reached_color" format="color" />
+        <attr name="progress_reached_bar_height" format="dimension" />
+        <attr name="progress_unreached_bar_height" format="dimension" />
+        <attr name="progress_text_size" format="dimension" />
+        <attr name="progress_text_color" format="color" />
+        <attr name="progress_text_offset" format="dimension" />
+        <attr name="progress_text_visibility" format="enum">
+            <enum name="visible" value="0" />
+            <enum name="invisible" value="1" />
+        </attr>
+    </declare-styleable>
+
+    <!--圆形进度条-->
+    <declare-styleable name="RoundProgressBarWidthNumber">
+        <attr name="radius" format="dimension" />
+    </declare-styleable>
+
+    <!--指示器-->
+    <declare-styleable name="CircleIndicator">
+        <attr name="ci_width" format="dimension" />
+        <attr name="ci_height" format="dimension" />
+        <attr name="ci_margin" format="dimension" />
+        <attr name="ci_animator" format="reference" />
+        <attr name="ci_animator_reverse" format="reference" />
+        <attr name="ci_drawable" format="reference" />
+        <attr name="ci_drawable_unselected" format="reference" />
+    </declare-styleable>
+
+    <!--下拉刷新的-->
+    <declare-styleable name="PullToRefresh">
+
+        <!-- A drawable to use as the background of the Refreshable View -->
+        <attr name="ptrRefreshableViewBackground" format="reference|color" />
+
+        <!-- A drawable to use as the background of the Header and Footer Loading Views -->
+        <attr name="ptrHeaderBackground" format="reference|color" />
+
+        <!-- Text Color of the Header and Footer Loading Views -->
+        <attr name="ptrHeaderTextColor" format="reference|color" />
+
+        <!-- Text Color of the Header and Footer Loading Views Sub Header -->
+        <attr name="ptrHeaderSubTextColor" format="reference|color" />
+
+        <!-- Mode of Pull-to-Refresh that should be used -->
+        <attr name="ptrMode">
+            <flag name="disabled" value="0x0" />
+            <flag name="pullFromStart" value="0x1" />
+            <flag name="pullFromEnd" value="0x2" />
+            <flag name="both" value="0x3" />
+            <flag name="manualOnly" value="0x4" />
+
+            <!-- These last two are depreacted -->
+            <flag name="pullDownFromTop" value="0x1" />
+            <flag name="pullUpFromBottom" value="0x2" />
+        </attr>
+
+        <!-- Whether the Indicator overlay(s) should be used -->
+        <attr name="ptrShowIndicator" format="reference|boolean" />
+
+        <!-- Drawable to use as Loading Indicator. Changes both Header and Footer. -->
+        <attr name="ptrDrawable" format="reference" />
+
+        <!-- Drawable to use as Loading Indicator in the Header View. Overrides value set in ptrDrawable. -->
+        <attr name="ptrDrawableStart" format="reference" />
+
+        <!-- Drawable to use as Loading Indicator in the Footer View. Overrides value set in ptrDrawable. -->
+        <attr name="ptrDrawableEnd" format="reference" />
+
+        <!-- Whether Android's built-in Over Scroll should be utilised for Pull-to-Refresh. -->
+        <attr name="ptrOverScroll" format="reference|boolean" />
+
+        <!-- Base text color, typeface, size, and style for Header and Footer Loading Views -->
+        <attr name="ptrHeaderTextAppearance" format="reference" />
+
+        <!-- Base text color, typeface, size, and style for Header and Footer Loading Views Sub Header -->
+        <attr name="ptrSubHeaderTextAppearance" format="reference" />
+
+        <!-- Style of Animation should be used displayed when pulling. -->
+        <attr name="ptrAnimationStyle">
+            <flag name="rotate" value="0x0" />
+            <flag name="flip" value="0x1" />
+        </attr>
+
+        <!-- Whether the user can scroll while the View is Refreshing -->
+        <attr name="ptrScrollingWhileRefreshingEnabled" format="reference|boolean" />
+
+        <!--
+        	Whether PullToRefreshListView has it's extras enabled. This allows the user to be
+        	able to scroll while refreshing, and behaves better. It acheives this by adding
+        	Header and/or Footer Views to the ListView.
+        -->
+        <attr name="ptrListViewExtrasEnabled" format="reference|boolean" />
+
+        <!--
+        	Whether the Drawable should be continually rotated as you pull. This only
+        	takes effect when using the 'Rotate' Animation Style.
+        -->
+        <attr name="ptrRotateDrawableWhilePulling" format="reference|boolean" />
+
+        <!-- BELOW HERE ARE DEPRECEATED. DO NOT USE. -->
+        <attr name="ptrAdapterViewBackground" format="reference|color" />
+        <attr name="ptrDrawableTop" format="reference" />
+        <attr name="ptrDrawableBottom" format="reference" />
+    </declare-styleable>
+
+    <!--流式标签-->
+    <declare-styleable name="TagFlowLayout">
+        <attr name="tfl_tags" format="reference" />
+        <attr name="tfl_interval_x" format="dimension" />
+        <attr name="tfl_interval_y" format="dimension" />
+        <attr name="tfl_drawable" format="reference" />     <!--这个属性需要和tfl_tags同时使用才有用-->
+        <attr name="tfl_text_size" format="dimension" />
+        <attr name="tfl_text_color" format="color" /><!--这个属性需要和tfl_tags同时使用才有用-->
+        <attr name="tfl_text_color_selector" format="reference" /><!--这个属性需要和tfl_tags同时使用才有用-->
+    </declare-styleable>
+
+    <!--IconEditText-->
+    <declare-styleable name="IconEditText">
+        <attr name="ic_icon_width" format="dimension" />
+        <attr name="ic_icon_height" format="dimension" />
+    </declare-styleable>
+
+    <declare-styleable name="AutoScrollViewPager">
+        <attr name="av_interval" format="integer" />
+        <attr name="av_can_scroll" format="boolean" />
+    </declare-styleable>
+
+    <declare-styleable name="AutoVerticalScrollViewPager">
+        <attr name="avs_interval" format="integer" />
+        <attr name="avs_can_scroll" format="boolean" />
+    </declare-styleable>
+
+    <!--评分栏-->
+    <declare-styleable name="StarBar">
+        <attr name="sb_count" format="integer" />
+        <attr name="sb_child_w" format="dimension" />
+        <attr name="sb_child_h" format="dimension" />
+        <attr name="sb_child_interval" format="dimension" />
+        <attr name="sb_score" format="integer" />
+    </declare-styleable>
+
+    <!--圆形头像-->
+    <declare-styleable name="CircleImageView">
+        <attr name="civ_border_width" format="dimension" />
+        <attr name="civ_border_color" format="color" />
+        <attr name="civ_border_overlay" format="boolean" />
+        <attr name="civ_fill_color" format="color" />
+    </declare-styleable>
+
+    <!--富文本显示-->
+    <declare-styleable name="RichText">
+        <attr name="rt_place_holder" format="reference" />
+        <attr name="rt_error_img" format="reference" />
+    </declare-styleable>
+
+    <declare-styleable name="AVLoadingIndicatorView">
+        <attr name="indicator">
+            <flag name="BallPulse" value="0" />
+            <flag name="BallGridPulse" value="1" />
+            <flag name="BallClipRotate" value="2" />
+            <flag name="BallClipRotatePulse" value="3" />
+            <flag name="SquareSpin" value="4" />
+            <flag name="BallClipRotateMultiple" value="5" />
+            <flag name="BallPulseRise" value="6" />
+            <flag name="BallRotate" value="7" />
+            <flag name="CubeTransition" value="8" />
+            <flag name="BallZigZag" value="9" />
+            <flag name="BallZigZagDeflect" value="10" />
+            <flag name="BallTrianglePath" value="11" />
+            <flag name="BallScale" value="12" />
+            <flag name="LineScale" value="13" />
+            <flag name="LineScaleParty" value="14" />
+            <flag name="BallScaleMultiple" value="15" />
+            <flag name="BallPulseSync" value="16" />
+            <flag name="BallBeat" value="17" />
+            <flag name="LineScalePulseOut" value="18" />
+            <flag name="LineScalePulseOutRapid" value="19" />
+            <flag name="BallScaleRipple" value="20" />
+            <flag name="BallScaleRippleMultiple" value="21" />
+            <flag name="BallSpinFadeLoader" value="22" />
+            <flag name="LineSpinFadeLoader" value="23" />
+            <flag name="TriangleSkewSpin" value="24" />
+            <flag name="Pacman" value="25" />
+            <flag name="BallGridBeat" value="26" />
+            <flag name="SemiCircleSpin" value="27" />
+        </attr>
+        <attr name="indicator_color" format="color" />
+    </declare-styleable>
+
+    <declare-styleable name="StateText">
+        <attr name="state" format="dimension"/>
+        <attr name="textArr" format="reference"/>
+        <attr name="colorArr" format="reference"/>
+        <attr name="bgArr" format="reference"/>
+    </declare-styleable>
+
+    <!-- StateCheckBox自定义相关属性 -->
+    <declare-styleable name="scb">
+        <!-- 是否选中 -->
+        <attr name="checkedMe" format="boolean"/>
+        <!-- 选中是否允许取消 -->
+        <attr name="isEnableIfChecked" format="boolean"/>
+        <!-- 选中icon -->
+        <attr name="checkedSrc" format="reference"/>
+        <!-- 未选中icon -->
+        <attr name="uncheckedSrc" format="reference"/>
+        <!-- 选中背景 -->
+        <attr name="checkedBg" format="reference"/>
+        <!-- 未选中背景 -->
+        <attr name="uncheckedBg" format="reference"/>
+        <!-- 选中text -->
+        <attr name="checkedText" format="string"/>
+        <!-- 未选中text -->
+        <attr name="uncheckedText" format="string"/>
+        <!-- 选中text颜色 -->
+        <attr name="checkedTextColor" format="color"/>
+        <!-- 未选中text颜色 -->
+        <attr name="uncheckedTextColor" format="color"/>
+        <!-- 显示动画效果 -->
+        <attr name="showAnim" format="boolean"/>
+        <!-- icon位置 -->
+        <attr name="src_position">
+            <enum name="left" value="0"/>
+            <enum name="top" value="1"/>
+            <enum name="right" value="2"/>
+            <enum name="bottom" value="3"/>
+        </attr>
+        <!-- 居中属性 -->
+        <attr name="center" format="boolean"/>
+    </declare-styleable>
+
+    <declare-styleable name="DrawableTextView">
+        <attr name="leftDrawable" format="reference|color"/>
+        <attr name="rightDrawable" format="reference|color"/>
+        <attr name="topDrawable" format="reference|color"/>
+        <attr name="bottomDrawable" format="reference|color"/>
+        <attr name="leftDrawableWidth" format="reference|dimension"/>
+        <attr name="rightDrawableWidth" format="reference|dimension"/>
+        <attr name="topDrawableWidth" format="reference|dimension"/>
+        <attr name="bottomDrawableWidth" format="reference|dimension"/>
+        <attr name="leftDrawableHeight" format="reference|dimension"/>
+        <attr name="rightDrawableHeight" format="reference|dimension"/>
+        <attr name="topDrawableHeight" format="reference|dimension"/>
+        <attr name="bottomDrawableHeight" format="reference|dimension"/>
+
+        <attr name="starId" format="integer"/>
+    </declare-styleable>
+
+    <declare-styleable name="CircleTextView">
+        <attr name="circleColor" format="color"/>
+    </declare-styleable>
+
+    <declare-styleable name="IconTextView">
+        <attr name="right_text" format="reference"/>
+        <attr name="right_text_color" format="reference|color"/>
+        <attr name="right_text_size" format="reference"/>
+        <attr name="show_bottom_line" format="boolean"/>
+
+        <attr name="leftColor" format="reference"/>
+    </declare-styleable>
+
+    <declare-styleable name="ctv">
+        <attr name="icon" format="reference"/>
+        <!-- icon位置 -->
+        <attr name="iconPos">
+            <enum name="left" value="0"/>
+            <enum name="top" value="1"/>
+            <enum name="right" value="2"/>
+            <enum name="bottom" value="3"/>
+        </attr>
+    </declare-styleable>
+
+    <declare-styleable name="del_ev">
+        <attr name="del_icon" format="reference"/>
+    </declare-styleable>
+
+    <declare-styleable name="riv">
+        <attr name="riv_color" format="reference|color"/>
+        <attr name="riv_alpha" format="integer|reference"/>
+    </declare-styleable>
+
+    <!-- 多形态按钮 -->
+    <declare-styleable name="StateButton">
+        <attr name="pressColor" format="color" />
+        <attr name="disableColor" format="color" />
+        <attr name="enableColor" format="color" />
+        <attr name="pressTextColor" format="color" />
+        <attr name="disableTextColor" format="color" />
+        <attr name="enableTextColor" format="color" />
+        <attr name="empty" format="boolean" />
+        <!-- 是否开启按下去的状态 默认true -->
+        <attr name="enablePressState" format="boolean" />
+        <!-- 是否开启不可点击的状态 默认true -->
+        <attr name="enableDisableState" format="boolean" />
+        <!-- 是否拦截不可点击时的点击事件 默认false(不可点击时仍会收到点击事件) -->
+        <attr name="isInterceptDisable" format="boolean" />
+        <attr name="round" format="reference|dimension" />
+        <attr name="lineSize" format="reference|dimension" />
+        <attr name="roundOrientation" format="enum">
+            <!-- 同：com.rwz.commonmodule.config.Orientation -->
+            <enum name="left" value="0" />
+            <enum name="top" value="1" />
+            <enum name="right" value="2" />
+            <enum name="bottom" value="4" />
+            <enum name="all" value="8" />
+        </attr>
+    </declare-styleable>
+
+</resources>

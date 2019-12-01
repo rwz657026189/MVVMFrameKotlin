@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <data>
+
+        <variable
+            name="viewModule"
+            type="com.rwz.lib_comm.base.BaseViewModule"/>
+
+    </data>
+
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/page_bg">
+
+        <com.rwz.lib_comm.ui.widget.CommonViewPager
+            android:id="@+id/vp"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1"
+            android:layout_below="@id/line"/>
+
+        <View
+            android:id="@+id/line"
+            style="@style/line"
+            android:layout_below="@id/tab"/>
+
+        <com.rwz.lib_comm.ui.widget.CommTabLayout
+            android:id="@+id/tab"
+            style="@style/sliding_tab_layout_white_line"
+            android:layout_height="@dimen/tab_layout_height"/>
+
+    </LinearLayout>
+
+</layout>

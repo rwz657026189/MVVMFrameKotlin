@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:bind="http://schemas.android.com/apk/res-auto">
+
+    <data>
+
+        <variable
+            name="viewModule"
+            type="com.rwz.mvvm_kotlin_demo.viewmodule.MineViewModule" />
+
+    </data>
+
+    <LinearLayout
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+        <include layout="@layout/layout_toolbar" />
+
+        <com.rwz.lib_comm.ui.widget.tv.IconTextView
+            android:id="@+id/collect"
+            style="@style/mine_item"
+            android:text="@string/collect"
+            bind:clickCommand="@{viewModule.onClickEventCommand}"
+            />
+
+        <com.rwz.lib_comm.ui.widget.tv.IconTextView
+            android:id="@+id/follow"
+            style="@style/mine_item"
+            android:text="@string/follow"
+            bind:clickCommand="@{viewModule.onClickEventCommand}"
+            />
+
+        <com.rwz.lib_comm.ui.widget.tv.IconTextView
+            android:id="@+id/history_record"
+            style="@style/mine_item"
+            android:text="@string/history_record"
+            bind:clickCommand="@{viewModule.onClickEventCommand}"
+            />
+
+        <Space
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/space_size" />
+
+        <com.rwz.lib_comm.ui.widget.tv.IconTextView
+            android:id="@+id/version"
+            style="@style/mine_item"
+            android:text="@string/version"
+            bind:clickCommand="@{viewModule.onClickEventCommand}"
+            bind:right_text="@{viewModule.versionName}"
+            bind:right_text_color="@color/text_gray_color"
+            bind:right_text_size="@dimen/text_12"
+            />
+
+        <com.rwz.lib_comm.ui.widget.tv.IconTextView
+            android:id="@+id/setting"
+            style="@style/mine_item"
+            android:text="@string/setting"
+            bind:clickCommand="@{viewModule.onClickEventCommand}"
+            />
+
+    </LinearLayout>
+</layout>

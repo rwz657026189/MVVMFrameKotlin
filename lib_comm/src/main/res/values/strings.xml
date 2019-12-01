@@ -1,0 +1,11 @@
+<resources>
+    <string name="app_name">lib_comm</string>
+    <string name="exit_app_click_again">再按一次退出</string>
+    <string name="dialog_def_title">提示</string>
+    <string name="dialog_enter_batch">确定需要执行该批量操作吗？</string>
+    <string name="retry">重试</string>
+    <string name="click_retry">点击重试</string>
+    <string name="null_data">没有任何数据哦</string>
+    <string name="load_error">加载失败</string>
+    <string name="checked_one_at_least">请至少选中一项</string>
+</resources>

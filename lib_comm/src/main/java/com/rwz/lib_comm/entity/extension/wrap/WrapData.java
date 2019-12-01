@@ -61,17 +61,17 @@ public class WrapData<E> extends BaseListEntity {
         this.data = data;
     }
 
-    @Override
-    public int getItemLayoutId() {
-        return mItemLayoutId;
-    }
-
     public int getmChildItemLayoutId() {
         return mChildItemLayoutId;
     }
 
     public Drawable getBg() {
         return mBg;
+    }
+
+    @Override
+    public int itemLayoutId() {
+        return mItemLayoutId;
     }
 
     public static class Build<E>{

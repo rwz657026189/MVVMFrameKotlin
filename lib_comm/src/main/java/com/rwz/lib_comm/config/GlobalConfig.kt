@@ -11,7 +11,7 @@ const val isDebug = true
 //本地
 const val LOCAL_HTTP = "https://www.baidu.com/"
 //线上
-const val ONLINE_HTTP = "https://www.baidu.com/"
+const val ONLINE_HTTP = "http://api.ppxiaohua.com"
 //主机地址
 const val MAIN_HOST = ONLINE_HTTP
 

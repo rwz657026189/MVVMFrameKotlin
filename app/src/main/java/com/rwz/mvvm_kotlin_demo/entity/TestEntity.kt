@@ -13,5 +13,5 @@ data class TestEntity(
     var title: String,
     var url: String
 ): BaseListEntity() {
-    override val itemLayoutId: Int = R.layout.item_main_test
+    override fun itemLayoutId(): Int = R.layout.item_main_test
 }

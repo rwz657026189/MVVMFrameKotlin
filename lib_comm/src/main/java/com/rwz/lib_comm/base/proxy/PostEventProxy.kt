@@ -1,6 +1,7 @@
 package com.rwz.lib_comm.base.proxy
 
 import android.app.Activity
+import android.content.Intent
 import com.rwz.lib_comm.abs.IView
 import com.rwz.lib_comm.entity.turn.LoadingDialogTurnEntity
 import com.rwz.lib_comm.entity.turn.MsgDialogTurnEntity
@@ -33,6 +34,10 @@ class PostEventProxy(private var activity: Activity,
             //是否禁用触摸屏幕
             IView.FORBID_TOUCH_SCREEN -> if (params != null && params is Boolean) {
                 isForbidTouchScreen = params
+            }
+            //跳转activity, first：requestCode, second: Intent
+            IView.START_ATY -> if (params is Pair<*, *>){
+                activity.startActivityForResult(params.second as Intent, params.first as Int)
             }
         }
     }

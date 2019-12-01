@@ -11,8 +11,8 @@ import com.bigkoo.convenientbanner.ConvenientBanner
  * description：
  **/
 
-class CommonBanner(context: Context?, attrs: AttributeSet?, defStyleAttr: Int, defStyleRes: Int) :
-    ConvenientBanner<Any>(context, attrs, defStyleAttr, defStyleRes) {
+class CommonBanner(context: Context?, attrs: AttributeSet) :
+    ConvenientBanner<Any>(context, attrs) {
 
     override fun onAttachedToWindow() {
         startTurning(AUTO_TURNING_TIME.toLong())

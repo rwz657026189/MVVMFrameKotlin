@@ -10,6 +10,7 @@ import java.lang.annotation.RetentionPolicy
  * description：
  **/
 @IntDef(
+    IView.START_ATY,
     IView.FINISH_ATY,
     IView.SHOW_DIALOG,
     IView.UPDATE_DATA,

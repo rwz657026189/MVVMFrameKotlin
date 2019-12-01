@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout>
+    <data>
+        <variable
+            name="entity"
+            type="com.rwz.mvvm_kotlin_demo.entity.response.NewComment" />
+        <variable
+            name="viewModule"
+            type="com.rwz.lib_comm.base.BaseViewModule" />
+    </data>
+
+    <RelativeLayout
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/white">
+
+        <ImageView
+            android:id="@+id/avatar"
+            android:layout_width="@dimen/h_80"
+            android:layout_height="@dimen/h_80"
+            url="@{entity.propMemberIcon}"
+            circle="@{true}"
+            android:layout_margin="@dimen/h_10"/>
+
+        <LinearLayout
+            android:id="@+id/head"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_marginTop="@dimen/h_10"
+            android:layout_marginRight="@dimen/h_10"
+            android:layout_toRightOf="@+id/avatar">
+
+            <TextView style="@style/text_art"
+                android:layout_weight="1"
+                android:textSize="@dimen/text_16"
+                android:text="@{entity.propMemberName}"
+                />
+
+            <TextView
+                style="@style/text_art"
+                android:textSize="@dimen/text_16"
+                android:text="@{entity.timeStr}" />
+
+        </LinearLayout>
+
+        <TextView style="@style/text_main"
+            android:text="@{entity.comm_Content}"
+            android:layout_below="@+id/head"
+            android:layout_alignLeft="@+id/head"
+            android:layout_marginTop="@dimen/v_10"
+            android:layout_marginRight="@dimen/h_10"
+            android:maxLines="10000"
+            />
+
+        <View style="@style/line"
+            android:layout_alignParentBottom="true"
+            android:layout_marginTop="@dimen/v_12"
+            />
+    </RelativeLayout>
+</layout>

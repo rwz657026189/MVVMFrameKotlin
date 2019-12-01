@@ -26,6 +26,8 @@ interface IView {
         const val UPLOAD_EDIT_STATE = 5
         //是否禁用触摸屏幕
         const val FORBID_TOUCH_SCREEN = 6
+        //跳转activity
+        const val START_ATY = 7
     }
 
 

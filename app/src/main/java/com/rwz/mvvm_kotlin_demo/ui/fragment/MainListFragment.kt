@@ -22,8 +22,6 @@ class MainListFragment : BaseListFragment<LayoutRecyclerviewBinding, MainListVie
     override fun config() {
         super.config()
         mType = arguments?.getInt(INT)!!
-        //推荐两列
-        SPAN_COUNT = if (mType == 1) 2 else 1
     }
 
     override fun setLayoutId(): Int {
@@ -39,13 +37,13 @@ class MainListFragment : BaseListFragment<LayoutRecyclerviewBinding, MainListVie
         when (mType) {
             0 -> {
                 mToolbarProxy.titleView?.text = getString(R.string.main)
-                mToolbarProxy.setRightDrawable(R.drawable.ic_more)
+//                mToolbarProxy.setRightDrawable(R.drawable.ic_more)
                 mToolbarProxy.setLeftDrawable(0)
             }
             1 -> {
                 mToolbarProxy.titleView?.text = getString(R.string.recommend)
                 mToolbarProxy.setLeftDrawable(0)
-                mToolbarProxy.rightView?.text = "连续点击3次有惊喜"
+//                mToolbarProxy.rightView?.text = "连续点击3次有惊喜"
             }
         }
     }

@@ -22,9 +22,10 @@ data class TempEntity(
     var isShowErrorBtn: Boolean = true,
     var nullImgRes: Int? = 0,
     var errorImgRes: Int? = 0,
-    var type: ObservableInt = ObservableInt(STATUS_LOADING),
-    override val itemLayoutId: Int = R.layout.layout_temp
+    var type: ObservableInt = ObservableInt(STATUS_LOADING)
 ): IBaseEntity{
+
+    override fun itemLayoutId(): Int = R.layout.layout_temp
 
     fun getShowNullBtn(type: Int) = isShowNullBtn && type == STATUS_NULL
 

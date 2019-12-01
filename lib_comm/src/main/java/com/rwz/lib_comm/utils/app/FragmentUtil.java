@@ -19,10 +19,12 @@ import static com.rwz.lib_comm.config.BaseKeyKt.STRING;
 
 public class FragmentUtil {
 
-
     public static <T extends BaseFragment>T newInstance(Class<T> cl, Parcelable params) {
         T baseFragment = newInstance(cl);
-        putParcelable(baseFragment, params);
+        if(params instanceof Bundle)
+            baseFragment.setArguments((Bundle) params);
+        else
+            putParcelable(baseFragment, params);
         return baseFragment;
     }
 

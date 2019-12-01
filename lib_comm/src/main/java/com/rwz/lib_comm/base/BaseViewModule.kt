@@ -1,5 +1,6 @@
 package com.rwz.lib_comm.base
 
+import android.content.Intent
 import androidx.annotation.StringRes
 import com.rwz.lib_comm.R
 import com.rwz.lib_comm.abs.IView
@@ -23,6 +24,10 @@ import io.reactivex.functions.Consumer
  **/
 open class BaseViewModule<V : IView>(clickCommand: Consumer<*>? = null) : RxViewModule<V>() {
 
+    companion object{
+        const val SINGLE_REQUEST_CODE = "single"
+    }
+
     //是否自动加载数据
     protected var isAutoLoadingData = true
     //页面类型，xml中可能需要
@@ -37,7 +42,7 @@ open class BaseViewModule<V : IView>(clickCommand: Consumer<*>? = null) : RxView
         //非必须
     }
 
-    protected open fun getObserver(requestCode: String): CommonObserver<Any> {
+    protected open fun getObserver(requestCode: String = SINGLE_REQUEST_CODE): CommonObserver<Any> {
         return object : CommonObserver<Any>() {
             override fun onError(e: Throwable) {
                 super.onError(e)
@@ -77,6 +82,10 @@ open class BaseViewModule<V : IView>(clickCommand: Consumer<*>? = null) : RxView
 
     open fun onClickView(id: Int, iEntity: IBaseEntity?) {
         LogUtil.d("BaseViewModule", "onClickView", id)
+    }
+
+    protected fun startActivity(intent: Intent, requestCode: Int = -1) {
+        postEvent(IView.START_ATY, requestCode to intent)
     }
 
     protected fun showDialog(@StringRes msg: Int, requestCode: Int) {

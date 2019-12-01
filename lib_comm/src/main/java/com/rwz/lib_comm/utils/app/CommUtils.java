@@ -17,6 +17,7 @@ import androidx.core.content.FileProvider;
 
 import com.rwz.lib_comm.R;
 import com.rwz.lib_comm.manager.ContextManager;
+import com.rwz.lib_comm.utils.show.LogUtil;
 import com.rwz.lib_comm.utils.show.ToastUtil;
 import com.rwz.lib_comm.utils.system.AndroidUtils;
 
@@ -155,6 +156,30 @@ public class CommUtils {
                 ((startR + (int)(progress * (endR - startR))) << 16) |
                 ((startG + (int)(progress * (endG - startG))) << 8) |
                 ((startB + (int)(progress * (endB - startB))));
+    }
+
+    /**
+     * android程序间的分享文本
+     */
+    public static void shareTextToSystem(String content) {
+        Context context = ContextManager.context;
+        if (context != null) {
+            Intent intent = new Intent();
+//            intent.setComponent(new ComponentName("目标app包名", "目标app类名"));
+            intent.setAction(Intent.ACTION_SEND);
+            //分享文本内容
+            intent.setType("text/plain");
+            //添加分享标题
+//            if(!TextUtils.isEmpty(title))
+            //添加分享内容
+//            intent.putExtra(Intent.EXTRA_TITLE, "title");
+            intent.putExtra(Intent.EXTRA_TEXT, content);
+            intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+//            intent.putExtra(Intent.EXTRA_SUBJECT, "subject");
+            if (CommUtils.canTurn(context, intent)) {
+                context.startActivity(Intent.createChooser(intent, ResourceUtil.getString(R.string.share_to)));
+            }
+        }
     }
 
 }

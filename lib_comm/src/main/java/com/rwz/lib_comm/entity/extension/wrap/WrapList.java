@@ -67,17 +67,17 @@ public class WrapList<T> extends BaseListEntity {
         return itemDecoration;
     }
 
-    @Override
-    public int getItemLayoutId() {
-        return mItemLayoutId;
-    }
-
     public int getChildItemLayoutId() {
         return mChildItemLayoutId;
     }
 
     public Drawable getBg() {
         return mBg;
+    }
+
+    @Override
+    public int itemLayoutId() {
+        return mItemLayoutId;
     }
 
     public static class Build<T>{

@@ -27,8 +27,11 @@ import io.reactivex.functions.Consumer
 abstract class BaseListViewModule<V : IListView>(clickCommand: Consumer<*>? = null)
     : BaseViewModule<V>(clickCommand), OnRefreshLoadMoreListener,  OnLoadMoreListener {
 
-    //第一页下标
-    protected val FIRST_PAGE = 1
+    companion object{
+        //第一页下标
+        const val FIRST_PAGE = 1
+    }
+
     // 页数
     protected var mPage = FIRST_PAGE
     //该次请求是否刷新
@@ -218,7 +221,7 @@ abstract class BaseListViewModule<V : IListView>(clickCommand: Consumer<*>? = nu
      * @param requestCode 请求码
      * @param data  实体类
      */
-    protected fun handlerData(requestCode: String, data: Any?) {
+    protected open fun handlerData(requestCode: String, data: Any?) {
         LogUtil.d(TAG, "handlerData", "requestCode = $requestCode", "data = $data")
         if (data != null && data is Collection<*> && !data.isEmpty()) {
             mData.addAll(data as Collection<IBaseEntity>)

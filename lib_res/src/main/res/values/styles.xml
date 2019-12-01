@@ -48,6 +48,7 @@
     <style name="space">
         <item name="android:layout_height">@dimen/space_size</item>
         <item name="android:layout_width">match_parent</item>
+        <item name="android:background">@color/space_color</item>
     </style>
 
     <!-- 虚线 -->

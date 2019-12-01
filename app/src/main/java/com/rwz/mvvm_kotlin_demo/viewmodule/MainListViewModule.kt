@@ -1,11 +1,22 @@
 package com.rwz.mvvm_kotlin_demo.viewmodule
 
+import android.content.Intent
+import android.os.Parcelable
 import com.rwz.lib_comm.abs.IListView
 import com.rwz.lib_comm.base.BaseListViewModule
 import com.rwz.lib_comm.comm.CommonObserver
+import com.rwz.lib_comm.config.MAIN_HOST
+import com.rwz.lib_comm.config.PARCELABLE_ENTITY
+import com.rwz.lib_comm.entity.extension.wrap.WrapList
+import com.rwz.lib_comm.manager.ContextManager
 import com.rwz.lib_comm.ui.adapter.rv.mul.IBaseEntity
 import com.rwz.lib_comm.utils.show.ToastUtil
+import com.rwz.mvvm_kotlin_demo.R
 import com.rwz.mvvm_kotlin_demo.entity.TestEntity
+import com.rwz.mvvm_kotlin_demo.entity.response.BannerEntity
+import com.rwz.mvvm_kotlin_demo.entity.response.JokeEntity
+import com.rwz.mvvm_kotlin_demo.net.module.MainModule
+import com.rwz.mvvm_kotlin_demo.ui.activity.DetailActivity
 import io.reactivex.Observable
 import io.reactivex.android.schedulers.AndroidSchedulers
 import java.util.*
@@ -19,30 +30,34 @@ import java.util.concurrent.TimeUnit
 class MainListViewModule(private val mType: Int) : BaseListViewModule<IListView>() {
 
     override fun requestData() {
-        Observable.just(mPage)
-            .delay(1000, TimeUnit.MILLISECONDS)
-            .map {
-                val list = ArrayList<TestEntity>()
-                val curr = (mPage - FIRST_PAGE) * 20
-                for (i in curr until curr + 20) {
-                    val url = "https://i04piccdn.sogoucdn.com/578df9ac96a950ee"
-                    val url2 = "https://p0.ssl.qhimgs4.com/t010963137bc82c6dbc.jpg"
-                    val entity = TestEntity("测试$i", if (mType == 1) url2 else url)
-                    entity.spanCount = if (mType == 1) 2 else 1
-                    list.add(entity)
-                }
-                list
-            }
-            .observeOn(AndroidSchedulers.mainThread())
-            .subscribe(object : CommonObserver<List<TestEntity>>() {
-                override fun onNext(list: List<TestEntity>) {
-                    onResponseSuccess("", list)
-                }
-            })
+        MainModule.mainList().subscribe(getObserver())
     }
 
     override fun onItemClick(position: Int, iEntity: IBaseEntity) {
-        ToastUtil.showShortSingle("click me")
+        when (iEntity) {
+            is JokeEntity -> {
+                val intent = Intent(ContextManager.context, DetailActivity::class.java)
+                intent.putExtra(PARCELABLE_ENTITY, iEntity)
+                startActivity(intent)
+            }
+            is BannerEntity -> {
+                onItemClick(position, iEntity.entity)
+            }
+        }
+    }
+
+    override fun handlerData(requestCode: String, data: Any?) {
+        if (data is List<*> && data.isNotEmpty()) {
+            val list = mutableListOf<BannerEntity>()
+            for (i in 0 until 3) {
+                val entity = data[(Math.random() * data.size).toInt()] as JokeEntity
+                list.add(BannerEntity(MAIN_HOST + entity.bigimg, entity))
+            }
+            val wrapList = WrapList.Build<BannerEntity>()
+                .create(R.layout.item_banner, list)
+            mData.add(wrapList)
+        }
+        super.handlerData(requestCode, data)
     }
 
 }

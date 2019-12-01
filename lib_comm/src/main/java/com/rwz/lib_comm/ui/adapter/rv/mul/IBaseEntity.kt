@@ -6,5 +6,7 @@ package com.rwz.lib_comm.ui.adapter.rv.mul
  * description：
  **/
 interface IBaseEntity {
-    val itemLayoutId: Int
+
+    fun itemLayoutId(): Int
+
 }

@@ -1,6 +1,7 @@
 package com.rwz.lib_comm.net
 
 import com.google.gson.GsonBuilder
+import com.rwz.lib_comm.config.SHOW_NET_ERROR
 import okhttp3.OkHttpClient
 import retrofit2.Retrofit
 import retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory
@@ -19,7 +20,7 @@ object RetrofitManager{
     //头信息
     private var mHeaderMap: MutableMap<String, String>? = null
 
-    fun init(host: String, headerMap: HashMap<String, String>) {
+    fun init(host: String, headerMap: HashMap<String, String>? = null) {
         mHeaderMap = headerMap
         mRetrofit = createRetrofit(TIME_OUT, host)
     }
@@ -35,7 +36,7 @@ object RetrofitManager{
     }
 
     private fun getClient(timeOutMillSeconds: Int): OkHttpClient {
-        val builder: OkHttpClient.Builder = OkHttpClient.Builder()
+        var builder: OkHttpClient.Builder = OkHttpClient.Builder()
             .addInterceptor { chain ->
                 val request = chain.request()
                 val newBuilder = request.newBuilder()
@@ -53,10 +54,12 @@ object RetrofitManager{
             .connectTimeout(timeOutMillSeconds.toLong(), TimeUnit.MILLISECONDS)
             .writeTimeout(timeOutMillSeconds.toLong(), TimeUnit.MILLISECONDS)
             .readTimeout(timeOutMillSeconds.toLong(), TimeUnit.MILLISECONDS)
+        if (SHOW_NET_ERROR)
+            builder = builder.addInterceptor(CommLoggingInterceptor())
         return builder.build()
     }
 
-    fun <T> getService(c: Class<T>?): T? = mRetrofit?.create(c)
+    fun <T> getService(c: Class<T>?): T = mRetrofit!!.create(c)
 
     fun addHeaderParams(headerMap: MutableMap<String, String>) {
         if (this.mHeaderMap == null)

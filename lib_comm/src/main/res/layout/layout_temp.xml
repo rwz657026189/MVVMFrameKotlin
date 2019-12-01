@@ -81,7 +81,7 @@
                 android:layout_width="@dimen/h_180"
                 android:layout_height="@dimen/v_45"
                 android:layout_marginTop="@dimen/v_30"
-                android:background="@drawable/selector_comm_click_round"
+                android:background="@drawable/selector_primary_click_round"
                 android:gravity="center"
                 android:layout_gravity="center_horizontal"
                 android:text="@{TempEntity.STATUS_NULL == entity.type ? entity.nullBtnStr : entity.errorBtnStr}"

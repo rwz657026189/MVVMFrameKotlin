@@ -7,6 +7,7 @@ import androidx.databinding.ViewDataBinding
 import com.rwz.lib_comm.BR
 import com.rwz.lib_comm.ui.adapter.rv.BaseBindingVH
 import com.rwz.lib_comm.ui.adapter.rv.mul.IBaseEntity
+import com.rwz.lib_comm.utils.show.LogUtil
 
 /**
  * date： 2019/11/12 15:13
@@ -19,8 +20,9 @@ class DataBindingDecorator<D : IBaseEntity>(var provide :DecoratorProvide)
     override val viewType: Int = DecoratorProvide.DATA_BINDING_VIEW_TYPE
 
     override fun itemViewType(position: Int, data: D): Int {
-        provide.putDecorator(this, data.itemLayoutId)
-        return data.itemLayoutId
+        LogUtil.d("itemViewType type = ${data.itemLayoutId()}")
+        provide.putDecorator(this, data.itemLayoutId())
+        return data.itemLayoutId()
     }
 
     //用于设置Item的事件Presenter

@@ -6,6 +6,7 @@ import com.rwz.lib_comm.base.BaseFragment
 import com.rwz.mvvm_kotlin_demo.R
 import com.rwz.mvvm_kotlin_demo.databinding.FragmentMineBinding
 import com.rwz.mvvm_kotlin_demo.viewmodule.MineViewModule
+import kotlinx.android.synthetic.main.fragment_mine.*
 
 /**
  * date： 2019/11/30 18:32
@@ -27,5 +28,11 @@ class MineFragment : BaseFragment<FragmentMineBinding, MineViewModule>() {
         super.init(savedInstanceState)
         mToolbarProxy.titleView?.text = getString(R.string.mine)
         mToolbarProxy.leftView?.visibility = View.GONE
+        container.bindBesselImageView(head)
+        container.bindScrollerView(content)
+        container.bindThrobView(avatar)
+        pull.setOnClickListener{
+            container.startScrollAnim(true)
+        }
     }
 }

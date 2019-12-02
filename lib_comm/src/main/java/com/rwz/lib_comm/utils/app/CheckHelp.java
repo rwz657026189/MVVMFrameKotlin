@@ -89,7 +89,7 @@ public class CheckHelp {
     /**
      * 双击退出
      */
-    public static boolean onDoubleClickExit(long timeSpace) {
+    public static boolean onDoubleClickExit(int timeSpace) {
         long currentTimeMillis = System.currentTimeMillis();
         if (currentTimeMillis - mFirstClickBackTime > timeSpace) {
             ToastUtil.INSTANCE.showShort(R.string.exit_app_click_again);

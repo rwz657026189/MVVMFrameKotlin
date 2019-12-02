@@ -10,7 +10,7 @@ import com.rwz.lib_comm.net.RetrofitManager
  * author： rwz
  * description：
  **/
-class MyApp : Application() {
+open class MyApp : Application() {
 
     override fun onCreate() {
         super.onCreate()

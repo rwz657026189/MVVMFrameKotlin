@@ -17,47 +17,98 @@
 
         <include layout="@layout/layout_toolbar" />
 
-        <com.rwz.lib_comm.ui.widget.tv.IconTextView
-            android:id="@+id/collect"
-            style="@style/mine_item"
-            android:text="@string/collect"
-            bind:clickCommand="@{viewModule.onClickEventCommand}"
-            />
 
-        <com.rwz.lib_comm.ui.widget.tv.IconTextView
-            android:id="@+id/follow"
-            style="@style/mine_item"
-            android:text="@string/follow"
-            bind:clickCommand="@{viewModule.onClickEventCommand}"
-            />
-
-        <com.rwz.lib_comm.ui.widget.tv.IconTextView
-            android:id="@+id/history_record"
-            style="@style/mine_item"
-            android:text="@string/history_record"
-            bind:clickCommand="@{viewModule.onClickEventCommand}"
-            />
-
-        <Space
+        <com.rwz.mvvm_kotlin_demo.ui.wdiget.ScrollFrameLayout
+            android:id="@+id/container"
             android:layout_width="match_parent"
-            android:layout_height="@dimen/space_size" />
+            android:layout_height="match_parent">
 
-        <com.rwz.lib_comm.ui.widget.tv.IconTextView
-            android:id="@+id/version"
-            style="@style/mine_item"
-            android:text="@string/version"
-            bind:clickCommand="@{viewModule.onClickEventCommand}"
-            bind:right_text="@{viewModule.versionName}"
-            bind:right_text_color="@color/text_gray_color"
-            bind:right_text_size="@dimen/text_12"
-            />
 
-        <com.rwz.lib_comm.ui.widget.tv.IconTextView
-            android:id="@+id/setting"
-            style="@style/mine_item"
-            android:text="@string/setting"
-            bind:clickCommand="@{viewModule.onClickEventCommand}"
-            />
+            <com.rwz.mvvm_kotlin_demo.ui.wdiget.BesselImageView
+                android:id="@+id/head"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:adjustViewBounds="true"
+                android:background="@drawable/bg"
+                />
+
+
+            <ImageView
+                android:id="@+id/avatar"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:src="@drawable/avatar"
+                android:layout_gravity="center_horizontal"
+                android:layout_marginTop="@dimen/v_50"
+                android:layout_marginBottom="@dimen/v_20"
+                />
+
+            <ImageView
+                android:id="@+id/pull"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/ic_pull"
+                android:layout_gravity="bottom|center_horizontal"
+                android:layout_marginBottom="@dimen/v_40"
+                />
+
+            <LinearLayout
+                android:id="@+id/content"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="@color/white"
+                android:orientation="vertical">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        style="@style/mine_item"
+                        android:text="关闭推送"
+                        android:drawableRight="@null"
+                        android:layout_weight="1"
+                        />
+
+                    <androidx.appcompat.widget.SwitchCompat
+                        android:id="@+id/sc"
+                        android:layout_marginLeft="@dimen/activity_vertical_margin"
+                        android:layout_marginRight="@dimen/activity_vertical_margin"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        onCheckedChange="@{viewModule.onCheckedChangedEventCommand}"/>
+
+                </LinearLayout>
+
+                <View style="@style/space" />
+
+
+                <com.rwz.lib_comm.ui.widget.tv.IconTextView
+                    android:id="@+id/share"
+                    style="@style/mine_item"
+                    android:text="@string/share"
+                    bind:clickCommand="@{viewModule.onClickEventCommand}"
+                    bind:right_text_color="@color/text_gray_color"
+                    bind:right_text_size="@dimen/text_12"
+                    />
+
+                <View style="@style/space" />
+
+
+                <com.rwz.lib_comm.ui.widget.tv.IconTextView
+                    android:id="@+id/version"
+                    style="@style/mine_item"
+                    android:text="@string/version"
+                    bind:clickCommand="@{viewModule.onClickEventCommand}"
+                    bind:right_text="@{viewModule.versionName}"
+                    bind:right_text_color="@color/text_gray_color"
+                    bind:right_text_size="@dimen/text_12"
+                    />
+
+            </LinearLayout>
+
+        </com.rwz.mvvm_kotlin_demo.ui.wdiget.ScrollFrameLayout>
 
     </LinearLayout>
 </layout>

@@ -10,6 +10,7 @@ import com.rwz.lib_comm.config.PARCELABLE_ENTITY
 import com.rwz.lib_comm.entity.extension.wrap.WrapList
 import com.rwz.lib_comm.manager.ContextManager
 import com.rwz.lib_comm.ui.adapter.rv.mul.IBaseEntity
+import com.rwz.lib_comm.utils.show.LogUtil
 import com.rwz.lib_comm.utils.show.ToastUtil
 import com.rwz.mvvm_kotlin_demo.R
 import com.rwz.mvvm_kotlin_demo.entity.TestEntity
@@ -34,28 +35,35 @@ class MainListViewModule(private val mType: Int) : BaseListViewModule<IListView>
     }
 
     override fun onItemClick(position: Int, iEntity: IBaseEntity) {
+        LogUtil.d(TAG, "onItemClick = $iEntity")
         when (iEntity) {
             is JokeEntity -> {
                 val intent = Intent(ContextManager.context, DetailActivity::class.java)
                 intent.putExtra(PARCELABLE_ENTITY, iEntity)
                 startActivity(intent)
             }
-            is BannerEntity -> {
-                onItemClick(position, iEntity.entity)
-            }
+        }
+    }
+
+    override fun onClickView(id: Int, iEntity: IBaseEntity?) {
+        super.onClickView(id, iEntity)
+        if (iEntity is BannerEntity) {
+            onItemClick(id, iEntity.entity)
         }
     }
 
     override fun handlerData(requestCode: String, data: Any?) {
-        if (data is List<*> && data.isNotEmpty()) {
-            val list = mutableListOf<BannerEntity>()
-            for (i in 0 until 3) {
-                val entity = data[(Math.random() * data.size).toInt()] as JokeEntity
-                list.add(BannerEntity(MAIN_HOST + entity.bigimg, entity))
+        if (mType == 0) {
+            if (data is List<*> && data.isNotEmpty()) {
+                val list = mutableListOf<BannerEntity>()
+                for (i in 0 until 3) {
+                    val entity = data[(Math.random() * data.size).toInt()] as JokeEntity
+                    list.add(BannerEntity(MAIN_HOST + entity.bigimg, entity))
+                }
+                val wrapList = WrapList.Build<BannerEntity>()
+                    .create(R.layout.item_banner, list)
+                mData.add(wrapList)
             }
-            val wrapList = WrapList.Build<BannerEntity>()
-                .create(R.layout.item_banner, list)
-            mData.add(wrapList)
         }
         super.handlerData(requestCode, data)
     }

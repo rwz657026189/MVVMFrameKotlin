@@ -5,14 +5,17 @@ import com.rwz.lib_comm.abs.IView
 import com.rwz.lib_comm.base.BaseViewModule
 import com.rwz.lib_comm.comm.CommonObserver
 import com.rwz.lib_comm.comm.SimpleObserver
+import com.rwz.lib_comm.entity.params.CommandEntity
 import com.rwz.lib_comm.entity.turn.MsgDialogTurnEntity
 import com.rwz.lib_comm.manager.ContextManager
 import com.rwz.lib_comm.ui.adapter.rv.mul.IBaseEntity
+import com.rwz.lib_comm.utils.app.CommUtils
 import com.rwz.lib_comm.utils.show.ToastUtil
 import com.rwz.lib_comm.utils.system.AndroidUtils
 import com.rwz.mvvm_kotlin_demo.R
 import io.reactivex.Observable
 import io.reactivex.android.schedulers.AndroidSchedulers
+import io.reactivex.functions.Consumer
 import java.util.concurrent.TimeUnit
 
 /**
@@ -30,11 +33,9 @@ class MineViewModule : BaseViewModule<IView>() {
 
     override fun onClickView(id: Int, iEntity: IBaseEntity?) {
         when (id) {
-            R.id.collect -> ToastUtil.showShortSingle(R.string.collect)
-            R.id.follow -> ToastUtil.showShortSingle(R.string.follow)
-            R.id.history_record -> ToastUtil.showShortSingle(R.string.history_record)
             R.id.version -> checkNewVersion()
-            R.id.setting -> ToastUtil.showShortSingle(R.string.setting)
+            R.id.share -> CommUtils.shareTextToSystem(
+                "我正在用${AndroidUtils.getPackageName(ContextManager.context)}, 快来看看吧~")
         }
 
     }
@@ -54,5 +55,13 @@ class MineViewModule : BaseViewModule<IView>() {
                 }
             })
     }
+
+    val onCheckedChangedEventCommand: Consumer<*> =
+        Consumer<CommandEntity<Any>> { commandEntity ->
+            if (commandEntity.id == R.id.sc) {
+                ToastUtil.showShortSingle(if (commandEntity.t as Boolean) "已关闭推送" else "已开启推送")
+            }
+        }
+
 
 }

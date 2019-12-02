@@ -2,10 +2,10 @@ package com.rwz.mvvm_kotlin_demo.ui.activity
 
 import com.rwz.lib_comm.base.BaseFragment
 import com.rwz.lib_comm.base.BaseTabVpActivity
+import com.rwz.lib_comm.config.EXIT_APP_DOUBLE_CLICK_TIME
 import com.rwz.lib_comm.databinding.ActivityTabVpBinding
 import com.rwz.lib_comm.entity.extension.TabEntity
 import com.rwz.lib_comm.utils.app.CheckHelp
-import com.rwz.lib_comm.utils.app.CommUtils
 import com.rwz.lib_comm.utils.app.FragmentUtil
 import com.rwz.lib_comm.utils.app.ResourceUtil
 import com.rwz.mvvm_kotlin_demo.R
@@ -37,8 +37,8 @@ class MainActivity : BaseTabVpActivity<ActivityTabVpBinding>() {
     }
 
     override fun onBackPressed() {
-        super.onBackPressed()
-        CheckHelp.onDoubleClickExit()
+        if (CheckHelp.onDoubleClickExit(EXIT_APP_DOUBLE_CLICK_TIME))
+            super.onBackPressed()
     }
 
 }

@@ -57,7 +57,7 @@ abstract class BaseListFragment<VB : ViewDataBinding,
      * item 采用的viewModule
      * @return
      */
-    protected val itemViewModule: VM? = mViewModule
+    protected open val itemViewModule: VM? = mViewModule
 
     override fun init(savedInstanceState: Bundle?) {
         super.init(savedInstanceState)
@@ -78,7 +78,7 @@ abstract class BaseListFragment<VB : ViewDataBinding,
             return
         }
         val decoratorProvide = DataBindingDecoratorProvide()
-        decoratorProvide.viewModule = itemViewModule
+        decoratorProvide.viewModule = itemViewModule ?: mViewModule
         mAdapter = BaseBindingAdapter(context!!, mViewModule?.mData as MutableList<Any>, decoratorProvide)
         mAdapter.onClickCommand = itemClickCommand
         mList.adapter = mAdapter

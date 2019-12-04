@@ -61,11 +61,10 @@ public class NetUtils {
     /**
      * 判断网络是否连接
      *
-     * @param context
      * @return
      */
-    public static boolean isConnected(Context context) {
-        ConnectivityManager cm = (ConnectivityManager) context.getSystemService(Context.CONNECTIVITY_SERVICE);
+    public static boolean isConnected() {
+        ConnectivityManager cm = (ConnectivityManager) ContextManager.context.getSystemService(Context.CONNECTIVITY_SERVICE);
         NetworkInfo         ni = cm != null ? cm.getActiveNetworkInfo() : null;
         return ni != null && ni.isConnectedOrConnecting();
     }
@@ -73,20 +72,19 @@ public class NetUtils {
     /**
      * 判断是否是wifi连接
      */
-    public static boolean isWifi(Context context) {
-        return getNetWorkType(context) == NETWORK_TYPE_WIFI;
+    public static boolean isWifi() {
+        return getNetWorkType() == NETWORK_TYPE_WIFI;
     }
 
     /**
      * 获取网络状态，wifi,wap,2g,3g.
      *
-     * @param context 上下文
      * @return int 网络状态 {@link #NETWORK_TYPE_2G},{@link #NETWORK_TYPE_3G},
      * {@link #NETWORK_TYPE_INVALID},{@link #NETWORK_TYPE_WAP},{@link #NETWORK_TYPE_WIFI}
      */
-    public static int getNetWorkType(Context context) {
+    public static int getNetWorkType() {
         int                 netWorkType = -1;
-        ConnectivityManager manager     = (ConnectivityManager) context.getSystemService(Context.CONNECTIVITY_SERVICE);
+        ConnectivityManager manager     = (ConnectivityManager) ContextManager.context.getSystemService(Context.CONNECTIVITY_SERVICE);
         NetworkInfo         networkInfo = manager != null ? manager.getActiveNetworkInfo() : null;
         if (networkInfo != null && networkInfo.isConnected()) {
             String type = networkInfo.getTypeName();
@@ -95,7 +93,7 @@ public class NetUtils {
             } else if (type.equalsIgnoreCase("MOBILE")) {
                 String proxyHost = android.net.Proxy.getDefaultHost();
                 netWorkType = TextUtils.isEmpty(proxyHost)
-                        ? (isFastMobileNetwork(context) ? NETWORK_TYPE_3G : NETWORK_TYPE_2G)
+                        ? (isFastMobileNetwork() ? NETWORK_TYPE_3G : NETWORK_TYPE_2G)
                         : NETWORK_TYPE_WAP;
             }
         } else {
@@ -104,7 +102,8 @@ public class NetUtils {
         return netWorkType;
     }
 
-    private static boolean isFastMobileNetwork(Context context) {
+    private static boolean isFastMobileNetwork() {
+        Context context = ContextManager.context;
         TelephonyManager telephonyManager = (TelephonyManager) context.getSystemService(Context.TELEPHONY_SERVICE);
         if(telephonyManager == null)
             return false;
@@ -151,16 +150,16 @@ public class NetUtils {
      *  参考：https://www.cnblogs.com/jxust-jiege666/p/8168149.html
      * **/
     public static String getIp() {
-        Context context = ContextManager.context;
-        int netWorkType = getNetWorkType(context);
+        int netWorkType = getNetWorkType();
         if(netWorkType == NETWORK_TYPE_WIFI)
-            return getWifiIp(context);
-        else if(isConnected(context))
+            return getWifiIp();
+        else if(isConnected())
             return getLocalIpAddress();
         return null;
     }
 
-    private static String getWifiIp(Context context) {
+    private static String getWifiIp() {
+        Context context = ContextManager.context;
         //获取wifi服务
         WifiManager wifiManager = (WifiManager) context.getSystemService(Context.WIFI_SERVICE);
         //判断wifi是否开启

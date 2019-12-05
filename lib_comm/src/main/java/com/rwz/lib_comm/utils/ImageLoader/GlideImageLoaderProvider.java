@@ -47,7 +47,7 @@ public class GlideImageLoaderProvider implements BaseImageLoaderStrategy {
         int strategy =img.getWifiStrategy();
 //        LogUtil.d("strategy",strategy);
         //如果是在wifi,或者采取的策略不只wifi加载就加载图片
-        if (NetUtils.isWifi(ctx) || strategy != ImageLoaderUtil.LOAD_STRATEGY_ONLY_WIFI) {
+        if (NetUtils.isWifi() || strategy != ImageLoaderUtil.LOAD_STRATEGY_ONLY_WIFI) {
             loadNormal(ctx, img);
         }else{
             loadCache(ctx, img);

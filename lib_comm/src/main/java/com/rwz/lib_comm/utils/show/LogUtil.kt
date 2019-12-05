@@ -6,6 +6,7 @@ import com.orhanobut.logger.AndroidLogAdapter
 import com.orhanobut.logger.Logger
 import com.orhanobut.logger.PrettyFormatStrategy
 import com.rwz.lib_comm.config.showLog
+import java.util.*
 
 /**
  * date： 2019/11/7 16:28
@@ -35,7 +36,8 @@ object LogUtil {
      */
     fun ok(vararg msg: Any?) {
         if (isDebug) {
-            Logger.t(OkHttp).d(getText(msg))
+            val text = msg.contentToString()
+            Logger.t(OkHttp).d(text.substring(1, text.length - 1))
         }
     }
 
@@ -44,7 +46,8 @@ object LogUtil {
      */
     fun d(vararg msg: Any?) {
         if (isDebug) {
-            Logger.t(TAG).d(getText(msg))
+            val text = msg.contentToString()
+            Logger.t(TAG).d(text.substring(1, text.length - 1))
         }
     }
 
@@ -53,7 +56,8 @@ object LogUtil {
      */
     fun e(vararg msg: Any?) {
         if (isDebug) {
-            Logger.t(TAG).e(getText(msg))
+            val text = msg.contentToString()
+            Logger.t(TAG).e(text.substring(1, text.length - 1))
         }
     }
 
@@ -68,12 +72,14 @@ object LogUtil {
         }
     }
 
-    private fun getText(vararg msg: Any): String {
-        val sb = StringBuffer()
-        for (o in msg) {
-            sb.append(",").append(o)
-        }
-        return sb.toString().substring(1)
+    private fun getText(vararg msg: Any?): String {
+//        val sb = StringBuffer()
+//        for (o in msg) {
+//            sb.append(",").append(o?.toString())
+//        }
+//        return sb.toString().substring(1)
+        val text = msg.contentToString()
+        return text.substring(1, text.length - 1)
     }
 
     fun stackTraces(methodCount: Int = 15, methodOffset: Int = 3) {

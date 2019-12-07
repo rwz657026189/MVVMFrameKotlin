@@ -1,5 +1,8 @@
 package com.rwz.mvvm_kotlin_demo.ui.activity
 
+import android.content.Intent
+import android.os.Bundle
+import com.landon.puppet.login.LoginActivity
 import com.rwz.lib_comm.base.BaseFragment
 import com.rwz.lib_comm.base.BaseTabVpActivity
 import com.rwz.lib_comm.config.EXIT_APP_DOUBLE_CLICK_TIME
@@ -39,6 +42,11 @@ class MainActivity : BaseTabVpActivity<ActivityTabVpBinding>() {
     override fun onBackPressed() {
         if (CheckHelp.onDoubleClickExit(EXIT_APP_DOUBLE_CLICK_TIME))
             super.onBackPressed()
+    }
+
+    override fun init(savedInstanceState: Bundle?) {
+        super.init(savedInstanceState)
+        startActivity(Intent(this, LoginActivity::class.java))
     }
 
 }

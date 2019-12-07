@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<layout xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <data>
+        <import type="android.text.TextUtils"/>
+        <import type="android.view.View"/>
+        <import type="com.landon.puppet.R"/>
+
+        <variable
+            name="viewModule"
+            type="com.landon.puppet.login.LoginViewModule"/>
+
+    </data>
+
+    <RelativeLayout
+        android:id="@+id/activity_login"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <com.rwz.lib_comm.ui.widget.vg.KeyboardLayout
+            android:id="@+id/keyboard_layout"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"/>
+
+        <ImageView
+            android:id="@+id/launcher"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@mipmap/ic_launcher"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="@dimen/v_45"/>
+
+        <com.rwz.lib_comm.ui.widget.CommTabLayout
+            android:id="@+id/tab"
+            style="@style/sliding_tab_layout_white"
+            android:layout_below="@id/launcher"
+            android:background="@null"
+            android:layout_width="@dimen/h_200"
+            android:layout_height="@dimen/tab_layout_height"
+            android:layout_marginTop="@dimen/v_30"
+            android:layout_centerHorizontal="true"/>
+
+        <com.rwz.lib_comm.ui.widget.CommonViewPager
+            android:id="@+id/vp"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_below="@id/tab"/>
+
+    </RelativeLayout>
+</layout>

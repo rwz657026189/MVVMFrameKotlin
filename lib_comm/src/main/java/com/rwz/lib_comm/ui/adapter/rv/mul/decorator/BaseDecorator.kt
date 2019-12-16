@@ -10,6 +10,8 @@ import android.view.ViewGroup
  **/
 abstract class BaseDecorator<D>: IDecorator<D, BaseViewHolder>{
 
+    val TAG = javaClass.simpleName
+
     override fun itemViewType(position: Int, data: D): Int = viewType
 
     override fun onCreateViewHolder(

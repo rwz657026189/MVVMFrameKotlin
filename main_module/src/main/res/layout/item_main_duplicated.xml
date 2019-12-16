@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@drawable/selector_comm_click">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center_vertical"
+        android:orientation="horizontal"
+        android:layout_marginTop="@dimen/v_10"
+        android:layout_marginBottom="@dimen/v_10"
+        android:layout_marginRight="@dimen/activity_horizontal_margin"
+        android:layout_marginLeft="@dimen/activity_horizontal_margin">
+
+        <ImageView
+            android:id="@+id/avatar"
+            android:layout_width="@dimen/h_60"
+            android:layout_height="@dimen/h_60"
+            />
+
+        <TextView
+            android:id="@+id/title"
+            style="@style/text_art"
+            android:layout_width="@dimen/h_0"
+            android:layout_weight="1"
+            android:textSize="@dimen/text_16"
+            android:layout_marginLeft="@dimen/h_5"
+            android:maxLines="2"
+            />
+
+        <TextView
+            android:id="@+id/time"
+            style="@style/text_art"
+            android:textSize="@dimen/text_16"
+            android:layout_marginLeft="@dimen/h_5"
+            />
+
+    </LinearLayout>
+
+    <ImageView
+        android:id="@+id/img"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/v_200"
+        android:layout_marginLeft="@dimen/activity_horizontal_margin"
+        android:layout_marginRight="@dimen/activity_horizontal_margin"
+        android:scaleType="centerCrop"
+        />
+
+    <View style="@style/space"
+        android:layout_marginTop="@dimen/v_10"/>
+
+</LinearLayout>

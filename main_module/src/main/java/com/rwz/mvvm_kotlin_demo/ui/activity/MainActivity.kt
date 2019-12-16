@@ -1,5 +1,7 @@
 package com.rwz.mvvm_kotlin_demo.ui.activity
 
+import android.content.Intent
+import android.os.Bundle
 import com.rwz.lib_comm.base.BaseFragment
 import com.rwz.lib_comm.base.BaseTabVpActivity
 import com.rwz.lib_comm.config.EXIT_APP_DOUBLE_CLICK_TIME
@@ -9,6 +11,7 @@ import com.rwz.lib_comm.utils.app.CheckHelp
 import com.rwz.lib_comm.utils.app.FragmentUtil
 import com.rwz.lib_comm.utils.app.ResourceUtil
 import com.rwz.mvvm_kotlin_demo.R
+import com.rwz.mvvm_kotlin_demo.duplicated.MainDuplicatedActivity
 import com.rwz.mvvm_kotlin_demo.ui.fragment.MainListFragment
 import com.rwz.mvvm_kotlin_demo.ui.fragment.MineFragment
 import java.util.*
@@ -39,6 +42,11 @@ class MainActivity : BaseTabVpActivity<ActivityTabVpBinding>() {
     override fun onBackPressed() {
         if (CheckHelp.onDoubleClickExit(EXIT_APP_DOUBLE_CLICK_TIME))
             super.onBackPressed()
+    }
+
+    override fun init(savedInstanceState: Bundle?) {
+        super.init(savedInstanceState)
+        startActivity(Intent(this, MainDuplicatedActivity::class.java))
     }
 
 }

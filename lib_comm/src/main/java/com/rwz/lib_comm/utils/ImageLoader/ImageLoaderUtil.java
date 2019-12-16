@@ -51,7 +51,7 @@ public class ImageLoaderUtil {
     }
 
     public void loadImage(ImageView img, String imgUrl){
-        mStrategy.loadImage(img.getContext(),new ImageLoader.Builder().imgView(img).url(imgUrl).build());
+        mStrategy.loadImage(img.getContext(), new ImageLoader.Builder().imgView(img).url(imgUrl).build());
     }
 
     public void loadLastImage(ImageView img, String imgUrl) {

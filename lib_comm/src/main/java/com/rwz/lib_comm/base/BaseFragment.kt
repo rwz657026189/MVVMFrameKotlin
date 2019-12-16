@@ -10,7 +10,6 @@ import androidx.databinding.ViewDataBinding
 import androidx.fragment.app.Fragment
 import com.rwz.lib_comm.BR
 import com.rwz.lib_comm.R
-import com.rwz.lib_comm.abs.IListView
 import com.rwz.lib_comm.abs.IView
 import com.rwz.lib_comm.abs.IViewModule
 import com.rwz.lib_comm.base.proxy.DialogProxy
@@ -35,13 +34,14 @@ abstract class BaseFragment<VB : ViewDataBinding, VM : IViewModule<out IView>>
     //activity是否可见
     var isRunning = false
         private set
-    protected var binding: VB? = null
+    //必须采用DataBinding布局才不为空
+    protected var mBinding: VB? = null
     protected var mViewModule: VM? = null
     lateinit var mDialogProxy: DialogProxy
     lateinit var mToolbarProxy: ToolbarProxy
     lateinit var mPostEventProxy: PostEventProxy
 
-    open lateinit var rootView: View
+    open lateinit var mRootView: View
         protected set
     //是否自动加载数据
     var isAutoLoadingData = true
@@ -52,10 +52,9 @@ abstract class BaseFragment<VB : ViewDataBinding, VM : IViewModule<out IView>>
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        binding = DataBindingUtil.inflate(inflater, setLayoutId(), container, false)
-        rootView = binding!!.root
-        rootView.let {  }
-        return rootView
+        mBinding = DataBindingUtil.inflate(inflater, setLayoutId(), container, false)
+        mRootView = mBinding?.root ?: inflater.inflate(setLayoutId(), null)
+        return mRootView
     }
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
@@ -63,7 +62,7 @@ abstract class BaseFragment<VB : ViewDataBinding, VM : IViewModule<out IView>>
         isAlive = true
         config()
         mDialogProxy = DialogProxy(fragmentManager!!, this::onClickDialogEnter, this::onClickDialogCancel)
-        mToolbarProxy = ToolbarProxy(rootView, this)
+        mToolbarProxy = ToolbarProxy(mRootView, this)
         mPostEventProxy = PostEventProxy(activity!!, mDialogProxy)
         if (mViewModule == null)
             mViewModule = setViewModule()
@@ -72,8 +71,8 @@ abstract class BaseFragment<VB : ViewDataBinding, VM : IViewModule<out IView>>
             it.bindView(this)
         }
         init(savedInstanceState)
-        binding?.setVariable(BR.viewModule, mViewModule)
-        binding?.executePendingBindings()
+        mBinding?.setVariable(BR.viewModule, mViewModule)
+        mBinding?.executePendingBindings()
         if (isAutoLoadingData)
             requestData()
         mViewModule?.initCompleted()

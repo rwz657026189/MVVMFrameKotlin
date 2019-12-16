@@ -9,8 +9,8 @@ import android.widget.TextView
 import android.icu.lang.UCharacter.GraphemeClusterBreak.T
 import android.widget.ImageView
 import android.icu.lang.UCharacter.GraphemeClusterBreak.T
-
-
+import com.rwz.lib_comm.utils.ImageLoader.ImageLoader
+import com.rwz.lib_comm.utils.ImageLoader.ImageLoaderUtil
 
 
 /**
@@ -37,19 +37,30 @@ class BaseViewHolder(
         return mConvertView
     }
 
-    fun setText(viewId: Int, text: String): ViewHolder {
+    fun setText(viewId: Int, text: String): BaseViewHolder {
         val tv = getView<TextView>(viewId)
         tv.text = text
         return this
     }
 
-    fun setImageResource(viewId: Int, resId: Int): ViewHolder {
+    fun setImageResource(viewId: Int, resId: Int): BaseViewHolder {
+        if(resId == 0)
+            return this
         val view = getView<ImageView>(viewId)
         view.setImageResource(resId)
         return this
     }
 
-    fun setVisible(viewId: Int, visible: Boolean): ViewHolder {
+    fun setImageUrl(viewId: Int, url: String): BaseViewHolder {
+        val view = getView<ImageView>(viewId)
+        ImageLoaderUtil.getInstance().loadImage(view.context,
+            ImageLoader.Builder().imgView(view)
+                .url(url)
+                .build())
+        return this
+    }
+
+    fun setVisible(viewId: Int, visible: Boolean): BaseViewHolder {
         val view = getView<View>(viewId)
         view.visibility = if (visible) View.VISIBLE else View.GONE
         return this

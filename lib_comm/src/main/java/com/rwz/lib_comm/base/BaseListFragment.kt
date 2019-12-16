@@ -15,6 +15,7 @@ import com.rwz.lib_comm.config.isSmoothScrollList
 import com.rwz.lib_comm.entity.response.BaseListEntity
 import com.rwz.lib_comm.ui.adapter.rv.BaseBindingAdapter
 import com.rwz.lib_comm.ui.adapter.rv.mul.decorator.DataBindingDecoratorProvide
+import com.rwz.lib_comm.ui.adapter.rv.mul.decorator.DecoratorProvide
 import com.rwz.lib_comm.ui.widget.CommRefreshLayout
 import com.rwz.lib_comm.ui.widget.CommonRecyclerView
 import com.rwz.lib_comm.ui.widget.SafeLinearLayoutManager
@@ -35,7 +36,7 @@ abstract class BaseListFragment<VB : ViewDataBinding,
     lateinit var mList: CommonRecyclerView
     protected var mRefreshLayout: CommRefreshLayout? = null
 
-    protected var SPAN_COUNT = 1 //每行条目数
+    open var mSpanCount = 1 //每行条目数
     lateinit var mAdapter: BaseBindingAdapter
     protected var isMulSpanCount = false//列数是否固定
 
@@ -61,24 +62,23 @@ abstract class BaseListFragment<VB : ViewDataBinding,
 
     override fun init(savedInstanceState: Bundle?) {
         super.init(savedInstanceState)
-        mList = rootView.findViewById(R.id.list)
-        mRefreshLayout = rootView.findViewById(R.id.refresh_layout)
-        if (SPAN_COUNT > 1) {
-            val manager = GridLayoutManager(context, SPAN_COUNT)
+        mList = mRootView.findViewById(R.id.list)
+        mRefreshLayout = mRootView.findViewById(R.id.refresh_layout)
+        if (mSpanCount > 1) {
+            val manager = GridLayoutManager(context, mSpanCount)
             setSpanCount(manager)
             mList.layoutManager = manager
             val itemDecoration = itemDecoration
             if (itemDecoration != null)
                 mList.addItemDecoration(itemDecoration)
-        } else if (SPAN_COUNT == 1) {
+        } else if (mSpanCount == 1) {
             mList.layoutManager = SafeLinearLayoutManager(context = context)
         } else
             return
         if (mViewModule == null) {
             return
         }
-        val decoratorProvide = DataBindingDecoratorProvide()
-        decoratorProvide.viewModule = itemViewModule ?: mViewModule
+        val decoratorProvide = setDecoratorProvide()
         mAdapter = BaseBindingAdapter(context!!, mViewModule?.mData as MutableList<Any>, decoratorProvide)
         mAdapter.onClickCommand = itemClickCommand
         mList.adapter = mAdapter
@@ -94,6 +94,12 @@ abstract class BaseListFragment<VB : ViewDataBinding,
     }
 
     protected override fun setLayoutId(): Int = R.layout.layout_recyclerview
+
+    open fun setDecoratorProvide(): DecoratorProvide {
+        val decoratorProvide = DataBindingDecoratorProvide()
+        decoratorProvide.viewModule = itemViewModule ?: mViewModule
+        return decoratorProvide
+    }
 
     private fun setSpanCount(manager: GridLayoutManager) {
         val spanCount = manager.spanCount

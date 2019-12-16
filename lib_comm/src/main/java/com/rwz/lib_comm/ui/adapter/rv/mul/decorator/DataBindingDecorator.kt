@@ -13,7 +13,7 @@ import com.rwz.lib_comm.ui.adapter.rv.mul.IBaseEntity
  * author： rwz
  * description：
  **/
-class DataBindingDecorator<D : IBaseEntity>(var provide :DecoratorProvide)
+class DataBindingDecorator<D : IBaseEntity>(private var provide :DecoratorProvide)
     : IDecorator<D, BaseBindingVH<ViewDataBinding>>{
 
     override val viewType: Int = DecoratorProvide.DATA_BINDING_VIEW_TYPE

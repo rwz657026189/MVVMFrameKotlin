@@ -5,6 +5,7 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.rwz.lib_comm.ui.adapter.rv.mul.decorator.DecoratorProvide
+import com.rwz.lib_comm.utils.show.LogUtil
 import io.reactivex.Observable
 import io.reactivex.functions.Consumer
 
@@ -27,6 +28,7 @@ open class BaseBindingAdapter (
     private var inflater: LayoutInflater = LayoutInflater.from(context)
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int):  RecyclerView.ViewHolder {
+        LogUtil.d("viewType = $viewType")
         val holder =
             decoratorProvide.getDecorator(viewType).onCreateViewHolder(parent, viewType, inflater)
         //单击事件

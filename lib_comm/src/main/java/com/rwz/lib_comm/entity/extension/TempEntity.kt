@@ -14,14 +14,14 @@ import java.lang.annotation.RetentionPolicy
  * description：
  **/
 data class TempEntity(
-    var nullTipsStr: String? = ResourceUtil.getString(R.string.null_data),
-    var errorTipsStr: String? = ResourceUtil.getString(R.string.load_error),
-    var nullBtnStr: String? = ResourceUtil.getString(R.string.click_retry),
-    var errorBtnStr: String? = ResourceUtil.getString(R.string.click_retry),
+    var nullTipsStr: String = ResourceUtil.getString(R.string.null_data),
+    var errorTipsStr: String = ResourceUtil.getString(R.string.load_error),
+    var nullBtnStr: String = ResourceUtil.getString(R.string.click_retry),
+    var errorBtnStr: String = ResourceUtil.getString(R.string.click_retry),
     var isShowNullBtn: Boolean = false,
     var isShowErrorBtn: Boolean = true,
-    var nullImgRes: Int? = 0,
-    var errorImgRes: Int? = 0,
+    var nullImgRes: Int = 0,
+    var errorImgRes: Int = 0,
     var type: ObservableInt = ObservableInt(STATUS_LOADING)
 ): IBaseEntity{
 

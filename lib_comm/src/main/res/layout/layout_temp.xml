@@ -22,6 +22,7 @@
         android:visibility="@{TempEntity.STATUS_DISMISS == entity.type ? View.GONE : View.VISIBLE}">
 
         <LinearLayout
+            android:id="@+id/loading_container"
             android:layout_width="@dimen/temp_loading_size"
             android:layout_height="@dimen/temp_loading_size"
             android:layout_marginTop="@dimen/h_30"
@@ -50,6 +51,7 @@
 
         <!-- 加载数据为空或者失败 -->
         <LinearLayout
+            android:id="@+id/error_container"
             android:orientation="vertical"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -66,8 +68,8 @@
                 android:src="@{TempEntity.STATUS_NULL == entity.type ? entity.nullImgRes : entity.errorImgRes}"/>
 
             <TextView
-                android:layout_marginTop="@dimen/v_10"
                 android:id="@+id/text"
+                android:layout_marginTop="@dimen/v_10"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"

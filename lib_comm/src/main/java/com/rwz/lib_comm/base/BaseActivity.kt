@@ -36,6 +36,7 @@ abstract class BaseActivity<VB : ViewDataBinding, VM : IViewModule<IView>>
     //activity是否可见
     var isRunning = false
         private set
+    //必须采用DataBinding布局才不为空
     protected var mBinding: VB? = null
     protected var mViewModule: VM? = null
     lateinit var mDialogProxy: DialogProxy
@@ -44,7 +45,7 @@ abstract class BaseActivity<VB : ViewDataBinding, VM : IViewModule<IView>>
     lateinit var mStatusBarProxy: StatusBarProxy
     lateinit var mPostEventProxy: PostEventProxy
 
-    open lateinit var rootView: View
+    open lateinit var mRootView: View
         protected set
     //是否自动加载数据
     var isAutoLoadingData = true
@@ -59,7 +60,7 @@ abstract class BaseActivity<VB : ViewDataBinding, VM : IViewModule<IView>>
         initialization()
         requestedOrientation = ActivityInfo.SCREEN_ORIENTATION_PORTRAIT
         mDialogProxy = DialogProxy(supportFragmentManager, this::onClickDialogEnter, this::onClickDialogCancel)
-        mToolbarProxy = ToolbarProxy(rootView, this)
+        mToolbarProxy = ToolbarProxy(mRootView, this)
         mPostEventProxy = PostEventProxy(this, mDialogProxy)
         if (mViewModule == null)
             mViewModule = setViewModule()
@@ -118,7 +119,8 @@ abstract class BaseActivity<VB : ViewDataBinding, VM : IViewModule<IView>>
 
     private fun initialization() {
         mBinding = DataBindingUtil.setContentView(this, setLayoutId())
-        rootView = mBinding!!.root
+        mRootView = mBinding?.root ?: window.decorView.findViewById(android.R.id.content)
+        LogUtil.d(TAG, mBinding)
     }
 
     override fun onResume() {

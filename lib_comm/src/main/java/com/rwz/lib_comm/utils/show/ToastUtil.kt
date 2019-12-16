@@ -22,7 +22,7 @@ object ToastUtil {
         showShortSingle(ResourceUtil.getString(stringRes))
     }
 
-    fun showShortSingle(string: String) {
+    fun showShortSingle(string: String?) {
         if (TextUtils.isEmpty(string)) {
             return
         }

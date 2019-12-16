@@ -1,0 +1,187 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:bind="http://schemas.android.com/apk/res-auto">
+
+    <data>
+
+        <import type="android.text.TextUtils"/>
+        <import type="android.view.View"/>
+        <import type="com.landon.puppet.R"/>
+
+        <variable
+            name="viewModule"
+            type="com.landon.puppet.login.LoginViewModule"/>
+    </data>
+
+    <RelativeLayout
+        android:id="@+id/activity_login"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <LinearLayout
+            android:id="@+id/account_ll"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:gravity="bottom"
+            android:layout_marginRight="@dimen/h_56">
+
+            <TextView
+                android:id="@+id/country_code"
+                android:layout_width="wrap_content"
+                android:layout_height="@dimen/tab_height"
+                android:gravity="center_vertical"
+                android:drawableLeft="@mipmap/signup_icon_phone"
+                android:drawablePadding="@dimen/h_20"
+                android:text="@{viewModule.mobileCode != null ? (`+` + viewModule.mobileCode) : ``}"/>
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/accountLayout"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="@dimen/h_20">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/account"
+                    style="@style/login_et"
+                    android:layout_height="@dimen/tab_height"
+                    android:gravity="center_vertical"
+                    android:paddingTop="@dimen/v_0"
+                    android:text="@={viewModule.account}"
+                    android:inputType="number"
+                    android:hint="@string/account_hint"
+                    android:afterTextChanged="@{v->TextUtils.isEmpty(account.getText()) ? del.setVisibility(View.GONE) : del.setVisibility(View.VISIBLE)}"
+                    />
+            </com.google.android.material.textfield.TextInputLayout>
+
+        </LinearLayout>
+
+        <View
+            android:id="@+id/line2"
+            style="@style/line"
+            android:layout_below="@id/account_ll"
+            android:layout_alignLeft="@id/account_ll"
+            android:layout_alignRight="@id/account_ll"
+            />
+
+        <ImageView
+            android:id="@+id/del"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@mipmap/zhuce_shanchu"
+            android:layout_alignRight="@id/account_ll"
+            android:layout_alignBottom="@id/line2"
+            android:paddingRight="@dimen/h_10"
+            android:paddingLeft="@dimen/h_10"
+            android:paddingTop="@dimen/h_10"
+            android:paddingBottom="@dimen/h_16"
+            android:onClick="@{v->account.setText(``)}"
+            />
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/pwLayout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/line2"
+            android:layout_alignLeft="@+id/account_ll">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/password"
+                style="@style/login_et"
+                android:layout_height="@dimen/tab_height"
+                android:paddingTop="@dimen/v_0"
+                android:drawablePadding="@dimen/h_20"
+                android:drawableLeft="@mipmap/signup_icon_lock"
+                android:inputType="textPassword"
+                android:text="@={viewModule.password}"
+                android:hint="@string/pw_hint"
+                android:afterTextChanged="@{v->TextUtils.isEmpty(password.getText()) ? delPw.setVisibility(View.GONE) : delPw.setVisibility(View.VISIBLE)}"
+                />
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <View
+            android:id="@+id/line3"
+            style="@style/line"
+            android:layout_below="@id/pwLayout"
+            android:layout_alignRight="@id/account_ll"
+            android:layout_alignLeft="@id/account_ll"
+            />
+
+        <ImageView
+            android:id="@+id/delPw"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@mipmap/zhuce_shanchu"
+            android:layout_alignRight="@id/account_ll"
+            android:layout_alignBottom="@id/line3"
+            android:paddingRight="@dimen/h_10"
+            android:paddingLeft="@dimen/h_10"
+            android:paddingTop="@dimen/h_10"
+            android:paddingBottom="@dimen/h_16"
+            android:onClick="@{v->password.setText(``)}"
+            />
+
+        <TextView
+            android:id="@+id/login"
+            android:layout_below="@id/line3"
+            android:layout_marginTop="@dimen/v_30"
+            android:layout_width="@dimen/h_150"
+            android:layout_centerHorizontal="true"
+            style="@style/login"
+            android:text="@string/login"
+            android:background="@drawable/selector_primary_gray_round_enable"
+            android:enabled="@{viewModule.canLogin}"
+            bind:clickCommand="@{viewModule.onClickEventCommand}"
+            />
+
+        <!--
+        android:enabled="@{mViewModule.canLogin}"
+         android:background="@drawable/selector_login"
+        -->
+
+        <!--  <View
+              android:id="@+id/line5"
+              style="@style/line_v"
+              android:layout_below="@id/login"
+              android:layout_height="@dimen/h_10"
+              android:layout_marginTop="@dimen/v_20"
+              android:layout_centerHorizontal="true"
+              />
+
+          <TextView
+              android:id="@+id/register"
+              android:layout_toLeftOf="@id/line5"
+              android:layout_alignBottom="@id/line5"
+              style="@style/text_mini_primary"
+              android:text="@string/register_account"
+              android:layout_marginRight="@dimen/h_16"
+              bind:clickCommand="@{viewModule.onClickEventCommand}"
+              />-->
+
+        <TextView
+            android:id="@+id/forget_pw"
+            style="@style/text_gray"
+            android:textSize="@dimen/text_12"
+            android:layout_below="@id/login"
+            android:layout_marginTop="@dimen/v_15"
+            android:layout_centerHorizontal="true"
+            android:text="@string/forget_pw"
+            bind:clickCommand="@{viewModule.onClickEventCommand}"
+            />
+
+
+        <TextView
+            android:id="@+id/tips"
+            style="@style/text_gray"
+            android:textSize="@dimen/text_12"
+            android:text="@{viewModule.userAgreement}"
+            android:layout_marginTop="@dimen/v_30"
+            android:layout_below="@id/forget_pw"
+            android:layout_centerHorizontal="true"
+            bind:clickCommand="@{viewModule.onClickEventCommand}"
+            android:visibility="invisible"
+            />
+
+    </RelativeLayout>
+</layout>

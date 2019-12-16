@@ -1,2 +1,2 @@
-include ':main_module', ':lib_res', ':lib_comm', ':lib_base', ':app'
+include ':app', ':lib_res', ':lib_comm', ':lib_base', ':module_puppet', ':lib_web',':main_module'
 rootProject.name='mvvm_kotlin_demo'

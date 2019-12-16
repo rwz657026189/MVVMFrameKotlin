@@ -36,7 +36,7 @@ abstract class BaseActivity<VB : ViewDataBinding, VM : IViewModule<IView>>
     //activity是否可见
     var isRunning = false
         private set
-    protected var binding: VB? = null
+    protected var mBinding: VB? = null
     protected var mViewModule: VM? = null
     lateinit var mDialogProxy: DialogProxy
     lateinit var mToolbarProxy: ToolbarProxy
@@ -68,8 +68,8 @@ abstract class BaseActivity<VB : ViewDataBinding, VM : IViewModule<IView>>
             it.bindView(this)
         }
         init(savedInstanceState)
-        binding?.setVariable(BR.viewModule, mViewModule)
-        binding?.executePendingBindings()
+        mBinding?.setVariable(BR.viewModule, mViewModule)
+        mBinding?.executePendingBindings()
         if (isAutoLoadingData)
             requestData()
         mViewModule?.initCompleted()
@@ -117,8 +117,8 @@ abstract class BaseActivity<VB : ViewDataBinding, VM : IViewModule<IView>>
     }
 
     private fun initialization() {
-        binding = DataBindingUtil.setContentView(this, setLayoutId())
-        rootView = binding!!.root
+        mBinding = DataBindingUtil.setContentView(this, setLayoutId())
+        rootView = mBinding!!.root
     }
 
     override fun onResume() {

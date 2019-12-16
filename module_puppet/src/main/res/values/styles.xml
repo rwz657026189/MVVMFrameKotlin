@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <style name="login" parent="text_white">
+        <item name="android:scaleType">centerCrop</item>
+        <item name="android:textSize">@dimen/text_18</item>
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_marginRight">@dimen/h_40</item>
+        <item name="android:layout_marginLeft">@dimen/h_40</item>
+        <item name="android:gravity">center</item>
+        <item name="android:padding">@dimen/v_12</item>
+    </style>
+
+    <style name="login_et" parent="edit_single">
+    </style>
+
+</resources>

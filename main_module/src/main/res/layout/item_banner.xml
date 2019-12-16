@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout>
+
+    <data>
+        <variable
+            name="entity"
+            type="com.rwz.lib_comm.entity.extension.wrap.WrapList" />
+        <variable
+            name="viewModule"
+            type="com.rwz.lib_comm.base.BaseViewModule" />
+    </data>
+
+    <FrameLayout
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <com.rwz.lib_comm.ui.widget.CommonBanner
+            android:id="@+id/banner"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/v_200"
+            android:layout_marginBottom="@dimen/activity_horizontal_margin"
+            canLoop="true"
+            bannerData="@{entity}"
+            onClickView="@{viewModule.onClickEventCommand}"
+            />
+
+    </FrameLayout>
+
+</layout>

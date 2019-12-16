@@ -12,6 +12,7 @@ import android.os.Build;
 import android.text.TextUtils;
 import android.widget.EditText;
 
+import androidx.annotation.Nullable;
 import androidx.core.content.FileProvider;
 
 
@@ -163,7 +164,7 @@ public class CommUtils {
      */
     public static void shareTextToSystem(String content) {
         Context context = ContextManager.context;
-        if (context != null) {
+        if (content != null) {
             Intent intent = new Intent();
 //            intent.setComponent(new ComponentName("目标app包名", "目标app类名"));
             intent.setAction(Intent.ACTION_SEND);

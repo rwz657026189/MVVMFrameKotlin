@@ -1,15 +1,3 @@
 <resources>
-
-    <string name="app_name">有点皮</string>
-    <string name="main">首页</string>
-    <string name="recommend">推荐</string>
-    <string name="mine">我的</string>
-    <string name="collect">收藏</string>
-    <string name="follow">关注</string>
-    <string name="history_record">历史记录</string>
-    <string name="setting">设置</string>
-    <string name="version">版本</string>
-    <string name="share">分享</string>
-
-
+    <string name="app_name">app</string>
 </resources>

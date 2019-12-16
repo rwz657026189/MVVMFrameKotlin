@@ -23,7 +23,7 @@ android {
 
 dependencies {
     api fileTree(dir: 'libs', include: ['*.jar'])
-    testApi 'junit:junit:4.12'
+    testImplementation 'junit:junit:4.12'
 
 //    api rootProject.ext.dependencies["support_annotations"]
 //    api rootProject.ext.dependencies["espresso_core"]

@@ -11,7 +11,8 @@ import com.bigkoo.convenientbanner.ConvenientBanner
  * description：
  **/
 
-class CommonBanner(context: Context?, attrs: AttributeSet) :
+class CommonBanner @JvmOverloads constructor(context: Context?,
+                                             attrs: AttributeSet? = null) :
     ConvenientBanner<Any>(context, attrs) {
 
     override fun onAttachedToWindow() {

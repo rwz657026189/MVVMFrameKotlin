@@ -10,7 +10,8 @@ import androidx.viewpager.widget.ViewPager
  * 可禁止滑动的ViewPager
  */
 
-class CommonViewPager(context: Context, attrs: AttributeSet?) : ViewPager(context, attrs) {
+class CommonViewPager @JvmOverloads constructor(context: Context,
+                                                attrs: AttributeSet? = null) : ViewPager(context, attrs) {
 
     var isCanScroll = true//是否可以滑动
 

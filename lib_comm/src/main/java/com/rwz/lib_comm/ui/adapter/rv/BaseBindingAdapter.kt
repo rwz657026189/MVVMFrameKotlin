@@ -20,6 +20,10 @@ open class BaseBindingAdapter (
     private val decoratorProvide: DecoratorProvide
 ): RecyclerView.Adapter<RecyclerView.ViewHolder>() {
 
+    init {
+        decoratorProvide.mAdapter = this
+    }
+
     //单击监听
     var onClickCommand: Consumer<Int>? = null
     //长按监听
@@ -48,7 +52,7 @@ open class BaseBindingAdapter (
     override fun onBindViewHolder(holder: RecyclerView.ViewHolder, position: Int) {
         val itemType = getItemViewType(position)
         decoratorProvide.getDecorator(itemType)
-            ?.onBindViewHolder(holder, mData[position], position)
+            .onBindViewHolder(holder, mData[position], position)
     }
 
     /**

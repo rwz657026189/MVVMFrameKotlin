@@ -17,7 +17,7 @@ object LogUtil {
 
     private var isDebug = showLog
 
-    private const val TAG = "rwz"
+    private const val TAG = "landon"
     private const val OkHttp = "OkHttp"
     private const val SPACE = "   "
 

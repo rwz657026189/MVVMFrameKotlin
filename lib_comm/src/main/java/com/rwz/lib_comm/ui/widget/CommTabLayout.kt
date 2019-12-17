@@ -10,7 +10,8 @@ import com.flyco.tablayout.SlidingTabLayout
  * author： rwz
  * description：https://github.com/H07000223/FlycoTabLayout/blob/master/README_CN.md
  **/
-class CommTabLayout(context: Context?, attrs: AttributeSet?) :
+class CommTabLayout @JvmOverloads constructor(context: Context?,
+                                              attrs: AttributeSet? = null) :
     SlidingTabLayout(context, attrs) {
 
     fun setupWithViewPager(viewPager: ViewPager) {

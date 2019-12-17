@@ -6,5 +6,5 @@ package com.rwz.lib_comm.net
  * description：
  **/
 enum class CacheType {
-    NO_CACHE, CACHE_OKHTTP
+    NO_CACHE, CACHE_OK_HTTP
 }

@@ -80,6 +80,7 @@ abstract class BaseListFragment<VB : ViewDataBinding,
         }
         val decoratorProvide = setDecoratorProvide()
         mAdapter = BaseBindingAdapter(context!!, mViewModule?.mData as MutableList<Any>, decoratorProvide)
+        decoratorProvide.mAdapter = mAdapter
         mAdapter.onClickCommand = itemClickCommand
         mList.adapter = mAdapter
         mRefreshLayout?.let {
@@ -93,7 +94,7 @@ abstract class BaseListFragment<VB : ViewDataBinding,
         setLoadingMoreEnabled(false)
     }
 
-    protected override fun setLayoutId(): Int = R.layout.layout_recyclerview
+    override fun setLayoutId(): Int = R.layout.layout_recyclerview
 
     open fun setDecoratorProvide(): DecoratorProvide {
         val decoratorProvide = DataBindingDecoratorProvide()
@@ -112,9 +113,7 @@ abstract class BaseListFragment<VB : ViewDataBinding,
                         return if (!isMulSpanCount) {
                             val count = entity.spanCount
                             if (count == 0) spanCount else spanCount / count
-                        } else {
-                            1
-                        }
+                        } else 1
                     }
                     return 1
                 }

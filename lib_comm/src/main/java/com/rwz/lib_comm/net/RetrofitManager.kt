@@ -26,7 +26,7 @@ object RetrofitManager{
     private var mRetrofit: Retrofit? = null
     //头信息
     private var mHeaderMap: MutableMap<String, String>? = null
-    private var cacheType = CacheType.CACHE_OKHTTP
+    private var cacheType = CacheType.NO_CACHE
 
     fun init(host: String, headerMap: HashMap<String, String>? = null) {
         mHeaderMap = headerMap
@@ -64,7 +64,7 @@ object RetrofitManager{
             .readTimeout(timeOutMillSeconds.toLong(), TimeUnit.MILLISECONDS)
         if (SHOW_NET_ERROR)
             builder = builder.addInterceptor(CommLoggingInterceptor())
-        if (cacheType == CacheType.CACHE_OKHTTP) {//只能缓存GET请求
+        if (cacheType == CacheType.CACHE_OK_HTTP) {//只能缓存GET请求
             val cache = Cache(File(Path.Inner.CACHE_DIR), 10 * 1024 * 1024)
             //缓存三天
             builder.addInterceptor(CacheInterceptor(3600 * 24 * 3))

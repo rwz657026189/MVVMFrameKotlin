@@ -3,7 +3,6 @@ package com.rwz.mvvm_kotlin_demo.duplicated
 import com.rwz.lib_comm.config.MAIN_HOST
 import com.rwz.lib_comm.ui.adapter.rv.mul.decorator.BaseDecorator
 import com.rwz.lib_comm.ui.adapter.rv.mul.decorator.BaseViewHolder
-import com.rwz.lib_comm.utils.show.LogUtil
 import com.rwz.mvvm_kotlin_demo.R
 import com.rwz.mvvm_kotlin_demo.entity.response.JokeEntity
 
@@ -25,7 +24,6 @@ class MainDecorator : BaseDecorator<JokeEntity>() {
             .setText(R.id.time, data.timeStr)
             .setImageUrl(R.id.avatar, MAIN_HOST + data.membericon)
             .setImageUrl(R.id.img, MAIN_HOST + data.bigimg)
-        LogUtil.d(TAG, "data = $data")
     }
 
 }

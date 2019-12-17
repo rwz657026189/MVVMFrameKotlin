@@ -12,8 +12,7 @@ import com.scwang.smartrefresh.layout.header.ClassicsHeader
  * author： rwz
  * description： 参考： https://github.com/scwang90/SmartRefreshLayout/blob/master/art/md_property.md
  **/
-
-class CommRefreshLayout(context: Context?, attrs: AttributeSet?) :
+class CommRefreshLayout @JvmOverloads constructor(context: Context?, attrs: AttributeSet?) :
     SmartRefreshLayout(context, attrs) {
 
     companion object {

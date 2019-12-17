@@ -11,7 +11,7 @@ import com.rwz.lib_comm.ui.adapter.rv.mul.IBaseEntity
 /**
  * date： 2019/11/12 15:13
  * author： rwz
- * description：
+ * description：DataBinding布局专用
  **/
 class DataBindingDecorator<D : IBaseEntity>(private var provide :DecoratorProvide)
     : IDecorator<D, BaseBindingVH<ViewDataBinding>>{

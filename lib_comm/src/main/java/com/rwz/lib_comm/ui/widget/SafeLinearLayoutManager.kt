@@ -10,7 +10,7 @@ import androidx.recyclerview.widget.RecyclerView
  * author： rwz
  * description：解决 RecyclerView Bug： Inconsistency detected. Invalid view holder adapter
  **/
-class SafeLinearLayoutManager(
+class SafeLinearLayoutManager @JvmOverloads constructor(
     context: Context?,
     attrs: AttributeSet? = null,
     defStyleAttr: Int = 0,

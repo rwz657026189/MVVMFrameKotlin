@@ -19,6 +19,6 @@ class MainDuplicatedFragment : BaseListFragment<ViewDataBinding, MainListViewMod
         return R.layout.fragment_main_duplicated
     }
 
-    override fun setDecoratorProvide(): DecoratorProvide = MainDecoratorProvide(mViewModule!!)
+    override fun setDecoratorProvide(): DecoratorProvide = MainMergeDecoratorProvide()
 
 }

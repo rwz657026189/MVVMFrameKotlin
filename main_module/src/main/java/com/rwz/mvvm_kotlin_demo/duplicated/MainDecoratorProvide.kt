@@ -5,7 +5,6 @@ import com.rwz.lib_comm.entity.extension.TempEntity
 import com.rwz.lib_comm.entity.extension.wrap.WrapList
 import com.rwz.lib_comm.ui.adapter.rv.mul.decorator.DecoratorProvide
 import com.rwz.lib_comm.ui.adapter.rv.mul.decorator.TempDecorator
-import com.rwz.lib_comm.utils.show.LogUtil
 import com.rwz.mvvm_kotlin_demo.R
 import com.rwz.mvvm_kotlin_demo.entity.response.JokeEntity
 
@@ -17,7 +16,6 @@ import com.rwz.mvvm_kotlin_demo.entity.response.JokeEntity
 class MainDecoratorProvide(val viewModule: BaseListViewModule<*>) : DecoratorProvide() {
 
     override fun getItemViewType(position: Int, data: Any): Int {
-        LogUtil.d("getItemViewType, position = $position, data = $data")
         when (data) {
             is JokeEntity -> return R.layout.item_main_duplicated
             is TempEntity -> return R.layout.layout_temp
@@ -29,7 +27,7 @@ class MainDecoratorProvide(val viewModule: BaseListViewModule<*>) : DecoratorPro
     init {
         putDecorator(MainDecorator())
         putDecorator(BannerDecorator(viewModule))
-        putDecorator(TempDecorator(viewModule))
+        putDecorator(TempDecorator(viewModule, this))
     }
 
 

@@ -20,13 +20,12 @@ import io.reactivex.functions.Action
  * description：
  **/
 open abstract class BaseDialog<VB : ViewDataBinding> : DialogFragment() {
-    protected var TAG = ""
-        private set
+    protected var TAG = javaClass.simpleName
     //获取binding对象
-    protected lateinit var mBind: VB
-    protected lateinit var mRootView: View
-        private set
+    protected var mBinding: VB? = null
     protected lateinit var mActivity: BaseActivity<*, *>
+        private set
+    protected lateinit var mRootView: View
         private set
     var dismissListener: Action? = null
 
@@ -44,14 +43,13 @@ open abstract class BaseDialog<VB : ViewDataBinding> : DialogFragment() {
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        mBind = DataBindingUtil.inflate(inflater, setLayoutId(), container, false)
-        mRootView = mBind.root
+        mBinding = DataBindingUtil.inflate(inflater, setLayoutId(), container, false)
+        mRootView = mBinding?.root ?: inflater.inflate(setLayoutId(), null)
         initFragment()
         return mRootView
     }
 
     private fun initFragment() {
-        TAG = javaClass.simpleName
         if (activity is BaseActivity<*, *>) {
             mActivity = activity as BaseActivity<*, *>
         }

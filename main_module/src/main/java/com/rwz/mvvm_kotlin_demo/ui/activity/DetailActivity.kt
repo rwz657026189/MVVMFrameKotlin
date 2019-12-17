@@ -1,11 +1,13 @@
 package com.rwz.mvvm_kotlin_demo.ui.activity
 
+import android.content.Context
 import android.os.Bundle
 import android.view.View
 import com.rwz.lib_comm.abs.IView
 import com.rwz.lib_comm.abs.IViewModule
 import com.rwz.lib_comm.base.BaseActivity
 import com.rwz.lib_comm.config.PARCELABLE_ENTITY
+import com.rwz.lib_comm.entity.params.CommBottomEntity
 import com.rwz.lib_comm.ui.dialog.CommBottomDialog
 import com.rwz.lib_comm.utils.app.CommUtils
 import com.rwz.lib_comm.utils.app.DialogHelp
@@ -14,7 +16,6 @@ import com.rwz.lib_comm.utils.show.ToastUtil
 import com.rwz.mvvm_kotlin_demo.R
 import com.rwz.mvvm_kotlin_demo.databinding.ActivityDetailBinding
 import com.rwz.mvvm_kotlin_demo.entity.response.JokeEntity
-import com.rwz.mvvm_kotlin_demo.entity.response.NewComment
 import com.rwz.mvvm_kotlin_demo.ui.fragment.DetailFragment
 import io.reactivex.Observable
 import kotlinx.android.synthetic.main.activity_detail.*
@@ -59,16 +60,22 @@ class DetailActivity : BaseActivity<ActivityDetailBinding, IViewModule<IView>>()
         val dialog = CommBottomDialog.Build()
             .addItem("举报")
             .addItem("分享")
-            .setOnClickItemListener{
-                    _, pos, _, _ ->
-                run {
-                    if (pos == 0) {
-                        report()
-                    } else if(pos == 1){
-                        shareTo()
+            .setOnClickItemListener(object : CommBottomDialog.OnClickItemListener{
+                override fun onClickItem(
+                    context: Context,
+                    position: Int,
+                    data: List<CommBottomEntity>,
+                    args: Bundle?
+                ) {
+                    run {
+                        when (position) {
+                            0 -> report()
+                            1 -> shareTo()
+                        }
                     }
                 }
-            }
+
+            })
             .create()
         DialogHelp.show(supportFragmentManager, dialog, "CommBottomDialog")
     }

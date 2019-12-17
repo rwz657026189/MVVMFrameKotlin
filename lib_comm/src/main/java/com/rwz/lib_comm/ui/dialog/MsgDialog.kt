@@ -31,21 +31,21 @@ class MsgDialog : BaseDialog<DialogMsgBinding>(), View.OnClickListener {
 
     override fun init(savedInstanceState: Bundle?) {
         mEntity = arguments?.getParcelable(PARCELABLE_ENTITY)
-        val cancel = mBind.cancel
-        val enter = mBind.enter
+        val cancel = mBinding?.cancel
+        val enter = mBinding?.enter
         mEntity?.let {
-            mBind.entity = it
+            mBinding?.entity = it
             if(this.listener == null)
                 this.listener = it.listener
-            mBind.isSingleBtn = TextUtils.isEmpty(it.cancelText)
+            mBinding?.isSingleBtn = TextUtils.isEmpty(it.cancelText)
             isCancelable = it.cancelable
 
         }
-        cancel.setOnClickListener(this)
-        enter.setOnClickListener(this)
+        cancel?.setOnClickListener(this)
+        enter?.setOnClickListener(this)
     }
 
-    protected override fun setLayoutId(): Int {
+    override fun setLayoutId(): Int {
         return R.layout.dialog_msg
     }
 

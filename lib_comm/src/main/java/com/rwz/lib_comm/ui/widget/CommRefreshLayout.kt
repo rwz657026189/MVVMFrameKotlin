@@ -4,6 +4,8 @@ import android.content.Context
 import android.util.AttributeSet
 import com.rwz.lib_comm.manager.ContextManager
 import com.scwang.smartrefresh.layout.SmartRefreshLayout
+import com.scwang.smartrefresh.layout.SmartRefreshLayout.setDefaultRefreshFooterCreator
+import com.scwang.smartrefresh.layout.SmartRefreshLayout.setDefaultRefreshHeaderCreator
 import com.scwang.smartrefresh.layout.footer.ClassicsFooter
 import com.scwang.smartrefresh.layout.header.ClassicsHeader
 
@@ -12,15 +14,16 @@ import com.scwang.smartrefresh.layout.header.ClassicsHeader
  * author： rwz
  * description： 参考： https://github.com/scwang90/SmartRefreshLayout/blob/master/art/md_property.md
  **/
-class CommRefreshLayout @JvmOverloads constructor(context: Context?, attrs: AttributeSet?) :
+class CommRefreshLayout @JvmOverloads constructor(context: Context,
+                                                  attrs: AttributeSet? = null) :
     SmartRefreshLayout(context, attrs) {
 
     companion object {
         init {
-            SmartRefreshLayout.setDefaultRefreshFooterCreator { _, _ ->
+            setDefaultRefreshFooterCreator { _, _ ->
                 ClassicsFooter(ContextManager.context)
             }
-            SmartRefreshLayout.setDefaultRefreshHeaderCreator { _, _ ->
+            setDefaultRefreshHeaderCreator { _, _ ->
                 ClassicsHeader(ContextManager.context)
             }
         }

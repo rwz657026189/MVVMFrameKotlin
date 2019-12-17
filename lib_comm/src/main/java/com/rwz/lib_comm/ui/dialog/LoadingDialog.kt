@@ -25,7 +25,7 @@ class LoadingDialog : BaseDialog<DialogLoadingBinding>(), View.OnClickListener {
     protected override fun init(savedInstanceState: Bundle?) {
         super.init(savedInstanceState)
         isCancelable = false
-        mTipsView = mBind.tips
+        mTipsView = mBinding?.tips
         arguments?.let {
             mEntity = it.getParcelable(PARCELABLE_ENTITY)
             if (mEntity != null)
@@ -53,7 +53,7 @@ class LoadingDialog : BaseDialog<DialogLoadingBinding>(), View.OnClickListener {
         setTips(ResourceUtil.getString(tips))
     }
 
-    protected override fun setLayoutId(): Int {
+    override fun setLayoutId(): Int {
         return R.layout.dialog_loading
     }
 

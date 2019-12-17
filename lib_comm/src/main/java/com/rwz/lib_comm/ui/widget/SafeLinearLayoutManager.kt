@@ -11,7 +11,7 @@ import androidx.recyclerview.widget.RecyclerView
  * description：解决 RecyclerView Bug： Inconsistency detected. Invalid view holder adapter
  **/
 class SafeLinearLayoutManager @JvmOverloads constructor(
-    context: Context?,
+    context: Context,
     attrs: AttributeSet? = null,
     defStyleAttr: Int = 0,
     defStyleRes: Int = 0

@@ -72,7 +72,7 @@ abstract class BaseListFragment<VB : ViewDataBinding,
             if (itemDecoration != null)
                 mList.addItemDecoration(itemDecoration)
         } else if (mSpanCount == 1) {
-            mList.layoutManager = SafeLinearLayoutManager(context = context)
+            mList.layoutManager = SafeLinearLayoutManager(context = context!!)
         } else
             return
         if (mViewModule == null) {
@@ -115,12 +115,10 @@ abstract class BaseListFragment<VB : ViewDataBinding,
                             if (count == 0) spanCount else spanCount / count
                         } else 1
                     }
-                    return 1
                 }
                 return 1
             }
         }
-
     }
 
     override fun loadDataComplete(isRefresh: Boolean) {
@@ -157,8 +155,8 @@ abstract class BaseListFragment<VB : ViewDataBinding,
     /** 是否能够刷新数据  */
     private fun canNotifyData(): Boolean {
         //解决滑动过程刷新数据crash, 参考：https://www.jianshu.com/p/be89ebfb215e
-        return mList.scrollState === RecyclerView.SCROLL_STATE_IDLE
-                || !mList.isComputingLayout
+        return !mList.isComputingLayout ||
+                RecyclerView.SCROLL_STATE_IDLE == mList.scrollState
     }
 
     override fun notifyDataSetChanged() {

@@ -1,9 +1,11 @@
 package com.rwz.mvvm_kotlin_demo.ui.fragment
 
+import android.content.Context
 import android.os.Bundle
 import com.rwz.lib_comm.base.BaseListFragment
 import com.rwz.lib_comm.config.INT
 import com.rwz.lib_comm.databinding.LayoutRecyclerviewBinding
+import com.rwz.lib_comm.entity.params.CommBottomEntity
 import com.rwz.lib_comm.ui.dialog.CommBottomDialog
 import com.rwz.lib_comm.utils.app.DialogHelp
 import com.rwz.lib_comm.utils.show.ToastUtil
@@ -62,16 +64,24 @@ class MainListFragment : BaseListFragment<LayoutRecyclerviewBinding, MainListVie
             .addItem("版本升级")
             .addItem("跳转h5")
             .create()
-        dialog.setOnClickItemListener { _, position, _, _ ->
-            if (position == 0) {
-                ToastUtil.showShortSingle("暂时没有新版本")
-            } else {
+        dialog.setOnClickItemListener(object : CommBottomDialog.OnClickItemListener{
+            override fun onClickItem(
+                context: Context,
+                position: Int,
+                data: List<CommBottomEntity>,
+                args: Bundle?
+            ) {
+                if (position == 0) {
+                    ToastUtil.showShortSingle("暂时没有新版本")
+                }
             }
-        }
+
+        })
         DialogHelp.show(context, dialog, "CommBottomDialog")
     }
 
     private fun onClickRecommend() {
+        //
     }
 
 }

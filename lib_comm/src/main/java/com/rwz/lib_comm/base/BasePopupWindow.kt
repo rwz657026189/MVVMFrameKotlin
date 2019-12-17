@@ -26,7 +26,7 @@ abstract class BasePopupWindow<VB : ViewDataBinding> @JvmOverloads constructor(
     var context: Context
         protected set
     protected lateinit var mRootView: View
-    protected lateinit var mBind: VB
+    var mBinding: VB? = null
 
     init {
         this.context = context
@@ -37,8 +37,9 @@ abstract class BasePopupWindow<VB : ViewDataBinding> @JvmOverloads constructor(
     protected fun init() {}
 
     private fun initPopupWindow(width: Int, height: Int) {
-        mBind = DataBindingUtil.inflate(LayoutInflater.from(context), setLayoutId(), null, false)
-        mRootView = mBind.root
+        val inflater = LayoutInflater.from(context)
+        mBinding = DataBindingUtil.inflate(inflater, setLayoutId(), null, false)
+        mRootView = mBinding?.root ?: inflater.inflate(setLayoutId(), null)
         contentView = mRootView
         //设置弹出窗体的宽
         setWidth(width)

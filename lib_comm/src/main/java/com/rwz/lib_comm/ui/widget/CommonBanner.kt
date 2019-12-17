@@ -11,7 +11,7 @@ import com.bigkoo.convenientbanner.ConvenientBanner
  * description：
  **/
 
-class CommonBanner @JvmOverloads constructor(context: Context?,
+class CommonBanner @JvmOverloads constructor(context: Context,
                                              attrs: AttributeSet? = null) :
     ConvenientBanner<Any>(context, attrs) {
 
@@ -34,8 +34,7 @@ class CommonBanner @JvmOverloads constructor(context: Context?,
     }
 
     companion object {
-
         //开始轮询间隔
-        private val AUTO_TURNING_TIME = 3000
+        private const val AUTO_TURNING_TIME = 3000
     }
 }

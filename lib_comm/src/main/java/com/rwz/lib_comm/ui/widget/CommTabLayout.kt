@@ -10,7 +10,7 @@ import com.flyco.tablayout.SlidingTabLayout
  * author： rwz
  * description：https://github.com/H07000223/FlycoTabLayout/blob/master/README_CN.md
  **/
-class CommTabLayout @JvmOverloads constructor(context: Context?,
+class CommTabLayout @JvmOverloads constructor(context: Context,
                                               attrs: AttributeSet? = null) :
     SlidingTabLayout(context, attrs) {
 
@@ -19,7 +19,6 @@ class CommTabLayout @JvmOverloads constructor(context: Context?,
     }
 
     fun setCanScroll(canScroll: Boolean) {
-        //setTabMode(tabs.size() <= 5 ? TabLayout.MODE_FIXED : TabLayout.MODE_SCROLLABLE);
-
+//        setTabMode(tabs.size() <= 5 ? TabLayout.MODE_FIXED : TabLayout.MODE_SCROLLABLE);
     }
 }

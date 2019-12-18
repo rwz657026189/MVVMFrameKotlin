@@ -13,6 +13,7 @@ import com.rwz.lib_comm.abs.IListView
 import com.rwz.lib_comm.abs.ViewListUpdateType
 import com.rwz.lib_comm.config.isSmoothScrollList
 import com.rwz.lib_comm.entity.response.BaseListEntity
+import com.rwz.lib_comm.extension.TAG
 import com.rwz.lib_comm.ui.adapter.rv.BaseBindingAdapter
 import com.rwz.lib_comm.ui.adapter.rv.mul.decorator.DataBindingDecoratorProvide
 import com.rwz.lib_comm.ui.adapter.rv.mul.decorator.DecoratorProvide

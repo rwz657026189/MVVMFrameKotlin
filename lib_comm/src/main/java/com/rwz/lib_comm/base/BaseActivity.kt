@@ -20,6 +20,7 @@ import com.rwz.lib_comm.utils.show.LogUtil
 import com.rwz.lib_comm.utils.system.ScreenUtil
 import me.imid.swipebacklayout.lib.SwipeBackLayout
 import me.imid.swipebacklayout.lib.app.SwipeBackActivity
+import com.rwz.lib_comm.extension.TAG
 
 /**
  * date： 2019/11/18 16:07
@@ -29,7 +30,6 @@ import me.imid.swipebacklayout.lib.app.SwipeBackActivity
 abstract class BaseActivity<VB : ViewDataBinding, VM : IViewModule<IView>>
     : SwipeBackActivity(), IView, View.OnClickListener {
 
-    val TAG: String = javaClass.simpleName
     //activity是否存在
     var isAlive = false
         private set

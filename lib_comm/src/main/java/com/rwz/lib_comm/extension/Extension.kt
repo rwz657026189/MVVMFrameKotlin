@@ -5,3 +5,8 @@ package com.rwz.lib_comm.extension
  * author： rwz
  * description：
  **/
+
+//为所有类扩展一个TAG属性，用于打印日志
+val Any.TAG: String
+    get() = javaClass.simpleName
+

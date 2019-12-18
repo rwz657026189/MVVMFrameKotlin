@@ -20,10 +20,9 @@ import io.reactivex.functions.Action
  * description：
  **/
 open abstract class BaseDialog<VB : ViewDataBinding> : DialogFragment() {
-    protected var TAG = javaClass.simpleName
     //获取binding对象
     protected var mBinding: VB? = null
-    protected lateinit var mActivity: BaseActivity<*, *>
+    lateinit var mActivity: BaseActivity<*, *>
         private set
     protected lateinit var mRootView: View
         private set
@@ -35,7 +34,7 @@ open abstract class BaseDialog<VB : ViewDataBinding> : DialogFragment() {
 
     override fun onDismiss(dialog: DialogInterface) {
         super.onDismiss(dialog)
-            dismissListener?.run()
+        dismissListener?.run()
     }
 
     override fun onCreateView(

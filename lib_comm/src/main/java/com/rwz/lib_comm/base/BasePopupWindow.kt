@@ -22,19 +22,15 @@ abstract class BasePopupWindow<VB : ViewDataBinding> @JvmOverloads constructor(
 ) :
     PopupWindow() {
 
-    protected val TAG: String = javaClass.simpleName
     var context: Context
         protected set
-    protected lateinit var mRootView: View
+    lateinit var mRootView: View
     var mBinding: VB? = null
 
     init {
         this.context = context
         initPopupWindow(width, height)
-        init()
     }
-
-    protected fun init() {}
 
     private fun initPopupWindow(width: Int, height: Int) {
         val inflater = LayoutInflater.from(context)
@@ -47,7 +43,7 @@ abstract class BasePopupWindow<VB : ViewDataBinding> @JvmOverloads constructor(
         setHeight(height)
         isFocusable = true
         // 设置SelectPicPopupWindow弹出窗体动画效果
-        //        setAnimationStyle(R.style.wisdom_anim_style);
+//                setAnimationStyle(R.style.wisdom_anim_style);
         // 设置SelectPicPopupWindow弹出窗体的背景
         setBackgroundDrawable(null)
     }

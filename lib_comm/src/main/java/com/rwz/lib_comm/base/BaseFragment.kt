@@ -16,6 +16,7 @@ import com.rwz.lib_comm.base.proxy.DialogProxy
 import com.rwz.lib_comm.base.proxy.PostEventProxy
 import com.rwz.lib_comm.base.proxy.ToolbarProxy
 import com.rwz.lib_comm.entity.turn.MsgDialogTurnEntity
+import com.rwz.lib_comm.extension.TAG
 import com.rwz.lib_comm.utils.ImageLoader.ImageLoaderUtil
 import com.rwz.lib_comm.utils.show.LogUtil
 
@@ -27,7 +28,6 @@ import com.rwz.lib_comm.utils.show.LogUtil
 abstract class BaseFragment<VB : ViewDataBinding, VM : IViewModule<out IView>>
     : Fragment(), IView, View.OnClickListener {
 
-    val TAG: String = javaClass.simpleName
     //activity是否存在
     var isAlive = false
         private set

@@ -7,7 +7,6 @@ import android.view.View
 import android.widget.FrameLayout
 import androidx.annotation.NonNull
 import androidx.databinding.ViewDataBinding
-import com.rwz.lib_base.BR
 import com.rwz.lib_base.R
 import com.rwz.lib_comm.abs.IView
 import com.rwz.lib_comm.abs.IViewModule
@@ -16,6 +15,7 @@ import com.rwz.lib_comm.config.PARCELABLE_ENTITY
 import com.rwz.lib_comm.config.STRING
 import com.rwz.lib_comm.entity.extension.TempEntity
 import com.rwz.lib_comm.entity.params.WebEntity
+import com.rwz.lib_comm.extension.TAG
 import com.rwz.lib_comm.utils.show.LogUtil
 import com.rwz.web.AbsWebViewProxy
 import com.rwz.web.IPostEvent1

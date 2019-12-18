@@ -3,6 +3,7 @@ package com.rwz.lib_comm.ui.adapter.rv.mul.decorator
 import android.util.SparseArray
 import androidx.core.util.contains
 import androidx.recyclerview.widget.RecyclerView
+import com.rwz.lib_comm.extension.TAG
 import com.rwz.lib_comm.ui.adapter.rv.BaseBindingAdapter
 import com.rwz.lib_comm.utils.show.LogUtil
 import kotlin.concurrent.thread
@@ -13,8 +14,6 @@ import kotlin.concurrent.thread
  * description：
  **/
 abstract class DecoratorProvide {
-
-    val TAG = javaClass.simpleName
 
     var mAdapter: BaseBindingAdapter? = null
 

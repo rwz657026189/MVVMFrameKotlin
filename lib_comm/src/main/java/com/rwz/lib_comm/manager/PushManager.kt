@@ -9,8 +9,6 @@ import android.content.Context
  **/
 object PushManager {
 
-    val TAG = "PushManager"
-
     var sDeviceToken: String? = null//友盟设备唯一id(与服务器账号绑定, 登录注册传递)
 
     /**

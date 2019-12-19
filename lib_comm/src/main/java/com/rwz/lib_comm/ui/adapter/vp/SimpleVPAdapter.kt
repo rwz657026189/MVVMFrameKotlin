@@ -10,7 +10,7 @@ import java.util.*
 /**
  * date： 2019/11/15 16:49
  * author： rwz
- * description：只加载当前fragment，否则需要修改behavior
+ * description：只加载当前fragment，否则需要修改behavior, 参考：https://www.jianshu.com/p/94515681e335
  **/
 class SimpleVPAdapter<F : Fragment>(private val mFragmentManager: FragmentManager,
                                     behavior: Int = BEHAVIOR_RESUME_ONLY_CURRENT_FRAGMENT)

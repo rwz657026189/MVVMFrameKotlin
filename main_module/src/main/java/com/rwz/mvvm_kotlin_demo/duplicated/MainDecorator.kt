@@ -20,8 +20,8 @@ class MainDecorator : BaseDecorator<JokeEntity>() {
         data: JokeEntity,
         position: Int
     ) {
-        holder.setText(R.id.title, data.title)
-            .setText(R.id.time, data.timeStr)
+        holder.setText(R.id.title, data.title ?: "")
+            .setText(R.id.time, data.timeStr ?: "")
             .setImageUrl(R.id.avatar, MAIN_HOST + data.membericon)
             .setImageUrl(R.id.img, MAIN_HOST + data.bigimg)
     }

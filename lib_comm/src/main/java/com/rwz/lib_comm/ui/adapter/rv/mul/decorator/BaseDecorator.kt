@@ -16,10 +16,6 @@ abstract class BaseDecorator<D>: IDecorator<D, BaseViewHolder>{
         parent: ViewGroup,
         viewType: Int,
         inflater: LayoutInflater
-    ): BaseViewHolder {
-        val itemView = inflater.inflate(viewType, parent, false)
-        return BaseViewHolder(itemView)
-    }
-
+    ): BaseViewHolder = BaseViewHolder(inflater.inflate(viewType, parent, false))
 
 }

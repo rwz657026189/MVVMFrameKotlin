@@ -4,7 +4,6 @@ import android.view.View
 import com.rwz.lib_comm.R
 import com.rwz.lib_comm.base.BaseListViewModule
 import com.rwz.lib_comm.entity.extension.TempEntity
-import com.rwz.lib_comm.utils.show.LogUtil
 
 /**
  * date： 2019/12/16 17:02
@@ -12,7 +11,7 @@ import com.rwz.lib_comm.utils.show.LogUtil
  * description：空视图
  **/
 class TempDecorator(private val viewModule: BaseListViewModule<*>,
-                    private val dp: DecoratorProvide) : BaseDecorator<TempEntity>(), View.OnClickListener {
+                    private val dp: BaseDecoratorProvide) : BaseDecorator<TempEntity>(), View.OnClickListener {
 
     override val viewType: Int = R.layout.layout_temp
     var entity: TempEntity? = null
@@ -30,7 +29,7 @@ class TempDecorator(private val viewModule: BaseListViewModule<*>,
             .setImageResource(R.id.img, if(isNullState) data.nullImgRes else data.errorImgRes)
             .setText(R.id.reload, if(isNullState) data.nullBtnStr else data.errorBtnStr)
             .setVisible(R.id.reload, data.getShowErrorBtn(type) || data.getShowNullBtn(type))
-        holder.getView<View>(R.id.reload).setOnClickListener(this)
+            .setOnClickListener(this, R.id.reload)
     }
 
     override fun onClick(v: View) {

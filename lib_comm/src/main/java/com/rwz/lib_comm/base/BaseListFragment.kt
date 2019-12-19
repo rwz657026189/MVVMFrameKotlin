@@ -15,8 +15,8 @@ import com.rwz.lib_comm.config.isSmoothScrollList
 import com.rwz.lib_comm.entity.response.BaseListEntity
 import com.rwz.lib_comm.extension.TAG
 import com.rwz.lib_comm.ui.adapter.rv.BaseBindingAdapter
+import com.rwz.lib_comm.ui.adapter.rv.mul.decorator.BaseDecoratorProvide
 import com.rwz.lib_comm.ui.adapter.rv.mul.decorator.DataBindingDecoratorProvide
-import com.rwz.lib_comm.ui.adapter.rv.mul.decorator.DecoratorProvide
 import com.rwz.lib_comm.ui.widget.CommRefreshLayout
 import com.rwz.lib_comm.ui.widget.CommonRecyclerView
 import com.rwz.lib_comm.ui.widget.SafeLinearLayoutManager
@@ -97,7 +97,7 @@ abstract class BaseListFragment<VB : ViewDataBinding,
 
     override fun setLayoutId(): Int = R.layout.layout_recyclerview
 
-    open fun setDecoratorProvide(): DecoratorProvide {
+    open fun setDecoratorProvide(): BaseDecoratorProvide {
         val decoratorProvide = DataBindingDecoratorProvide()
         decoratorProvide.viewModule = itemViewModule ?: mViewModule
         return decoratorProvide

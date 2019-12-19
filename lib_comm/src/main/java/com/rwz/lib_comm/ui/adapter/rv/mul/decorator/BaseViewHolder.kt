@@ -2,13 +2,9 @@ package com.rwz.lib_comm.ui.adapter.rv.mul.decorator
 
 import android.util.SparseArray
 import android.view.View
-import androidx.recyclerview.widget.RecyclerView
-import androidx.recyclerview.widget.RecyclerView.ViewHolder
-import androidx.databinding.adapters.TextViewBindingAdapter.setText
-import android.widget.TextView
-import android.icu.lang.UCharacter.GraphemeClusterBreak.T
 import android.widget.ImageView
-import android.icu.lang.UCharacter.GraphemeClusterBreak.T
+import android.widget.TextView
+import androidx.recyclerview.widget.RecyclerView
 import com.rwz.lib_comm.utils.ImageLoader.ImageLoader
 import com.rwz.lib_comm.utils.ImageLoader.ImageLoaderUtil
 
@@ -19,10 +15,11 @@ import com.rwz.lib_comm.utils.ImageLoader.ImageLoaderUtil
  * description：
  **/
 class BaseViewHolder(
-    private val mConvertView: View
-): RecyclerView.ViewHolder(mConvertView) {
+    convertView: View
+): RecyclerView.ViewHolder(convertView) {
 
-    private var mViews = SparseArray<View>()
+    val mConvertView = convertView
+    private val mViews = SparseArray<View>()
 
     fun <T : View> getView(viewId: Int): T {
         var view: View? = mViews.get(viewId)
@@ -31,10 +28,6 @@ class BaseViewHolder(
             mViews.put(viewId, view)
         }
         return view as T
-    }
-
-    fun getConvertView(): View {
-        return mConvertView
     }
 
     fun setText(viewId: Int, text: String): BaseViewHolder {
@@ -63,6 +56,13 @@ class BaseViewHolder(
     fun setVisible(viewId: Int, visible: Boolean): BaseViewHolder {
         val view = getView<View>(viewId)
         view.visibility = if (visible) View.VISIBLE else View.GONE
+        return this
+    }
+
+    fun setOnClickListener(listener: View.OnClickListener, vararg ids: Int): BaseViewHolder {
+        for (id in ids) {
+            getView<View>(id).setOnClickListener(listener)
+        }
         return this
     }
 

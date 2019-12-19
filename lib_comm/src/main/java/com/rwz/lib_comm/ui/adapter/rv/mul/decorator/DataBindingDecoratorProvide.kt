@@ -5,7 +5,7 @@ package com.rwz.lib_comm.ui.adapter.rv.mul.decorator
  * author： rwz
  * description：采用DataBinding
  **/
-class DataBindingDecoratorProvide : DecoratorProvide() {
+class DataBindingDecoratorProvide : BaseDecoratorProvide() {
 
     init {
         putDecorator(DataBindingDecorator(this))

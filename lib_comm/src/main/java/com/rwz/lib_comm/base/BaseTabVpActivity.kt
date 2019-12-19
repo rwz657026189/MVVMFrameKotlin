@@ -24,16 +24,17 @@ import io.reactivex.functions.Consumer
  * description：
  **/
 
-abstract class BaseTabVpActivity<VB : ViewDataBinding>:BaseActivity<VB, BaseViewModule<IView>>(), ViewPager.OnPageChangeListener {
+abstract class BaseTabVpActivity<VB : ViewDataBinding>
+    :BaseActivity<VB, BaseViewModule<IView>>(), ViewPager.OnPageChangeListener {
 
-    protected lateinit var mVp:ViewPager
-    protected var mTab: CommTabLayout? = null
-    protected var mAdapter: SimpleVPAdapter<BaseFragment<*, *>>? = null
-    protected var mCurrPos:Int = 0
+    lateinit var mVp:ViewPager
+    var mTab: CommTabLayout? = null
+    var mAdapter: SimpleVPAdapter<BaseFragment<*, *>>? = null
+    var mCurrPos:Int = 0
     private var mViewStub: ViewStub? = null
-    internal var isInflate:Boolean = false//是否加载过空视图
+    private var isInflate:Boolean = false//是否加载过空视图
     private var mTempEntity: TempEntity? = null
-    protected var isAllowSwipeBack = true//是否允许滑动返回
+    var isAllowSwipeBack = true//是否允许滑动返回
 
     val currFragment:BaseFragment<*, *>?
         get() = mAdapter?.getItem(mCurrPos)
@@ -140,7 +141,9 @@ abstract class BaseTabVpActivity<VB : ViewDataBinding>:BaseActivity<VB, BaseView
     }
 
 
-    override fun onPageScrolled(position:Int, positionOffset:Float, positionOffsetPixels:Int) {}
+    override fun onPageScrolled(position:Int, positionOffset:Float, positionOffsetPixels:Int) {
+        //
+    }
 
     override fun onPageSelected(position:Int) {
         mCurrPos = position
@@ -148,7 +151,8 @@ abstract class BaseTabVpActivity<VB : ViewDataBinding>:BaseActivity<VB, BaseView
 
     override fun onPageScrollStateChanged(state:Int) {
         //只允许在第一页滑动返回
-        setSwipeBackEnable(isAllowSwipeBack && state == ViewPager.SCROLL_STATE_IDLE && mVp.currentItem === 0)
+        setSwipeBackEnable(isAllowSwipeBack && state == ViewPager.SCROLL_STATE_IDLE
+                && mVp.currentItem == 0)
     }
 
     override fun scrollToTop() {

@@ -4,7 +4,8 @@ import android.content.Context
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
-import com.rwz.lib_comm.ui.adapter.rv.mul.decorator.DecoratorProvide
+import com.rwz.lib_comm.extension.TAG
+import com.rwz.lib_comm.ui.adapter.rv.mul.decorator.BaseDecoratorProvide
 import com.rwz.lib_comm.utils.show.LogUtil
 import io.reactivex.Observable
 import io.reactivex.functions.Consumer
@@ -17,7 +18,7 @@ import io.reactivex.functions.Consumer
 open class BaseBindingAdapter (
     context: Context,
     private val mData: MutableList<Any>,
-    private val decoratorProvide: DecoratorProvide
+    private val decoratorProvide: BaseDecoratorProvide
 ): RecyclerView.Adapter<RecyclerView.ViewHolder>() {
 
     init {
@@ -32,7 +33,7 @@ open class BaseBindingAdapter (
     private var inflater: LayoutInflater = LayoutInflater.from(context)
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int):  RecyclerView.ViewHolder {
-        LogUtil.d("viewType = $viewType")
+        LogUtil.d(TAG, "viewType = $viewType")
         val holder =
             decoratorProvide.getDecorator(viewType).onCreateViewHolder(parent, viewType, inflater)
         //单击事件
@@ -79,17 +80,6 @@ open class BaseBindingAdapter (
         }?.let {
             mData.add(position, it)
             notifyItemInserted(position)
-        }
-    }
-
-
-    /**
-     * 加载更多数据
-     */
-    fun addData(list: List<Any>?) {
-        list?.takeIf { list.isNotEmpty() }?.let {
-            mData.addAll(it)
-            notifyDataSetChanged()
         }
     }
 

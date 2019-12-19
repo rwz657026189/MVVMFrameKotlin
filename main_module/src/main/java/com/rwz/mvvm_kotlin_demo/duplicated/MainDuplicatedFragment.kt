@@ -2,7 +2,7 @@ package com.rwz.mvvm_kotlin_demo.duplicated
 
 import androidx.databinding.ViewDataBinding
 import com.rwz.lib_comm.base.BaseListFragment
-import com.rwz.lib_comm.ui.adapter.rv.mul.decorator.DecoratorProvide
+import com.rwz.lib_comm.ui.adapter.rv.mul.decorator.BaseDecoratorProvide
 import com.rwz.mvvm_kotlin_demo.R
 import com.rwz.mvvm_kotlin_demo.viewmodule.MainListViewModule
 
@@ -19,6 +19,6 @@ class MainDuplicatedFragment : BaseListFragment<ViewDataBinding, MainListViewMod
         return R.layout.fragment_main_duplicated
     }
 
-    override fun setDecoratorProvide(): DecoratorProvide = MainMergeDecoratorProvide()
+    override fun setDecoratorProvide(): BaseDecoratorProvide = MainMergeDecoratorProvide()
 
 }

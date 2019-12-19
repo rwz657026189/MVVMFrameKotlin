@@ -3,7 +3,7 @@ package com.rwz.mvvm_kotlin_demo.duplicated
 import com.rwz.lib_comm.base.BaseListViewModule
 import com.rwz.lib_comm.entity.extension.TempEntity
 import com.rwz.lib_comm.entity.extension.wrap.WrapList
-import com.rwz.lib_comm.ui.adapter.rv.mul.decorator.DecoratorProvide
+import com.rwz.lib_comm.ui.adapter.rv.mul.decorator.BaseDecoratorProvide
 import com.rwz.lib_comm.ui.adapter.rv.mul.decorator.TempDecorator
 import com.rwz.mvvm_kotlin_demo.R
 import com.rwz.mvvm_kotlin_demo.entity.response.JokeEntity
@@ -13,7 +13,7 @@ import com.rwz.mvvm_kotlin_demo.entity.response.JokeEntity
  * author： rwz
  * description：不用DataBinding实现
  **/
-class MainDecoratorProvide(val viewModule: BaseListViewModule<*>) : DecoratorProvide() {
+class MainDecoratorProvide(val viewModule: BaseListViewModule<*>) : BaseDecoratorProvide() {
 
     override fun getItemViewType(position: Int, data: Any): Int {
         when (data) {

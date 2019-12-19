@@ -6,14 +6,13 @@ import androidx.recyclerview.widget.RecyclerView
 import com.rwz.lib_comm.extension.TAG
 import com.rwz.lib_comm.ui.adapter.rv.BaseBindingAdapter
 import com.rwz.lib_comm.utils.show.LogUtil
-import kotlin.concurrent.thread
 
 /**
  * date： 2019/11/12 15:44
  * author： rwz
  * description：
  **/
-abstract class DecoratorProvide {
+abstract class BaseDecoratorProvide {
 
     var mAdapter: BaseBindingAdapter? = null
 

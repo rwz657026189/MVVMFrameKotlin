@@ -1,7 +1,7 @@
 package com.rwz.mvvm_kotlin_demo.duplicated
 
 import com.rwz.lib_comm.ui.adapter.rv.mul.decorator.DataBindingDecorator
-import com.rwz.lib_comm.ui.adapter.rv.mul.decorator.DecoratorProvide
+import com.rwz.lib_comm.ui.adapter.rv.mul.decorator.BaseDecoratorProvide
 import com.rwz.mvvm_kotlin_demo.R
 import com.rwz.mvvm_kotlin_demo.entity.response.JokeEntity
 
@@ -10,7 +10,7 @@ import com.rwz.mvvm_kotlin_demo.entity.response.JokeEntity
  * author： rwz
  * description：混合布局使用
  **/
-class MainMergeDecoratorProvide : DecoratorProvide() {
+class MainMergeDecoratorProvide : BaseDecoratorProvide() {
 
     override fun getItemViewType(position: Int, data: Any): Int {
         when (data) {

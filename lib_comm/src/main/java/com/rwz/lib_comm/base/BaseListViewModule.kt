@@ -35,18 +35,18 @@ abstract class BaseListViewModule<V : IListView>(clickCommand: Consumer<*>? = nu
     // 页数
     protected var mPage = FIRST_PAGE
     //该次请求是否刷新
-    protected var isRefresh = true
+    var isRefresh = true
         private set
     //第一次是否请求到数据（主要用于界面初始化）
     var hasRequestData: ObservableBoolean = ObservableBoolean(false)
     //数据源
     var mData: MutableList<IBaseEntity> = mutableListOf()
     //占位图
-    protected var mTempEntity: TempEntity? = null
+    open var mTempEntity: TempEntity? = null
     //分隔条位置
     var mDecorationList: MutableList<Int>? = null
     //标记需要采用空视图的请求;一般是第一条, 非特殊情况禁止修改（一般只用于刷新的适合会更改）
-    protected var mTempRequestCode: String? = null
+    open var mTempRequestCode: String? = null
     //加载完成后是否允许下拉刷新、上拉加载更多
     protected var isRefreshEnable = true
     protected var isLoadingMoreEnable = true
@@ -54,7 +54,7 @@ abstract class BaseListViewModule<V : IListView>(clickCommand: Consumer<*>? = nu
     override fun initCompleted() {
         mTempEntity = getTempEntity()
         //初始化完成开始显示占位图, 防止部分页面传递有列表数据
-        if (isAutoLoadingData) {
+        if (mLoadStrategy != LoadStrategy.LOAD_NOT) {
             mData.add(mTempEntity!!)
             notifyDataSetChanged()
         }
@@ -156,7 +156,7 @@ abstract class BaseListViewModule<V : IListView>(clickCommand: Consumer<*>? = nu
                     cleanDataOnRefresh(requestCode)
                     assertNullData(null)
                     notifyDataSetChanged()
-                    setRefreshLoadingMoreEnable(true, false)
+                    setRefreshLoadingMoreEnable(isRefreshEnable = true, isLoadingMoreEnable = false)
                 }
             } else {
                 if (mPage == FIRST_PAGE && isRefresh) {
@@ -206,12 +206,8 @@ abstract class BaseListViewModule<V : IListView>(clickCommand: Consumer<*>? = nu
      * recyclerView item 点击事件
      */
     fun onItemClick(position: Int) {
-        if (position >= 0 && position < mData!!.size) {
-            val entity = mData!![position]
-            if (entity != null) {
-                onItemClick(position, entity)
-            }
-        }
+        mData.getOrNull(position)
+            ?.let { onItemClick(position, it) }
     }
 
     protected abstract fun onItemClick(position: Int, @NonNull iEntity: IBaseEntity)
@@ -222,7 +218,7 @@ abstract class BaseListViewModule<V : IListView>(clickCommand: Consumer<*>? = nu
      * @param data  实体类
      */
     protected open fun handlerData(requestCode: String, data: Any?) {
-        LogUtil.d(TAG, "handlerData", "requestCode = $requestCode", "data = $data")
+        LogUtil.d(TAG, "handlerData, requestCode = $requestCode, data = $data")
         if (data != null && data is Collection<*> && !data.isEmpty()) {
             mData.addAll(data as Collection<IBaseEntity>)
             notifyDataSetChanged()
@@ -266,7 +262,7 @@ abstract class BaseListViewModule<V : IListView>(clickCommand: Consumer<*>? = nu
         LogUtil.d("onLoadMore", "mPage = $mPage")
     }
 
-    protected fun setRefreshLoadingMoreEnable(
+    open fun setRefreshLoadingMoreEnable(
         isRefreshEnable: Boolean,
         isLoadingMoreEnable: Boolean
     ) {
@@ -313,7 +309,7 @@ abstract class BaseListViewModule<V : IListView>(clickCommand: Consumer<*>? = nu
      * @return
      */
     fun isResponseSuccess(): Boolean {
-        return hasRequestData != null && hasRequestData!!.get()
+        return hasRequestData.get()
     }
 
     fun isResponseSuccess(@StringRes tips: Int): Boolean {
@@ -339,7 +335,6 @@ abstract class BaseListViewModule<V : IListView>(clickCommand: Consumer<*>? = nu
             setTemp(TempEntity.STATUS_NULL)
         }
     }
-
 
     /**
      * 清空数据

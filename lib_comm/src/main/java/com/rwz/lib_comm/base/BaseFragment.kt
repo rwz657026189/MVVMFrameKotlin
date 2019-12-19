@@ -44,7 +44,7 @@ abstract class BaseFragment<VB : ViewDataBinding, VM : IViewModule<out IView>>
     open lateinit var mRootView: View
         protected set
     //是否自动加载数据
-    var isAutoLoadingData = true
+    open var isAutoLoadingData = true
 
     @Nullable
     override fun onCreateView(
@@ -54,11 +54,13 @@ abstract class BaseFragment<VB : ViewDataBinding, VM : IViewModule<out IView>>
     ): View {
         mBinding = DataBindingUtil.inflate(inflater, setLayoutId(), container, false)
         mRootView = mBinding?.root ?: inflater.inflate(setLayoutId(), null)
+        LogUtil.d(TAG , " onCreateView：")
         return mRootView
     }
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
+        LogUtil.d(TAG , " onActivityCreated：")
         isAlive = true
         config()
         mDialogProxy = DialogProxy(fragmentManager!!, this::onClickDialogEnter, this::onClickDialogCancel)
@@ -98,7 +100,6 @@ abstract class BaseFragment<VB : ViewDataBinding, VM : IViewModule<out IView>>
     }
 
     override fun onDestroy() {
-        LogUtil.d(TAG, "onDestroy")
         isAlive = false
         isRunning = false
         mViewModule = null

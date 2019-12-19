@@ -10,18 +10,13 @@ import java.util.*
 /**
  * date： 2019/11/15 16:49
  * author： rwz
- * description：
+ * description：只加载当前fragment，否则需要修改behavior
  **/
-class SimpleVPAdapter<F : Fragment>(private val mFragmentManager: FragmentManager) :
-    FragmentPagerAdapter(mFragmentManager) {
-    private val mFragmentList = ArrayList<F>()
-    private val mFragmentTitleList = ArrayList<String>()
-
-    val fragmentList: List<F>
-        get() = mFragmentList
-
-    val fragmentTitleList: List<String>
-        get() = mFragmentTitleList
+class SimpleVPAdapter<F : Fragment>(private val mFragmentManager: FragmentManager,
+                                    behavior: Int = BEHAVIOR_RESUME_ONLY_CURRENT_FRAGMENT)
+    : FragmentPagerAdapter(mFragmentManager, behavior) {
+    val mFragmentList = ArrayList<F>()
+    val mFragmentTitleList = ArrayList<String>()
 
     override fun getCount() = mFragmentList.size
 
@@ -31,7 +26,7 @@ class SimpleVPAdapter<F : Fragment>(private val mFragmentManager: FragmentManage
     fun clearCacheFragments() {
         val list = mFragmentManager.fragments
         LogUtil.d("SimpleVPAdapter, clearCacheFragments", list)
-        if (list != null && list!!.size > 0) {
+        if (list.isNotEmpty()) {
             try {
                 val ft = mFragmentManager.beginTransaction()
                 for (fragment in list) {
@@ -43,10 +38,6 @@ class SimpleVPAdapter<F : Fragment>(private val mFragmentManager: FragmentManage
             }
 
         }
-    }
-
-    override fun instantiateItem(container: ViewGroup, position: Int): Any {
-        return super.instantiateItem(container, position)
     }
 
     @JvmOverloads
@@ -63,20 +54,9 @@ class SimpleVPAdapter<F : Fragment>(private val mFragmentManager: FragmentManage
         }
     }
 
-    fun getFragment(pos: Int): F? {
-        return if (pos < mFragmentList.size) {
-            mFragmentList[pos]
-        } else null
-    }
+    fun getFragment(pos: Int): F?  = mFragmentList.getOrNull(pos)
 
-
-    override fun getPageTitle(position: Int): CharSequence? {
-        return if (mFragmentTitleList != null && mFragmentTitleList.size > position) {
-            mFragmentTitleList[position]
-        } else {
-            null
-        }
-    }
+    override fun getPageTitle(position: Int): CharSequence?  = mFragmentTitleList.getOrNull(position)
 
     override fun getItem(position: Int): F {
         return mFragmentList[position]
@@ -85,4 +65,9 @@ class SimpleVPAdapter<F : Fragment>(private val mFragmentManager: FragmentManage
     override fun destroyItem(container: ViewGroup, position: Int, obj: Any) {
         //        super.destroyItem(container, position, obj);
     }
+
+    override fun instantiateItem(container: ViewGroup, position: Int): Any {
+        return super.instantiateItem(container, position)
+    }
+
 }

@@ -22,20 +22,33 @@ import io.reactivex.functions.Consumer
  * author： rwz
  * description：
  **/
+enum class LoadStrategy{
+    //不主动加载、自动加载、懒加载数据
+    LOAD_NOT, LOAD_AUTO, LOAD_LAZY
+}
 open class BaseViewModule<V : IView>(clickCommand: Consumer<*>? = null) : RxViewModule<V>() {
 
     companion object{
         const val SINGLE_REQUEST_CODE = "single"
     }
-
-    //是否自动加载数据
-    protected var isAutoLoadingData = true
+    var mLoadStrategy = LoadStrategy.LOAD_LAZY
     //页面类型，xml中可能需要
     open var pageType:Int = 0
+    private var isInitLoad = false
 
     override fun initCompleted() {
-        if (isAutoLoadingData)
+        if (mLoadStrategy == LoadStrategy.LOAD_AUTO)
             requestData()
+    }
+
+    override fun onResume() {
+        super.onResume()
+        //懒加载
+        mLoadStrategy.takeIf { !isInitLoad && it == LoadStrategy.LOAD_LAZY }
+            ?.let {
+                isInitLoad = true
+                requestData()
+            }
     }
 
     open fun requestData() {

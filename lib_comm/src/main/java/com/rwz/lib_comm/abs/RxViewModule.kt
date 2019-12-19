@@ -47,22 +47,22 @@ abstract class RxViewModule<V : IView> : IViewModule<V> {
     }
 
     @OnLifecycleEvent(Lifecycle.Event.ON_CREATE)
-    fun onCreate() {
+    open fun onCreate() {
         LogUtil.d(TAG, "onCreate: ")
     }
 
     @OnLifecycleEvent(Lifecycle.Event.ON_START)
-    fun onStart() {
+    open fun onStart() {
         LogUtil.d(TAG, "onStart: ")
     }
 
     @OnLifecycleEvent(Lifecycle.Event.ON_RESUME)
-    fun onResume() {
+    open fun onResume() {
         LogUtil.d(TAG, "onResume: ")
     }
 
     @OnLifecycleEvent(Lifecycle.Event.ON_DESTROY)
-    fun onDestroy() {
+    open fun onDestroy() {
         LogUtil.d(TAG, "onDestroy ")
         this.mView = null
         dispose()

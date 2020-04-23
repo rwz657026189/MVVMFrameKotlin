@@ -1,10 +1,40 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/container"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    tools:context=".duplicated.MainDuplicatedActivity">
+<layout xmlns:android="http://schemas.android.com/apk/res/android">
 
-</FrameLayout>
+    <data>
+
+        <variable
+            name="viewModule"
+            type="com.rwz.lib_comm.base.BaseViewModule"/>
+
+    </data>
+
+    <androidx.coordinatorlayout.widget.CoordinatorLayout
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:fitsSystemWindows="true"
+        android:background="@color/page_bg">
+
+        <com.rwz.lib_comm.ui.widget.CommonViewPager
+            android:id="@+id/vp"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:fitsSystemWindows="true"
+            android:layout_below="@id/line"/>
+
+        <View
+            android:id="@+id/line"
+            style="@style/line"
+            android:visibility="gone"
+            android:layout_below="@id/tab"/>
+
+        <com.rwz.lib_comm.ui.widget.CommTabLayout
+            android:id="@+id/tab"
+            style="@style/sliding_tab_layout_white_line"
+            android:layout_gravity="bottom"
+            android:layout_height="@dimen/tab_layout_height"/>
+
+    </androidx.coordinatorlayout.widget.CoordinatorLayout>
+
+</layout>

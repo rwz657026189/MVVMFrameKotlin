@@ -6,15 +6,26 @@ import android.content.pm.PackageManager;
 import android.net.Uri;
 import android.os.Build;
 import android.provider.Settings;
+import android.text.TextUtils;
 
 import androidx.core.app.NotificationManagerCompat;
 import androidx.core.content.ContextCompat;
 import androidx.fragment.app.FragmentActivity;
 
+import com.rwz.lib_comm.R;
 import com.rwz.lib_comm.manager.ContextManager;
+import com.rwz.lib_comm.utils.factory.DialogFactory;
+import com.rwz.lib_comm.utils.show.ToastUtil;
+import com.tbruyelle.rxpermissions2.Permission;
 import com.tbruyelle.rxpermissions2.RxPermissions;
 
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+
 import io.reactivex.Observable;
+import io.reactivex.Single;
 
 
 /**
@@ -25,6 +36,24 @@ public class PermissionHelp {
 
     //范围只能在0 ~ 65536
     public static int REQUEST_WRITE_SETTING_PERMISSION = 1000;
+
+    private static final Map<String, String> PERMISSIONS = new HashMap<>();
+
+    static {
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN) {
+            PERMISSIONS.put(Manifest.permission.READ_EXTERNAL_STORAGE, ResourceUtil.getString(R.string.pm_wr_external_storage));
+        }
+        PERMISSIONS.put(Manifest.permission.WRITE_EXTERNAL_STORAGE, ResourceUtil.getString(R.string.pm_wr_external_storage));
+        PERMISSIONS.put(Manifest.permission.CAMERA, ResourceUtil.getString(R.string.pm_camera));
+        PERMISSIONS.put(Manifest.permission.ACCESS_FINE_LOCATION, ResourceUtil.getString(R.string.pm_location));
+        PERMISSIONS.put(Manifest.permission.ACCESS_COARSE_LOCATION, ResourceUtil.getString(R.string.pm_location));
+        PERMISSIONS.put(Manifest.permission.READ_PHONE_STATE, ResourceUtil.getString(R.string.pm_read_contacts));
+        PERMISSIONS.put(Manifest.permission.READ_CONTACTS, ResourceUtil.getString(R.string.pm_read_contacts));
+        PERMISSIONS.put(Manifest.permission.RECORD_AUDIO, ResourceUtil.getString(R.string.pm_record_audio));
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+            PERMISSIONS.put(Manifest.permission.REQUEST_INSTALL_PACKAGES, ResourceUtil.getString(R.string.pm_request_install_packages));
+        }
+    }
 
     public static boolean hasM() {
         return Build.VERSION.SDK_INT >= Build.VERSION_CODES.M;
@@ -92,27 +121,19 @@ public class PermissionHelp {
         return true;
     }
 
-    private static Observable<Boolean> getRequestObservable(Boolean result){
-        return Observable.just(result);
-    }
-
     /**
      * 读写权限
      * @param aty
      * @return
      */
-    public static Observable<Boolean> requestWrite(FragmentActivity aty) {
-        if (aty == null) {
-            return getRequestObservable(false);
-        } else {
-            return new RxPermissions(aty).request(Manifest.permission.WRITE_EXTERNAL_STORAGE);
-        }
+    public static Single<Boolean> requestWrite(FragmentActivity aty) {
+        return requestMulPermissions(aty, Manifest.permission.WRITE_EXTERNAL_STORAGE);
     }
 
     /****
      * 申请文件读写、安装app权限
      */
-    public static Observable<Boolean> requestWriteAndInstallApp(FragmentActivity aty){
+    public static Single<Boolean> requestWriteAndInstallApp(FragmentActivity aty){
         return requestMulPermissions(aty, Manifest.permission.WRITE_EXTERNAL_STORAGE, Manifest.permission.REQUEST_INSTALL_PACKAGES);
     }
 
@@ -121,70 +142,91 @@ public class PermissionHelp {
      * @param aty
      * @return
      */
-    public static Observable<Boolean> requestRecord(FragmentActivity aty) {
-        if (aty == null) {
-            return getRequestObservable(false);
-        } else {
-            return new RxPermissions(aty).request(Manifest.permission.RECORD_AUDIO);
-        }
+    public static Single<Boolean> requestRecord(FragmentActivity aty) {
+        return requestMulPermissions(aty, Manifest.permission.RECORD_AUDIO);
     }
 
     /**
      * 系统设置（屏幕亮度权限）
      */
     public static void requestSetting(FragmentActivity aty) {
-        Intent intent = new Intent(Settings.ACTION_MANAGE_WRITE_SETTINGS);
-        intent.setData(Uri.parse("package:" + aty.getPackageName()));
-        aty.startActivityForResult(intent, REQUEST_WRITE_SETTING_PERMISSION);
+        if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.M) {
+            Intent intent = new Intent(Settings.ACTION_MANAGE_WRITE_SETTINGS);
+            intent.setData(Uri.parse("package:" + aty.getPackageName()));
+            if(CommUtils.canTurn(aty, intent))
+                aty.startActivityForResult(intent, REQUEST_WRITE_SETTING_PERMISSION);
+        }
     }
 
     /**
      * 请求多个
-     * @param aty
-     * @param allPermissions
-     * @return
      */
-    public static Observable<Boolean> requestMulPermissions(FragmentActivity aty, final String... allPermissions) {
-        if (aty == null) {
-            return getRequestObservable(false);
+    public static Single<Boolean> requestMulPermissions(FragmentActivity aty, final String... allPermissions) {
+        if (hasM()) {
+            return Single.just(true);
+        } else if (aty == null) {
+            return Single.just(false);
         } else {
-            return new RxPermissions(aty).request(allPermissions);
+            return new RxPermissions(aty).requestEach(allPermissions)
+                    .toList()
+                    .map(permissions -> {
+                        List<String> allowRequestAgain = new ArrayList<>();
+                        List<String> forbidRequest = new ArrayList<>();
+                        for (Permission permission : permissions) {
+                            if (permission.granted) continue;
+                            if (permission.shouldShowRequestPermissionRationale)
+                                allowRequestAgain.add(permission.name);
+                            else
+                                forbidRequest.add(permission.name);
+                        }
+                        if (!allowRequestAgain.isEmpty()) {
+                            ToastUtil.INSTANCE.showShort(getTips(allowRequestAgain, false));
+                        } else if (!forbidRequest.isEmpty()) {
+                            DialogFactory.INSTANCE.simpleMsgDialog(aty.getSupportFragmentManager(),
+                                    getTips(forbidRequest, true),
+                                    (msgDialogTurnEntity, result) -> {
+                                        if (result) {
+                                            CommTurnHelp.INSTANCE.setting();
+                                        }
+                                    });
+                        }
+                        return allowRequestAgain.isEmpty() && forbidRequest.isEmpty();
+                    });
         }
     }
 
+    private static String getTips(List<String> permissions, boolean isForbid) {
+        String tips = ResourceUtil.getString(isForbid ? R.string.pm_forbid_tips : R.string.pm_refuse_tips);
+        String permissionName = Observable.fromIterable(permissions)
+                .map(s -> PERMISSIONS.get(s) == null ? "" : PERMISSIONS.get(s))
+                .distinct()
+                .collectInto(new StringBuffer(), (stringBuffer, s) -> {
+                    if (!TextUtils.isEmpty(s))
+                        stringBuffer.append("、").append(s);
+                })
+                .map(s -> s.length() > 0 ? s.substring(1) : "")
+                .blockingGet();
+        return String.format(tips, permissionName);
 
+    }
 
     /**
      * 访问照相机
      * @param aty
      * @return
      */
-    public static Observable<Boolean> requestCamera(FragmentActivity aty) {
-        if (hasM()) {
-            if (aty == null) {
-                return getRequestObservable(false);
-            } else {
-                RxPermissions permissions = new RxPermissions(aty);
-                return permissions.request(Manifest.permission.CAMERA);
-            }
-        } else {
-            return getRequestObservable(true);
-        }
+    public static Single<Boolean> requestCamera(FragmentActivity aty) {
+        return requestMulPermissions(aty, Manifest.permission.CAMERA);
     }
 
     /**
      * 请求安装app
      */
-    public static Observable<Boolean> requestInstallApp(FragmentActivity aty) {
+    public static Single<Boolean> requestInstallApp(FragmentActivity aty) {
         if (hasO()) {
-            if (aty == null) {
-                return getRequestObservable(false);
-            } else {
-                RxPermissions permissions = new RxPermissions(aty);
-                return permissions.request(Manifest.permission.REQUEST_INSTALL_PACKAGES);
-            }
+            return requestMulPermissions(aty, Manifest.permission.REQUEST_INSTALL_PACKAGES);
         } else {
-            return getRequestObservable(true);
+            return Single.just(true);
         }
     }
 
@@ -193,7 +235,7 @@ public class PermissionHelp {
      * @param aty
      * @return
      */
-    public static Observable<Boolean> requestCameraAndWrite(FragmentActivity aty) {
+    public static Single<Boolean> requestCameraAndWrite(FragmentActivity aty) {
         return requestMulPermissions(aty, Manifest.permission.CAMERA, Manifest.permission.WRITE_EXTERNAL_STORAGE);
     }
 

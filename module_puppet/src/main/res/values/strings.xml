@@ -6,6 +6,7 @@
     <string name="forget_pw">忘记密码？</string>
     <string name="account_hint">请输入账号</string>
     <string name="pw_hint">请输入密码</string>
+    <string name="pw">密码</string>
 
 
 </resources>

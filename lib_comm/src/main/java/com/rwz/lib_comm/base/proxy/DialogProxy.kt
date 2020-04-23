@@ -2,13 +2,12 @@ package com.rwz.lib_comm.base.proxy
 
 import androidx.annotation.StringRes
 import androidx.fragment.app.FragmentManager
-import com.rwz.lib_comm.base.BaseActivity
 import com.rwz.lib_comm.entity.turn.LoadingDialogTurnEntity
 import com.rwz.lib_comm.entity.turn.MsgDialogTurnEntity
 import com.rwz.lib_comm.ui.dialog.LoadingDialog
 import com.rwz.lib_comm.ui.dialog.MsgDialog
 import com.rwz.lib_comm.utils.app.DialogHelp
-import com.rwz.lib_comm.utils.app.FragmentUtil
+import com.rwz.lib_comm.utils.factory.FragmentFactory
 import com.rwz.lib_comm.utils.app.ResourceUtil
 import io.reactivex.functions.BiConsumer
 
@@ -47,7 +46,7 @@ class DialogProxy(private var fm: FragmentManager,
 
     fun showLoadDialog(entity: LoadingDialogTurnEntity) {
         if (mLoadDialog == null) {
-            mLoadDialog = FragmentUtil.newDialog(LoadingDialog::class.java, entity)
+            mLoadDialog = FragmentFactory.newDialog(LoadingDialog::class.java, entity)
         } else {
             mLoadDialog!!.setEntity(entity)
         }

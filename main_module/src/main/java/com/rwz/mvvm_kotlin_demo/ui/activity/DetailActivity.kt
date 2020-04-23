@@ -11,7 +11,7 @@ import com.rwz.lib_comm.entity.params.CommBottomEntity
 import com.rwz.lib_comm.ui.dialog.CommBottomDialog
 import com.rwz.lib_comm.utils.app.CommUtils
 import com.rwz.lib_comm.utils.app.DialogHelp
-import com.rwz.lib_comm.utils.app.FragmentUtil
+import com.rwz.lib_comm.utils.factory.FragmentFactory
 import com.rwz.lib_comm.utils.show.ToastUtil
 import com.rwz.mvvm_kotlin_demo.R
 import com.rwz.mvvm_kotlin_demo.databinding.ActivityDetailBinding
@@ -40,7 +40,7 @@ class DetailActivity : BaseActivity<ActivityDetailBinding, IViewModule<IView>>()
 
     override fun init(savedInstanceState: Bundle?) {
         super.init(savedInstanceState)
-        mFragment = FragmentUtil.newInstance(DetailFragment::class.java, intent.extras)
+        mFragment = FragmentFactory.newInstance(DetailFragment::class.java, intent.extras)
         supportFragmentManager.beginTransaction()
             .add(R.id.container, mFragment, "DetailFragment")
             .commit()

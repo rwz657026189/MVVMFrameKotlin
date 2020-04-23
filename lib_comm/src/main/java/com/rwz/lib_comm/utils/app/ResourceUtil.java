@@ -9,6 +9,7 @@ import androidx.annotation.ColorRes;
 import androidx.annotation.DimenRes;
 import androidx.annotation.DrawableRes;
 import androidx.annotation.IntegerRes;
+import androidx.annotation.NonNull;
 import androidx.annotation.StringRes;
 import androidx.core.content.ContextCompat;
 
@@ -27,11 +28,17 @@ public class ResourceUtil {
 
     /**
      * 获取字符串
-     * @param stringRes
+     * @param stringRes 资源id
+     * @param formatArgs 格式化参数
      * @return
      */
-    public static String getString(@StringRes int stringRes) {
-        return stringRes == 0 ? null : ContextManager.context.getString(stringRes);
+    @NonNull
+    public static String getString(@StringRes int stringRes, Object... formatArgs) {
+        if (formatArgs == null || formatArgs.length == 0) {
+            return stringRes == 0 ? "" : ContextManager.context.getString(stringRes);
+        } else {
+            return stringRes == 0 ? "" : ContextManager.context.getString(stringRes, formatArgs);
+        }
     }
 
     /**

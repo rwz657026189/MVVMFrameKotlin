@@ -3,6 +3,9 @@
     xmlns:tools="http://schemas.android.com/tools"
     package="com.rwz.mvvm_kotlin_demo">
 
+    <!-- 权限测试 -->
+    <uses-permission android:name="android.permission.CAMERA" />
+
     <application
         android:name=".base.MyApp"
         android:allowBackup="true"
@@ -12,7 +15,8 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         tools:ignore="GoogleAppIndexingWarning">
-        <activity android:name=".duplicated.MainDuplicatedActivity"></activity>
+        <activity android:name=".duplicated.MainDuplicatedActivity"
+            android:theme="@style/TransTheme"></activity>
         <activity android:name=".ui.activity.MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

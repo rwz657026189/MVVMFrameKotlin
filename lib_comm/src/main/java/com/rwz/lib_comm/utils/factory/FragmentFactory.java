@@ -1,4 +1,4 @@
-package com.rwz.lib_comm.utils.app;
+package com.rwz.lib_comm.utils.factory;
 
 import android.os.Bundle;
 import android.os.Parcelable;
@@ -17,7 +17,7 @@ import static com.rwz.lib_comm.config.BaseKeyKt.STRING;
  * Created by rwz on 2017/7/20.
  */
 
-public class FragmentUtil {
+public class FragmentFactory {
 
     public static <T extends BaseFragment>T newInstance(Class<T> cl, Parcelable params) {
         T baseFragment = newInstance(cl);

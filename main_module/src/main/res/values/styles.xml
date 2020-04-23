@@ -10,4 +10,8 @@
         <item name="android:textSize">@dimen/text_14</item>
     </style>
 
+    <style name="TransTheme" parent="Theme.AppCompat.Light.NoActionBar">
+    </style>
+
+
 </resources>

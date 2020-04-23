@@ -8,4 +8,16 @@
     <string name="null_data">没有任何数据哦</string>
     <string name="load_error">加载失败</string>
     <string name="checked_one_at_least">请至少选中一项</string>
+
+    <!-- 权限相关 -->
+    <string name="pm_wr_external_storage">读写文件</string>
+    <string name="pm_camera">相机</string>
+    <string name="pm_location">定位</string>
+    <string name="pm_read_phone_state">获取手机信息</string>
+    <string name="pm_read_contacts">读取联系人</string>
+    <string name="pm_record_audio">录音</string>
+    <string name="pm_request_install_packages">安装应用程序</string>
+    <string name="pm_forbid_tips">系统需要%s权限，请前往设置页面手动开启权限</string>
+    <string name="pm_refuse_tips">系统需要授予%s权限才能操作</string>
+
 </resources>

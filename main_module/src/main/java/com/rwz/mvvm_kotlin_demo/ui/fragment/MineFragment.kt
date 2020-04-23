@@ -1,8 +1,11 @@
 package com.rwz.mvvm_kotlin_demo.ui.fragment
 
+import android.Manifest
 import android.os.Bundle
 import android.view.View
 import com.rwz.lib_comm.base.BaseFragment
+import com.rwz.lib_comm.utils.app.PermissionHelp
+import com.rwz.lib_comm.utils.show.ToastUtil
 import com.rwz.mvvm_kotlin_demo.R
 import com.rwz.mvvm_kotlin_demo.databinding.FragmentMineBinding
 import com.rwz.mvvm_kotlin_demo.viewmodule.MineViewModule
@@ -35,4 +38,15 @@ class MineFragment : BaseFragment<FragmentMineBinding, MineViewModule>() {
             container.startScrollAnim(true)
         }
     }
+
+    override fun onTitleClick() {
+//        super.onTitleClick()
+        //ToastUtil.showShort(t1 ? "成功" : "")
+        PermissionHelp.requestMulPermissions(activity, Manifest.permission.WRITE_EXTERNAL_STORAGE,
+            Manifest.permission.READ_EXTERNAL_STORAGE, Manifest.permission.CAMERA)
+            .subscribe { t1, t2 ->
+                ToastUtil.takeIf { t1 }?.showShort("成功")
+            }
+    }
+
 }

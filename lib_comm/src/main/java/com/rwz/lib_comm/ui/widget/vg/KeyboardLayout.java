@@ -8,13 +8,16 @@ import android.view.ViewTreeObserver;
 import android.view.WindowManager;
 import android.widget.FrameLayout;
 
+import com.rwz.lib_comm.utils.app.KeyboardHelper;
 import com.rwz.lib_comm.utils.show.LogUtil;
 
 
 /**
  * 监听输入法键盘的弹起与隐藏
  * Created by Ren Wenzhang on 2016/8/28.
+ * {@link KeyboardHelper}替代
  */
+@Deprecated
 public class KeyboardLayout extends FrameLayout {
 
     private static final String TAG = "KeyboardLayout";

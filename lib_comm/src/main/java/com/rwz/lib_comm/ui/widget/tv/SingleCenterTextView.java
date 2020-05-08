@@ -139,4 +139,7 @@ public class SingleCenterTextView extends AppCompatTextView {
         canvas.translate(dx * (mPosition == LEFT ? 1 : -1), 0);
     }
 
+    public int getPosition() {
+        return mPosition;
+    }
 }

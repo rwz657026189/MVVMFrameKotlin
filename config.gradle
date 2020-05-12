@@ -17,7 +17,11 @@ ext {
     dependencies = [
             "junit"                          : 'junit:junit:4.12',
             "androidx"                       :"androidx.appcompat:appcompat:${android["androidx"]}",
+            "androidx_junit"                 :"androidx.test.ext:junit:${android["androidx"]}",
+            "androidx_espresso"              :"androidx.test.espresso:espresso-core:3.1.1",
             "androidx_kotlin"                :"androidx.core:core-ktx:${android["androidx"]}",
+            //kotlin协程
+            "kotlinx_coroutines"                :"org.jetbrains.kotlinx:kotlinx-coroutines-android:1.1.1",
             //原support下design包
             "material"                       :'com.google.android.material:material:1.0.0',
             "recyclerview"                   :"androidx.recyclerview:recyclerview:1.0.0",
@@ -71,7 +75,7 @@ ext {
             //debugImplementation
             "leakcanary"                    : "com.squareup.leakcanary:leakcanary-android:1.6.2",
             //releaseImplementation
-            "leakcanary"                    : "com.squareup.leakcanary:leakcanary-android-no-op:1.6.2",
+            "leakcanary_no_op"                    : "com.squareup.leakcanary:leakcanary-android-no-op:1.6.2",
             //左滑删除
             "swipebacklayout"               : "me.imid.swipebacklayout.lib:library:1.1.0",
     ]

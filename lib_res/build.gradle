@@ -23,7 +23,10 @@ android {
 
 dependencies {
     api fileTree(dir: 'libs', include: ['*.jar'])
-    testImplementation 'junit:junit:4.12'
+    //测试
+    testImplementation rootProject.ext.dependencies["junit"]
+    androidTestImplementation rootProject.ext.dependencies["androidx_junit"]
+    androidTestImplementation rootProject.ext.dependencies["androidx_espresso"]
 
 //    api rootProject.ext.dependencies["support_annotations"]
 //    api rootProject.ext.dependencies["espresso_core"]
@@ -52,6 +55,7 @@ dependencies {
     api rootProject.ext.dependencies["TabLayout"]
     api rootProject.ext.dependencies["banner"]
     api rootProject.ext.dependencies["logger"]
+    api rootProject.ext.dependencies["kotlinx_coroutines"]
 
 
 

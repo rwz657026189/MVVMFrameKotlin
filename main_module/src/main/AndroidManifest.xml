@@ -16,7 +16,7 @@
         android:theme="@style/AppTheme"
         tools:ignore="GoogleAppIndexingWarning">
         <activity android:name=".duplicated.MainDuplicatedActivity"
-            android:theme="@style/TransTheme"></activity>
+            android:theme="@style/TransTheme"/>
         <activity android:name=".ui.activity.MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

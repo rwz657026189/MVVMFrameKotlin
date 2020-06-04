@@ -123,29 +123,24 @@ abstract class BaseListFragment<VB : ViewDataBinding,
     }
 
     override fun loadDataComplete(isRefresh: Boolean) {
-        if (mRefreshLayout != null)
-            if (isRefresh)
-                mRefreshLayout!!.finishRefresh()
-            else
-                mRefreshLayout!!.finishLoadMore()
+        if (isRefresh)
+            mRefreshLayout?.finishRefresh()
+        else
+            mRefreshLayout?.finishLoadMore()
     }
 
     override fun setLoadingMoreEnabled(enabled: Boolean) {
         LogUtil.d(TAG, "setLoadingMoreEnabled", "enabled = $enabled")
-        if (mRefreshLayout != null)
-            mRefreshLayout!!.setEnableLoadMore(enabled)
+        mRefreshLayout?.setEnableLoadMore(enabled)
     }
 
     override fun setPullRefreshEnabled(enabled: Boolean) {
-        if (mRefreshLayout != null)
-            mRefreshLayout!!.setEnableRefresh(enabled)
+        mRefreshLayout?.setEnableRefresh(enabled)
     }
 
     override fun autoRefresh() {
-        if (mRefreshLayout != null) {
-            mRefreshLayout!!.setEnableRefresh(true)
-            mRefreshLayout!!.autoRefresh()
-        }
+        mRefreshLayout?.setEnableRefresh(true)
+        mRefreshLayout?.autoRefresh()
     }
 
     /** 清空数据, 并展示空视图  */

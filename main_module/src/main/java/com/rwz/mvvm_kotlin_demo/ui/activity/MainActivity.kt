@@ -29,7 +29,7 @@ class MainActivity : BaseTabVpActivity<ActivityTabVpBinding>() {
     override fun requestTabData() {
         val list = ArrayList<TabEntity>()
         list.add(TabEntity(title = ResourceUtil.getString(R.string.main)))
-        list.add(TabEntity(title = ResourceUtil.getString(R.string.recommend)))
+        list.add(TabEntity(title = ResourceUtil.getString(R.string.find)))
         list.add(TabEntity(title = ResourceUtil.getString(R.string.mine)))
         setupContentViewPager(list)
     }

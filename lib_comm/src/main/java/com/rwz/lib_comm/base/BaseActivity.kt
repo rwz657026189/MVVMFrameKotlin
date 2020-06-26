@@ -27,7 +27,7 @@ import com.rwz.lib_comm.extension.TAG
  * author： rwz
  * description：activity基类
  **/
-abstract class BaseActivity<VB : ViewDataBinding, VM : IViewModule<IView>>
+abstract class BaseActivity<VB : ViewDataBinding, VM : IViewModule<out IView>>
     : SwipeBackActivity(), IView, View.OnClickListener {
 
     //activity是否存在

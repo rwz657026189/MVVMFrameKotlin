@@ -18,7 +18,6 @@
 /.idea
 # Built application files
 *.apk
-*.keystore
 *.ap_
 
 # Files for the ART/Dalvik VM
@@ -83,3 +82,4 @@ fastlane/screenshots
 fastlane/test_output
 fastlane/readme.md
 
+app/release

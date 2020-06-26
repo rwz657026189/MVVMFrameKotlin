@@ -16,12 +16,6 @@ android {
         multiDexEnabled true
     }
 
-    buildTypes {
-        release {
-            minifyEnabled false
-            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
-        }
-    }
     compileOptions {
         sourceCompatibility = 1.8
         targetCompatibility = 1.8
@@ -34,6 +28,39 @@ android {
     kapt {
         generateStubs = true
     }
+
+    signingConfigs {
+        debug {
+            storeFile file('../keystore/test.keystore')
+            storePassword '123456'
+            keyAlias 'test'
+            keyPassword '123456'
+        }
+
+        relealse {
+            storeFile file('../keystore/test.keystore')
+            storePassword '123456'
+            keyAlias 'test'
+            keyPassword '123456'
+        }
+    }
+
+    buildTypes {
+        release {
+            signingConfig signingConfigs.relealse
+            minifyEnabled false
+            zipAlignEnabled false
+            shrinkResources false
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+        }
+        debug {
+            signingConfig signingConfigs.debug
+            minifyEnabled false
+            zipAlignEnabled false
+            shrinkResources false
+        }
+    }
+
 
 }
 

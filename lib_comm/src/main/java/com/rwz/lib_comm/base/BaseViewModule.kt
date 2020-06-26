@@ -14,6 +14,7 @@ import com.rwz.lib_comm.ui.adapter.rv.mul.IBaseEntity
 import com.rwz.lib_comm.utils.app.ResourceUtil
 import com.rwz.lib_comm.utils.show.LogUtil
 import com.rwz.lib_comm.utils.show.ToastUtil
+import io.reactivex.disposables.Disposable
 import io.reactivex.functions.BiConsumer
 import io.reactivex.functions.Consumer
 
@@ -55,15 +56,26 @@ open class BaseViewModule<V : IView>(clickCommand: Consumer<*>? = null) : RxView
         //非必须
     }
 
-    protected open fun getObserver(requestCode: String = SINGLE_REQUEST_CODE): CommonObserver<Any> {
+    /**
+     * @param requestCode : 请求码， 请求的唯一标识，若不区分则用默认值
+     * @param isDispatch : 是否统一调度，true：页面关闭的时候会主动取消请求
+     */
+    protected open fun getObserver(requestCode: String = SINGLE_REQUEST_CODE, isDispatch : Boolean = true): CommonObserver<Any> {
         return object : CommonObserver<Any>() {
             override fun onError(e: Throwable) {
                 super.onError(e)
-                onResponseError(requestCode)
+                onResponseError(requestCode, e)
             }
 
             override fun onNext(data: Any) {
                 onResponseSuccess(requestCode, data)
+            }
+
+            override fun onSubscribe(d: Disposable) {
+                super.onSubscribe(d)
+                if (isDispatch) {
+                    addDisposable(d)
+                }
             }
         }
     }
@@ -83,7 +95,9 @@ open class BaseViewModule<V : IView>(clickCommand: Consumer<*>? = null) : RxView
     /**
      * 请求失败的回调
      */
-    open fun onResponseError(requestCode: String) {}
+    open fun onResponseError(requestCode: String, e: Throwable) {
+        //加载失败回调，非必须
+    }
 
     open val onClickEventCommand: Consumer<*> = clickCommand ?:
     Consumer<CommandEntity<Any>> { commandEntity ->
@@ -146,12 +160,16 @@ open class BaseViewModule<V : IView>(clickCommand: Consumer<*>? = null) : RxView
     /**
      * 点击对话框确定
      */
-    protected open fun onClickDialogEnter(entity: MsgDialogTurnEntity) {}
+    protected open fun onClickDialogEnter(entity: MsgDialogTurnEntity) {
+        //非必须
+    }
 
     /**
      * 点击对话框取消
      */
-    protected open fun onClickDialogCancel(entity: MsgDialogTurnEntity) {}
+    protected open fun onClickDialogCancel(entity: MsgDialogTurnEntity) {
+        //非必须
+    }
 
     /**
      * @param isForbidTouchScreen 是否禁用触摸屏幕（禁用一切事件）

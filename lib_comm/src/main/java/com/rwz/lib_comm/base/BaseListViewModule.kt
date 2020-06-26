@@ -106,14 +106,14 @@ abstract class BaseListViewModule<V : IListView>(clickCommand: Consumer<*>? = nu
         mView?.updateData(IListView.SCROLL_TO_POSITION, position)
     }
 
-    override fun getObserver(requestCode: String): CommonObserver<Any> {
+    override fun getObserver(requestCode: String, isDispatch : Boolean): CommonObserver<Any> {
         //若未修改, 标记第一条请求, 会根据该请求的结果决定是否显示占位图
         if (mTempRequestCode == null)
             mTempRequestCode = requestCode
-        return super.getObserver(requestCode)
+        return super.getObserver(requestCode, isDispatch)
     }
 
-    override fun onResponseError(requestCode: String) {
+    override fun onResponseError(requestCode: String, e: Throwable) {
         LogUtil.d(
             TAG, "BaseListViewModule", "onResponseError",
             "requestCode = $requestCode", "mPage = $mPage", "isRefresh = $isRefresh")

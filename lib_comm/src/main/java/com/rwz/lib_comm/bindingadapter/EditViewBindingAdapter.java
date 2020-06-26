@@ -22,7 +22,7 @@ import io.reactivex.functions.Consumer;
 public class EditViewBindingAdapter {
 
     @BindingAdapter("afterTextChanged")
-    public static void afterTextChanged(final EditText view, final Consumer<CommandEntity> command) {
+    public static void afterTextChanged(final EditText view, final Consumer command) {
         if(command == null)
             return;
         view.addTextChangedListener(new TextWatcher() {
@@ -48,7 +48,7 @@ public class EditViewBindingAdapter {
     }
 
     @BindingAdapter("onEnterKeyDown")
-    public static void onEnterKeyDown(final EditText view, final Consumer<CommandEntity> command) {
+    public static void onEnterKeyDown(final EditText view, final Consumer command) {
         view.setOnEditorActionListener(new TextView.OnEditorActionListener() {
             @Override
             public boolean onEditorAction(TextView v, int actionId, KeyEvent event) {

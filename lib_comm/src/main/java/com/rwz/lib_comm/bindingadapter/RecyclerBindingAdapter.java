@@ -9,7 +9,6 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.rwz.lib_comm.entity.extension.wrap.WrapList;
 import com.rwz.lib_comm.entity.params.CommandEntity;
 import com.rwz.lib_comm.ui.adapter.rv.BaseBindingAdapter;
-import com.rwz.lib_comm.ui.adapter.rv.mul.IBaseEntity;
 import com.rwz.lib_comm.ui.adapter.rv.mul.decorator.DataBindingDecoratorProvide;
 
 import java.util.List;
@@ -23,7 +22,7 @@ import io.reactivex.functions.Consumer;
 public final class RecyclerBindingAdapter {
 
     @BindingAdapter({"setData","clickCommand"})
-    public static void setData(RecyclerView view, WrapList<? extends IBaseEntity> list, final Consumer<CommandEntity> clickCommand) {
+    public static void setData(RecyclerView view, WrapList list, final Consumer clickCommand) {
         if (list != null && list.getList() != null && list.getList().size() > 0) {
             final List data = list.getList();
             RecyclerView.LayoutManager manager;
@@ -57,7 +56,7 @@ public final class RecyclerBindingAdapter {
 
     /** 仅支持横向 **/
     @BindingAdapter(value = {"data", "clickCommand", "spanCount"}, requireAll=false)
-    public static void setData(RecyclerView view, final List data, final Consumer<CommandEntity> clickCommand, int spanCount) {
+    public static void setData(RecyclerView view, final List data, final Consumer clickCommand, int spanCount) {
         if (data != null && data.size() > 0) {
             RecyclerView.LayoutManager manager;
             if(spanCount <= 0)

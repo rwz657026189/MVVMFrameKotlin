@@ -7,6 +7,6 @@ package com.rwz.lib_comm.entity.response
  **/
 open class Response<T>(
     open var data: T,
-    open val msg: String,
-    open val code : Int
+    open var msg: String,
+    open var code : Int
 )

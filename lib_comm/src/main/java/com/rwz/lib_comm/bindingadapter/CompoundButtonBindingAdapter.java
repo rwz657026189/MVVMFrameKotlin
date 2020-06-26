@@ -18,7 +18,7 @@ import io.reactivex.functions.Consumer;
 public class CompoundButtonBindingAdapter {
 
     @BindingAdapter({"onCheckedChange"})
-    public static void onRbCheckChanged(CompoundButton cb, final Consumer<CommandEntity> command) {
+    public static void onRbCheckChanged(CompoundButton cb, final Consumer command) {
         if(command == null)
             return;
         final int id = cb.getId();

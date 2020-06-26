@@ -17,7 +17,7 @@ import io.reactivex.functions.Consumer;
 public class RadioButtonBindingAdapter {
 
     @BindingAdapter({"rbCheckChanged"})
-    public static void onRbCheckChanged(RadioButton rb, final Consumer<CommandEntity> command) {
+    public static void onRbCheckChanged(RadioButton rb, final Consumer command) {
         if(command == null)
             return;
         rb.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {

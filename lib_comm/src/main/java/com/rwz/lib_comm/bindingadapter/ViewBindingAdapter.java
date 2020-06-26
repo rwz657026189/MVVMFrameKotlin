@@ -47,7 +47,7 @@ public class ViewBindingAdapter {
      * @param command
      */
     @BindingAdapter({"clickCommand","setEntity"})
-    public static void onClick(View v , final Consumer<CommandEntity> command, final IBaseEntity entity) {
+    public static void onClick(View v , final Consumer command, final IBaseEntity entity) {
         if(command == null)
             return;
         final CommandEntity commandEntity = new CommandEntity(v.getId(), entity);
@@ -68,7 +68,7 @@ public class ViewBindingAdapter {
      * @param command
      */
     @BindingAdapter({"clickCommand"})
-    public static void onClick(View v , final Consumer<CommandEntity> command) {
+    public static void onClick(View v , final Consumer command) {
         onClick(v, command, null);
     }
 

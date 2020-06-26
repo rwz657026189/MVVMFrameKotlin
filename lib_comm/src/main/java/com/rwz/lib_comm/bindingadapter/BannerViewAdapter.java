@@ -30,7 +30,7 @@ import io.reactivex.functions.Consumer;
 public class BannerViewAdapter {
 
     @BindingAdapter({"bannerData","onClickView"})
-    public static void binnerData(final CommonBanner banner, final WrapList wrapList , final Consumer<CommandEntity> command) {
+    public static void binnerData(final CommonBanner banner, final WrapList wrapList , final Consumer command) {
         LogUtil.INSTANCE.d("rwz", "BannerViewAdapter " +"(binnerData) " + command);
         if (wrapList != null && wrapList.getList() != null && wrapList.getList().size() > 0 && wrapList.getList().get(0) instanceof IBannerEntity) {
             //自定义你的Holder，实现更多复杂的界面，不一定是图片翻页，其他任何控件翻页亦可。

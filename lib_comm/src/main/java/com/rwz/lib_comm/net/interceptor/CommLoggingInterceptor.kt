@@ -42,7 +42,7 @@ class CommLoggingInterceptor : Interceptor {
         val responseBody = response.peekBody((1024 * 1024).toLong())
         sb.clear()
         sb.append("【url】：${response.request().url()}").append("\n")
-        sb.append("【响应时间】：${endTime - startTime}ms")
+        sb.append("【响应时间】：${(endTime - startTime) / 1000_000_000}s")
         LogUtil.ok(sb.toString())
         LogUtil.j(jsonStr = responseBody.string())
         return response

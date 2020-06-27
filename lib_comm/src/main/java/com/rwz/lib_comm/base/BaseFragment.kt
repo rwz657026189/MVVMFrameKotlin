@@ -123,7 +123,7 @@ abstract class BaseFragment<VB : ViewDataBinding, VM : IViewModule<out IView>>
         //网络请求，非必须
     }
 
-    protected abstract fun setViewModule(): VM
+    protected abstract fun setViewModule(): VM?
 
     /** 设置资源布局 **/
     protected abstract fun setLayoutId(): Int

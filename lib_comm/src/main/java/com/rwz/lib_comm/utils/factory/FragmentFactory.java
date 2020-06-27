@@ -61,7 +61,6 @@ public class FragmentFactory {
             Bundle bundle = new Bundle();
             bundle.putParcelable(PARCELABLE_ENTITY,params);
             fragment.setArguments(bundle);
-            fragment.setArguments(bundle);
         }
     }
 

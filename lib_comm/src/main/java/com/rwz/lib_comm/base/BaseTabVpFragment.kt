@@ -24,8 +24,8 @@ import io.reactivex.functions.Consumer
  * description：
  **/
 
-abstract class BaseTabVpActivity<VB : ViewDataBinding>
-    :BaseActivity<VB, BaseViewModule<IView>>(), ViewPager.OnPageChangeListener {
+abstract class BaseTabVpFragment<VB : ViewDataBinding>
+    :BaseFragment<VB, BaseViewModule<IView>>(), ViewPager.OnPageChangeListener {
 
     lateinit var mVp:ViewPager
     var mTab: CommTabLayout? = null
@@ -76,12 +76,11 @@ abstract class BaseTabVpActivity<VB : ViewDataBinding>
 
     override fun init(savedInstanceState: Bundle?) {
         super.init(savedInstanceState)
-        mVp = findViewById(R.id.vp) as ViewPager
-        mTab = findViewById(R.id.tab) as CommTabLayout
-        mViewStub = findViewById(R.id.view_stub) as ViewStub?
-        mAdapter = SimpleVPAdapter(supportFragmentManager)
+        mVp = mRootView.findViewById(R.id.vp) as ViewPager
+        mTab = mRootView.findViewById(R.id.tab) as CommTabLayout
+        mViewStub = mRootView.findViewById(R.id.view_stub) as ViewStub?
+        mAdapter = SimpleVPAdapter(fragmentManager!!)
         mVp.addOnPageChangeListener(this)
-        setSwipeBackEnable(isAllowSwipeBack)
     }
 
     override fun setViewModule():BaseViewModule<IView> {
@@ -150,9 +149,9 @@ abstract class BaseTabVpActivity<VB : ViewDataBinding>
     }
 
     override fun onPageScrollStateChanged(state:Int) {
-        //只允许在第一页滑动返回
-        setSwipeBackEnable(isAllowSwipeBack && state == ViewPager.SCROLL_STATE_IDLE
-                && mVp.currentItem == 0)
+//        //只允许在第一页滑动返回
+//        setSwipeBackEnable(isAllowSwipeBack && state == ViewPager.SCROLL_STATE_IDLE
+//                && mVp.currentItem == 0)
     }
 
     override fun scrollToTop() {

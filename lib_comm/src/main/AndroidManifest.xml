@@ -10,4 +10,8 @@
     <!-- 获取设备序列号需要 详：DeviceInfoUtil -->
     <uses-permission android:name="android.permission.READ_PHONE_STATE" />
 
+    <application>
+        <activity android:name=".base.ContainerActivity" />
+    </application>
+
 </manifest>

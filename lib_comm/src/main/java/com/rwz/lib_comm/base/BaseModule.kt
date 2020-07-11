@@ -2,6 +2,7 @@ package com.rwz.lib_comm.base
 
 import com.rwz.lib_comm.config.CODE_SUCCESS
 import com.rwz.lib_comm.entity.response.Response
+import com.rwz.lib_comm.net.NetException
 import com.rwz.lib_comm.net.RetrofitManager
 import com.rwz.lib_comm.utils.show.ToastUtil
 import io.reactivex.ObservableTransformer
@@ -46,16 +47,12 @@ open class BaseModule{
      * @param <T>
      * @return
     </T> */
-    fun <T> getData(response: Response<T>): T? {
-        return getData(response, true)
-    }
-
-    private fun <T> getData(response: Response<T>?, showToast: Boolean): T? {
-        return response?.let {
+    private fun <T> getData(response: Response<T>, showToast: Boolean): T {
+        return response.let {
             if (isRequestSuccess(response, showToast))
                 response.data
             else
-                null
+                throw NetException(response.code, response.msg)
         }
     }
 
@@ -91,7 +88,9 @@ open class BaseModule{
     ): ObservableTransformer<Response<T>, T> {
         return ObservableTransformer { upstream ->
             val map = upstream
-                .map { t -> getData(t, showToast) }
+                .map { t ->
+                    getData(t, showToast)
+                }
             if (isSwitchThread) {
                 map.subscribeOn(Schedulers.io())
                     .observeOn(AndroidSchedulers.mainThread())

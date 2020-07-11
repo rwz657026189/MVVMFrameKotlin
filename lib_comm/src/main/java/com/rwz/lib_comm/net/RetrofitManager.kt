@@ -27,10 +27,12 @@ object RetrofitManager{
     //头信息
     private var mHeaderMap: MutableMap<String, String>? = null
     private var cacheType = CacheType.NO_CACHE
+    private val mRetrofitMap = HashMap<String, Retrofit>()
 
     fun init(host: String, headerMap: HashMap<String, String>? = null) {
         mHeaderMap = headerMap
         mRetrofit = createRetrofit(TIME_OUT, host)
+        mRetrofitMap[host] = mRetrofit!!
     }
 
     private fun createRetrofit(timeOutMillSeconds: Int, host: String) : Retrofit{
@@ -74,6 +76,12 @@ object RetrofitManager{
     }
 
     fun <T> getService(c: Class<T>?): T = mRetrofit!!.create(c)
+
+    fun <T> getService(host: String, c: Class<T>?): T {
+        return mRetrofitMap.getOrPut(host) {
+            createRetrofit(TIME_OUT, host)
+        }.create(c)
+    }
 
     fun addHeaderParams(headerMap: MutableMap<String, String>) {
         if (this.mHeaderMap == null)

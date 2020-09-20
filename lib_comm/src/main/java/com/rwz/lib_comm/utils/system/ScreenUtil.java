@@ -5,7 +5,9 @@ import android.app.Activity;
 import android.app.Dialog;
 import android.content.ContentResolver;
 import android.content.Context;
+import android.content.Intent;
 import android.graphics.Bitmap;
+import android.graphics.Canvas;
 import android.graphics.ColorMatrix;
 import android.graphics.ColorMatrixColorFilter;
 import android.graphics.Paint;
@@ -17,6 +19,8 @@ import android.util.DisplayMetrics;
 import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
+
+import com.rwz.lib_comm.utils.show.LogUtil;
 
 /**
  * Created by AriaLyy on 2015/1/22.
@@ -150,7 +154,31 @@ public class ScreenUtil {
                 - statusBarHeight);
         view.destroyDrawingCache();
         return bp;
+    }
 
+    public Bitmap snapView(View view) {
+        int width = view.getMeasuredWidth();
+        int height = view.getMeasuredHeight();
+        // android8之后bitmap内存分配到native heap
+        if (Build.VERSION.SDK_INT < Build.VERSION_CODES.O) {
+            Runtime runtime = Runtime.getRuntime();
+            long remainMemory = runtime.maxMemory() - runtime.totalMemory();
+            int requireMemory = width * height * 2;
+            if (requireMemory > remainMemory) {
+                LogUtil.INSTANCE.e("ScreenUtil snapView: 剩余内存不足, remainMemory = " + remainMemory,
+                        "requireMemory = " + requireMemory);
+                return null;
+            }
+        }
+        Bitmap bitmap = null;
+        try {
+            bitmap = Bitmap.createBitmap(width, height, Bitmap.Config.RGB_565);
+            Canvas canvas = new Canvas(bitmap);
+            view.draw(canvas);
+        } catch (OutOfMemoryError error) {
+            error.printStackTrace();
+        }
+        return bitmap;
     }
 
     /**

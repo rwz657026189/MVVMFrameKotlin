@@ -3,7 +3,6 @@ package com.rwz.mvvm_kotlin_demo.ui.wdiget;
 import android.animation.ValueAnimator;
 import android.content.Context;
 import android.util.AttributeSet;
-import android.util.Log;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewConfiguration;
@@ -22,7 +21,6 @@ import com.rwz.lib_comm.utils.app.DensityUtils;
  **/
 public class ScrollFrameLayout extends FrameLayout {
 
-    private static final String TAG = "ScrollFrameLayout";
     //最小高度
     public static final int MIN_HEIGHT = DensityUtils.dp2px(200);
     private int mTouchSlop ;
@@ -83,7 +81,6 @@ public class ScrollFrameLayout extends FrameLayout {
 
     @Override
     public boolean onTouchEvent(MotionEvent event) {
-        Log.d(TAG, "onTouchEvent: " + event.getAction() + ", " + mMoveY);
         return handlerEvent(event);
     }
 
@@ -133,14 +130,11 @@ public class ScrollFrameLayout extends FrameLayout {
             int endY = isScrollUp ? MIN_HEIGHT : mHeight;
             mAnimator = ValueAnimator.ofInt(startY, endY);
             mAnimator.setDuration(300 * Math.abs(endY - startY) / endY);
-            mAnimator.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
-                @Override
-                public void onAnimationUpdate(ValueAnimator animation) {
-                    Integer currValue = (Integer) animation.getAnimatedValue();
-                    setScrollerViewTopMargin(currValue);
-                    if (mBesselImageView != null)
-                        mBesselImageView.onScrollChanged(currValue - startY, currValue);
-                }
+            mAnimator.addUpdateListener(animation -> {
+                Integer currValue = (Integer) animation.getAnimatedValue();
+                setScrollerViewTopMargin(currValue);
+                if (mBesselImageView != null)
+                    mBesselImageView.onScrollChanged(currValue - startY, currValue);
             });
             mAnimator.setInterpolator(isScrollUp ? new MyScrollInterpolator() : new LinearInterpolator());
             mAnimator.start();
@@ -160,7 +154,7 @@ public class ScrollFrameLayout extends FrameLayout {
             mThrobAnimator = null;
         }
     }
-    private class MyScrollInterpolator implements Interpolator {
+    private static class MyScrollInterpolator implements Interpolator {
 
         @Override
         public float getInterpolation(float x) {
@@ -170,14 +164,12 @@ public class ScrollFrameLayout extends FrameLayout {
 
     }
 
-    private class MyThrobInterpolator implements Interpolator {
+    private static class MyThrobInterpolator implements Interpolator {
 
         @Override
         public float getInterpolation(float x) {
             float cycles = 1.0f;
-            float sin = (float) Math.sin(2 * cycles * Math.PI * x);
-            Log.d(TAG, "getInterpolation: " + sin);
-            return sin;
+            return (float) Math.sin(2 * cycles * Math.PI * x);
         }
 
     }
@@ -187,19 +179,14 @@ public class ScrollFrameLayout extends FrameLayout {
             return;
         MarginLayoutParams params = (MarginLayoutParams) mThrobView.getLayoutParams();
         int topMargin = params.topMargin;
-        final int startY = topMargin;
         int endY = topMargin + MIN_HEIGHT / 4;
-        mThrobAnimator = ValueAnimator.ofFloat(startY, endY);
+        mThrobAnimator = ValueAnimator.ofFloat(topMargin, endY);
         mThrobAnimator.setDuration(300);
-        Log.d(TAG, "startThrobAnim, onAnimationUpdate: start = " + startY);
-        mThrobAnimator.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
-            @Override
-            public void onAnimationUpdate(ValueAnimator animation) {
-                float currValue = (Float) animation.getAnimatedValue();
-                MarginLayoutParams params = (MarginLayoutParams) mThrobView.getLayoutParams();
-                params.topMargin = (int) currValue;
-                mThrobView.setLayoutParams(params);
-            }
+        mThrobAnimator.addUpdateListener(animation -> {
+            float currValue = (Float) animation.getAnimatedValue();
+            MarginLayoutParams params1 = (MarginLayoutParams) mThrobView.getLayoutParams();
+            params1.topMargin = (int) currValue;
+            mThrobView.setLayoutParams(params1);
         });
         mThrobAnimator.setInterpolator(new MyThrobInterpolator());
         mThrobAnimator.start();

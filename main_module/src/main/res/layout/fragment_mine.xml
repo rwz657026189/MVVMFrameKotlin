@@ -104,6 +104,7 @@
                     bind:right_text="@{viewModule.versionName}"
                     bind:right_text_color="@color/text_gray_color"
                     bind:right_text_size="@dimen/text_12"
+                    android:layout_marginTop="@dimen/h_800"
                     />
 
             </LinearLayout>

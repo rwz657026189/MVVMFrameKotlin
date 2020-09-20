@@ -1,5 +1,6 @@
 package com.rwz.mvvm_kotlin_demo.viewmodule
 
+import android.view.View
 import androidx.databinding.ObservableField
 import com.rwz.lib_comm.abs.IView
 import com.rwz.lib_comm.base.BaseViewModule
@@ -10,12 +11,19 @@ import com.rwz.lib_comm.entity.turn.MsgDialogTurnEntity
 import com.rwz.lib_comm.manager.ContextManager
 import com.rwz.lib_comm.ui.adapter.rv.mul.IBaseEntity
 import com.rwz.lib_comm.utils.app.CommUtils
+import com.rwz.lib_comm.utils.show.LogUtil
 import com.rwz.lib_comm.utils.show.ToastUtil
 import com.rwz.lib_comm.utils.system.AndroidUtils
+import com.rwz.lib_comm.utils.system.FileUtil
+import com.rwz.lib_comm.utils.system.ScreenUtil
 import com.rwz.mvvm_kotlin_demo.R
+import com.rwz.mvvm_kotlin_demo.ui.fragment.MineFragment
 import io.reactivex.Observable
+import io.reactivex.Scheduler
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.functions.Consumer
+import io.reactivex.schedulers.Schedulers
+import java.io.File
 import java.util.concurrent.TimeUnit
 
 /**
@@ -23,7 +31,7 @@ import java.util.concurrent.TimeUnit
  * author： rwz
  * description：
  **/
-class MineViewModule : BaseViewModule<IView>() {
+class MineViewModule : BaseViewModule<MineFragment>() {
 
     val versionName: ObservableField<String> = ObservableField()
 
@@ -34,10 +42,27 @@ class MineViewModule : BaseViewModule<IView>() {
     override fun onClickView(id: Int, iEntity: IBaseEntity?) {
         when (id) {
             R.id.version -> checkNewVersion()
-            R.id.share -> CommUtils.shareTextToSystem(
-                "我正在用${AndroidUtils.getPackageName(ContextManager.context)}, 快来看看吧~")
+            R.id.share -> share()
         }
+    }
 
+    private fun share(): Unit {
+        val savePath = File((ContextManager.context.externalCacheDir?: ContextManager.context.cacheDir),
+            "temp.jpg")
+        val subscribe = Observable.just(mView!!.mRootView.findViewById(R.id.content) as View)
+            .subscribeOn(Schedulers.io())
+            .map { ScreenUtil.getInstance().snapView(it) }
+            .map { FileUtil.saveBitmap(savePath.absolutePath, it) }
+            .observeOn(AndroidSchedulers.mainThread())
+            .subscribe({
+                val packageName = "com.tencent.mm"
+                val clsName = "com.tencent.mm.ui.tools.ShareToTimeLineUI"
+                val result = CommUtils.shareImageToSystem(savePath, packageName, clsName)
+                LogUtil.d("result = $result")
+            }, {
+                LogUtil.d("result = ${it.message}")
+                print(it)
+            })
     }
 
     private fun checkNewVersion() {

@@ -6,21 +6,21 @@ import android.content.ClipData;
 import android.content.ClipboardManager;
 import android.content.Context;
 import android.content.Intent;
+import android.content.pm.ResolveInfo;
 import android.media.AudioManager;
 import android.net.Uri;
 import android.os.Build;
 import android.text.TextUtils;
 import android.widget.EditText;
 
-import androidx.annotation.Nullable;
 import androidx.core.content.FileProvider;
-
 
 import com.rwz.lib_comm.R;
 import com.rwz.lib_comm.manager.ContextManager;
 import com.rwz.lib_comm.utils.show.LogUtil;
 import com.rwz.lib_comm.utils.show.ToastUtil;
 import com.rwz.lib_comm.utils.system.AndroidUtils;
+import com.rwz.lib_comm.utils.system.FileUtil;
 
 import java.io.File;
 import java.util.ArrayList;
@@ -182,5 +182,45 @@ public class CommUtils {
             }
         }
     }
+
+    /**
+     * 分享图片到系统应用
+     * @param file 图片文件
+     * @param packageName 包名
+     * @param clsName  类名
+     * @return 结果
+     */
+    public static boolean shareImageToSystem(File file, String packageName, String clsName) {
+        LogUtil.INSTANCE.d("CommUtils shareImageToSystem:" + "file:"+file+","+"packageName:"+packageName+","+"clsName:"+clsName);
+        if (file == null) {
+            return false;
+        }
+        Uri uri = FileUtil.getUri(file);
+        LogUtil.INSTANCE.d("CommUtils shareImageToSystem: uri = " + uri);
+        if (uri == null) {
+            return false;
+        }
+        Intent intent = new Intent();
+        intent.setAction(Intent.ACTION_SEND);
+        intent.putExtra(Intent.EXTRA_STREAM, uri);
+        intent.setType("image/*");
+        if (!TextUtils.isEmpty(packageName)) {
+            if (!TextUtils.isEmpty(clsName)) {
+                intent.setClassName(packageName, clsName);
+            } else {
+                intent.setPackage(packageName);
+            }
+        }
+        Context content = ContextManager.context;
+        List<ResolveInfo> activities = content.getPackageManager().queryIntentActivities(intent,0);
+        if (activities != null && !activities.isEmpty()) {
+            Intent chooserIntent = Intent.createChooser(intent, ResourceUtil.getString(R.string.share_to));
+            chooserIntent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+            content.startActivity(chooserIntent);
+            return true;
+        }
+        return false;
+    }
+
 
 }

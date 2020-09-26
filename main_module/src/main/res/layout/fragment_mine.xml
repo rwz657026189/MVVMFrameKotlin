@@ -1,12 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
-<layout xmlns:bind="http://schemas.android.com/apk/res-auto">
+<layout
+    xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <data>
-
         <variable
             name="viewModule"
             type="com.rwz.mvvm_kotlin_demo.viewmodule.MineViewModule" />
-
     </data>
 
     <LinearLayout
@@ -17,12 +16,10 @@
 
         <include layout="@layout/layout_toolbar" />
 
-
         <com.rwz.mvvm_kotlin_demo.ui.wdiget.ScrollFrameLayout
             android:id="@+id/container"
             android:layout_width="match_parent"
             android:layout_height="match_parent">
-
 
             <com.rwz.mvvm_kotlin_demo.ui.wdiget.BesselImageView
                 android:id="@+id/head"
@@ -32,7 +29,6 @@
                 android:background="@drawable/bg"
                 />
 
-
             <ImageView
                 android:id="@+id/avatar"
                 android:layout_width="match_parent"
@@ -41,6 +37,7 @@
                 android:layout_gravity="center_horizontal"
                 android:layout_marginTop="@dimen/v_50"
                 android:layout_marginBottom="@dimen/v_20"
+                android:tint="@color/white"
                 />
 
             <ImageView
@@ -83,27 +80,49 @@
 
                 <View style="@style/space" />
 
-
                 <com.rwz.lib_comm.ui.widget.tv.IconTextView
                     android:id="@+id/share"
                     style="@style/mine_item"
                     android:text="@string/share"
-                    bind:clickCommand="@{viewModule.onClickEventCommand}"
-                    bind:right_text_color="@color/text_gray_color"
-                    bind:right_text_size="@dimen/text_12"
+                    app:clickCommand="@{viewModule.onClickEventCommand}"
+                    app:right_text_color="@color/text_gray_color"
+                    app:right_text_size="@dimen/text_12"
+                    android:translationZ="@dimen/h_10"
                     />
 
-                <View style="@style/space" />
+                <com.rwz.lib_comm.ui.widget.vg.ShadowFrameLayout
+                    android:id="@+id/shadow"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="@dimen/h_20"
+                    android:padding="@dimen/h_5"
+                    app:shadowX="0dp"
+                    app:shadowY="0dp"
+                    app:bgRound="@dimen/h_0"
+                    app:shadowRound="@dimen/h_5"
+                    app:shadowColor="@color/color_black_trans_30"
+                    >
 
+                    <ImageView
+                        android:layout_width="@dimen/h_100"
+                        android:layout_height="@dimen/h_30"
+                        android:layout_marginTop="@dimen/h_10"
+                        android:background="@color/white"
+                        />
+
+                </com.rwz.lib_comm.ui.widget.vg.ShadowFrameLayout>
+
+                <View style="@style/space"
+                    android:layout_marginTop="@dimen/h_20"/>
 
                 <com.rwz.lib_comm.ui.widget.tv.IconTextView
                     android:id="@+id/version"
                     style="@style/mine_item"
                     android:text="@string/version"
-                    bind:clickCommand="@{viewModule.onClickEventCommand}"
-                    bind:right_text="@{viewModule.versionName}"
-                    bind:right_text_color="@color/text_gray_color"
-                    bind:right_text_size="@dimen/text_12"
+                    app:clickCommand="@{viewModule.onClickEventCommand}"
+                    app:right_text="@{viewModule.versionName}"
+                    app:right_text_color="@color/text_gray_color"
+                    app:right_text_size="@dimen/text_12"
                     android:layout_marginTop="@dimen/h_800"
                     />
 

@@ -406,4 +406,12 @@
         <attr name="enableIfLoading" format="boolean"/>
     </declare-styleable>
 
+    <declare-styleable name="ShadowFrameLayout">
+        <attr name="shadowColor" format="reference|color" />
+        <attr name="shadowX" format="reference|dimension"/>
+        <attr name="shadowY" format="reference|dimension"/>
+        <attr name="shadowRound" format="reference|dimension"/>
+        <attr name="bgRound" format="reference|dimension"/>
+    </declare-styleable>
+
 </resources>

@@ -37,6 +37,7 @@ class MineFragment : BaseFragment<FragmentMineBinding, MineViewModule>() {
         pull.setOnClickListener{
             container.startScrollAnim(true)
         }
+        container.startScrollAnim(true)
     }
 
     override fun onTitleClick() {

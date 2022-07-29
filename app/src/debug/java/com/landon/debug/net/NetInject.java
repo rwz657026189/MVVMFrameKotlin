@@ -16,7 +16,7 @@ public class NetInject {
     public static OkHttpClient initOkhttpClient(OkHttpClient client) {
         OkHttpClient.Builder builder = client.newBuilder();
         if (DebugConfig.NET_TIME) {
-            builder.eventListener(new HttpEventListener());
+//            builder.eventListener(new HttpEventListener());
         }
         if (DebugConfig.NET_LOGCAT) {
             builder.addInterceptor(new LogInterceptor());

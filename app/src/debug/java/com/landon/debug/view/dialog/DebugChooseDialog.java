@@ -13,7 +13,7 @@ import android.widget.TextView;
 import androidx.appcompat.app.AlertDialog;
 
 import com.landon.debug.inf.InfEvent;
-import com.yupao.saas.R;
+import com.rwz.app.R;
 
 import java.util.ArrayList;
 import java.util.Collection;

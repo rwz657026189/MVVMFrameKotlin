@@ -70,7 +70,7 @@ public class MockInterceptor implements Interceptor {
                         json = "";
                     }
                 }
-                MediaType mediaType = MediaType.get("application/json;charset=UTF-8");
+                MediaType mediaType = MediaType.parse("application/json;charset=UTF-8");
                 ResponseBody responseBody = ResponseBody.create(mediaType, json);
                 return new Response.Builder()
                     .protocol(Protocol.HTTP_1_1)

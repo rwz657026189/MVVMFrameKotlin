@@ -11,7 +11,7 @@
         android:layout_height="wrap_content"
         android:textSize="14sp"
         android:textColor="#666"
-        android:padding="@dimen/saas_dp_10"
+        android:padding="10dp"
         />
 
 </LinearLayout>

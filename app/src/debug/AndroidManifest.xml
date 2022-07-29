@@ -1,0 +1,27 @@
+<!--
+  ~ Copyright (c) Huawei Technologies Co., Ltd. 2019-2021. All rights reserved.
+  -->
+
+<manifest xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <application >
+        <activity
+            android:name="com.landon.debug.view.DebugActivity"
+            android:configChanges="fontScale|keyboardHidden|screenSize|orientation"
+            android:screenOrientation="portrait"
+            android:label="@string/fus_debug_name"
+            android:windowSoftInputMode="adjustPan"
+            android:exported="true">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+                <action android:name="android.intent.action.VIEW" />
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+
+        <activity
+            android:name="com.landon.debug.adapter.DebugNetActivity"
+            android:screenOrientation="portrait" />
+    </application>
+
+</manifest>

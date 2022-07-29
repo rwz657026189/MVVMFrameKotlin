@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical">
+
+    <androidx.appcompat.widget.Toolbar
+        android:id="@+id/toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="#FFF"
+        app:title="网络请求"
+        app:titleTextColor="#333"
+        />
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="#F2F2F2"
+        />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="#FFF"
+        android:gravity="center_vertical"
+        android:orientation="horizontal">
+
+        <EditText
+            android:id="@+id/search"
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:layout_height="wrap_content"
+            android:paddingVertical="6dp"
+            android:paddingHorizontal="12dp"
+            android:textSize="16sp"
+            android:textColor="#333"
+            android:hint="请输入关键字"
+            android:background="@null"
+            />
+
+        <ImageView
+            android:id="@+id/delete"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@mipmap/dev_icon_delete"
+            android:padding="6dp"
+            android:layout_marginHorizontal="@dimen/saas_dp_8"
+            />
+    </LinearLayout>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="#F2F2F2"
+        />
+
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/list"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="#FFF" />
+
+        <androidx.appcompat.widget.AppCompatImageView
+            android:id="@+id/fab"
+            android:layout_width="@dimen/saas_dp_48"
+            android:layout_height="@dimen/saas_dp_48"
+            android:layout_gravity="end|bottom"
+            android:layout_marginBottom="@dimen/saas_dp_12"
+            android:layout_marginEnd="@dimen/saas_dp_20"
+            android:src="@mipmap/dev_icon_scroll_bottom"
+            android:rotation="180"
+            android:scaleType="centerInside"
+            android:adjustViewBounds="true"
+            android:elevation="@dimen/saas_dp_4"/>
+    </FrameLayout>
+
+</LinearLayout>

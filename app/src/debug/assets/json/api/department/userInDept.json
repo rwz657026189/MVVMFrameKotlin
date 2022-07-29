@@ -1,0 +1,15 @@
+{
+  "code": 0,
+  "message": "SUCCESS",
+  "data": {
+    "list": [
+      {
+        "dept_id": 1642,
+        "corp_id": 355,
+        "name": "我的班组",
+        "user_id": "439",
+        "is_self_create": 1
+      }
+    ]
+  }
+}

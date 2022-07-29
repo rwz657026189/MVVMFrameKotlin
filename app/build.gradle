@@ -69,4 +69,7 @@ dependencies {
     implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
     api project(':main_module')
     api project(':module_puppet')
+
+    // aspectj
+    implementation ('org.aspectj:aspectjrt:1.9.6')
 }

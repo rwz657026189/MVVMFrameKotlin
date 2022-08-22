@@ -50,4 +50,10 @@ public class CommMock implements InfMock {
             return null;
         }
     }
+
+    @Override
+    public int getRespType() {
+        return jsonFile != null && (jsonFile.startsWith("{") || jsonFile.startsWith("["))
+                ? InfMock.RESP_MOCK_CODE : InfMock.RESP_MOCK_ASSETS;
+    }
 }

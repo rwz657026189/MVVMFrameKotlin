@@ -3,38 +3,38 @@ ext {
     isModule = false
 
     android = [
-            compileSdkVersion       : 28,
-            buildToolsVersion       : '28.0.3',
-            minSdkVersion           : 15,
-            targetSdkVersion        : 26,
+            compileSdkVersion       : 31,
+            buildToolsVersion       : '30.0.3',
+            minSdkVersion           : 16,
+            targetSdkVersion        : 29,
             versionCode             : 3,
             versionName             : "1.0.0",
             applicationId           : "com.rwz.demo",
-            androidx                : "1.1.0"
+            androidx                : "1.4.1"
     ]
 
     dependencies = [
             "junit"                          : 'junit:junit:4.12',
             "androidx"                       : "androidx.appcompat:appcompat:${android["androidx"]}",
             "androidx_junit"                 : "androidx.test.ext:junit:${android["androidx"]}",
-            "androidx_espresso"              : "androidx.test.espresso:espresso-core:3.1.1",
-            "androidx_kotlin"                : "androidx.core:core-ktx:${android["androidx"]}",
+            "androidx_espresso"              : "androidx.test.espresso:espresso-core:3.3.0",
+            "androidx_kotlin"                : "androidx.core:core-ktx:1.7.0",
             //kotlin协程
             "kotlinx_coroutines"             : "org.jetbrains.kotlinx:kotlinx-coroutines-android:1.1.1",
             //原support下design包
-            "material"                       : 'com.google.android.material:material:1.0.0',
-            "recyclerview"                   : "androidx.recyclerview:recyclerview:1.0.0",
-            "constraintlayout"               : 'androidx.constraintlayout:constraintlayout:1.1.3',
+            "material"                       : 'com.google.android.material:material:1.2.1',
+            "recyclerview"                   : "androidx.recyclerview:recyclerview:1.2.0",
+            "constraintlayout"               : 'androidx.constraintlayout:constraintlayout:2.0.4',
             //方法数超过65535解决方法64K MultiDex分包方法
-            "multidex"                       : 'com.android.support:multidex:1.0.2',
+            "multidex"                       : 'com.android.support:multidex:2.0.0',
             //json解析
-            "gson"                           : 'com.google.code.gson:gson:2.8.5',
+            "gson"                           : 'com.google.code.gson:gson:2.9.0',
             //网络 retrofit2包含okhttp
-            "retrofit2"                      : 'com.squareup.retrofit2:retrofit:2.3.0',
-            "converter-gson"                 : 'com.squareup.retrofit2:converter-gson:2.3.0',
-            "adapter-rxjava2"                : 'com.squareup.retrofit2:adapter-rxjava2:2.3.0',
+            "retrofit2"                      : 'com.squareup.retrofit2:retrofit:2.9.0',
+            "converter-gson"                 : 'com.squareup.retrofit2:converter-gson:2.9.0',
+            "adapter-rxjava2"                : 'com.squareup.retrofit2:adapter-rxjava2:2.9.0',
             "rxandroid"                      : 'io.reactivex.rxjava2:rxandroid:2.0.1',
-            "rxjava2"                        : 'io.reactivex.rxjava2:rxjava:2.0.0',
+            "rxjava2"                        : 'io.reactivex.rxjava2:rxjava:2.0.5',
             //数据绑定
 //            "rxbinding2"                     : 'com.jakewharton.rxbinding2:rxbinding:2.1.1',
 //            "rxbinding-design"               : 'com.jakewharton.rxbinding2:rxbinding-design:2.1.1',
@@ -42,16 +42,18 @@ ext {
             //6.0权限管理
             "rxpermissions"                  : 'com.github.tbruyelle:rxpermissions:0.10.2',
             //日志拦截器
-            "logging-interceptor"            : 'com.squareup.okhttp3:logging-interceptor:3.4.1',
+            "logging-interceptor"            : 'com.squareup.okhttp3:logging-interceptor:4.9.0',
             //图片加载
-            "glide"                          : 'com.github.bumptech.glide:glide:3.7.0',
+            "glide"                          : 'com.github.bumptech.glide:glide:4.12.0',
             //为 glide 添加特殊效果
-            "glide-transformations"          : 'jp.wasabeef:glide-transformations:2.0.2',
-            "gpuimage-library"               : 'jp.co.cyberagent.android.gpuimage:gpuimage-library:1.4.1',
+            "glide-transformations"          : 'jp.wasabeef:glide-transformations:4.3.0',
+            "gpuimage-library"               : 'jp.co.cyberagent.android:gpuimage:2.1.0',
             //上拉加载更多列表控件
-            "SmartRefreshLayout"             : "com.scwang.smartrefresh:SmartRefreshLayout:1.1.0",
+            "SmartRefreshLayout"             : "com.scwang.smart:refresh-layout-kernel:2.0.3",
             //使用特殊Header，可以不加这行
-            "SmartRefreshHeader"             : 'com.scwang.smartrefresh:SmartRefreshHeader:1.1.0',
+            "SmartRefreshHeader"             : 'com.scwang.smart:refresh-header-material:2.0.3',
+            "refreshClassicsFooter"         : 'com.scwang.smart:refresh-footer-classics:2.0.3',
+            "refreshClassicsHeader"         : 'com.scwang.smart:refresh-header-classics:2.0.3',
             //无限循环的banner
             "banner"                         : 'com.bigkoo:convenientbanner:2.0.5',
             //日志
@@ -77,5 +79,7 @@ ext {
             "leakcanary_no_op"               : "com.squareup.leakcanary:leakcanary-android-no-op:1.6.2",
             //左滑删除
             "swipebacklayout"                : "me.imid.swipebacklayout.lib:library:1.1.0",
+            "okhttp"                         : "com.squareup.okhttp3:okhttp:4.9.0",
+            "okio"                           : "com.squareup.okio:okio:2.8.0"
     ]
 }

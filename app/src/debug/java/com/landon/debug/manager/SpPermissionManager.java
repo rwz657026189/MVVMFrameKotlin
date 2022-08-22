@@ -10,7 +10,7 @@ import android.content.Intent;
 import android.content.IntentFilter;
 import android.media.AudioManager;
 
-import com.landon.debug.adapter.DebugNetActivity;
+import com.landon.debug.view.DebugNetActivity;
 
 /**
  * @author rwx989128

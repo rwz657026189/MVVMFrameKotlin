@@ -14,9 +14,9 @@ import com.rwz.lib_comm.entity.response.SimpleResponse
 import com.rwz.lib_comm.ui.adapter.rv.mul.IBaseEntity
 import com.rwz.lib_comm.utils.show.LogUtil
 import com.rwz.lib_comm.utils.show.ToastUtil
-import com.scwang.smartrefresh.layout.api.RefreshLayout
-import com.scwang.smartrefresh.layout.listener.OnLoadMoreListener
-import com.scwang.smartrefresh.layout.listener.OnRefreshLoadMoreListener
+import com.scwang.smart.refresh.layout.api.RefreshLayout
+import com.scwang.smart.refresh.layout.listener.OnLoadMoreListener
+import com.scwang.smart.refresh.layout.listener.OnRefreshLoadMoreListener
 import io.reactivex.functions.Consumer
 
 /**
@@ -25,7 +25,7 @@ import io.reactivex.functions.Consumer
  * description：
  **/
 abstract class BaseListViewModule<V : IListView>(clickCommand: Consumer<*>? = null)
-    : BaseViewModule<V>(clickCommand), OnRefreshLoadMoreListener,  OnLoadMoreListener {
+    : BaseViewModule<V>(clickCommand), OnRefreshLoadMoreListener, OnLoadMoreListener {
 
     companion object{
         //第一页下标

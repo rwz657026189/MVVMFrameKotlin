@@ -1,0 +1,44 @@
+{
+  "head": {
+    "code": 200,
+    "msgCode": 0,
+    "msg": "",
+    "appCode": "8001"
+  },
+  "data": {
+    "collection": [
+      {
+        "id": 1,
+        "title": "10天会员",
+        "price": 1,
+        "expire": 864000,
+        "enable": 1,
+        "rights": [
+          {
+            "id": 1,
+            "type": "jd-logistics-contact",
+            "title": "10天会员",
+            "daily_count": 3,
+            "item_id": 1
+          }
+        ]
+      },
+      {
+        "id": 2,
+        "title": "30天会员",
+        "price": 3000,
+        "expire": 2592000,
+        "enable": 1,
+        "rights": [
+          {
+            "id": 2,
+            "type": "jd-logistics-contact",
+            "title": "30天会员",
+            "daily_count": 2,
+            "item_id": 2
+          }
+        ]
+      }
+    ]
+  }
+}

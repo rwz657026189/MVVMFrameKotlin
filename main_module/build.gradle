@@ -49,5 +49,7 @@ dependencies {
     api project(':lib_base')
     implementation rootProject.ext.dependencies["multidex"]
 
+    implementation 'com.yinglan.shadowimageview:shadowimageview:1.0.4'
+
 
 }

@@ -13,7 +13,7 @@ import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 
 import com.landon.debug.DebugConfig;
-import com.landon.debug.adapter.NetDevManager;
+import com.landon.debug.view.NetDevManager;
 import com.landon.debug.utils.LogUtil;
 import com.landon.debug.utils.StackUtils;
 

@@ -18,4 +18,9 @@ class AnyUrlMock implements InfMock{
     public String responseData(Request request) {
         return "json/maintain.json";
     }
+
+    @Override
+    public int getRespType() {
+        return InfMock.RESP_MOCK_ASSETS;
+    }
 }

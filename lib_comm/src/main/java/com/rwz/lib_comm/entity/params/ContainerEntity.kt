@@ -20,8 +20,8 @@ data class ContainerEntity(
 
 ) : Parcelable {
     constructor(source: Parcel) : this(
-        source.readString(),
-        source.readString(),
+        source.readString() ?: "",
+        source.readString() ?: "",
         source.readParcelable<Bundle>(Bundle::class.java.classLoader)
     )
 

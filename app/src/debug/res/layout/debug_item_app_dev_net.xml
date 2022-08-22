@@ -30,16 +30,45 @@
         android:padding="10dp"
         />
 
-    <TextView
+    <LinearLayout
         android:id="@+id/detail"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:textSize="14sp"
-        android:textColor="#333"
         android:background="#fafafa"
-        android:visibility="gone"
-        android:padding="10dp"
-        />
+        android:orientation="vertical"
+        android:padding="10dp">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <Button
+                android:id="@+id/download"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="下载到本地"
+                />
+
+            <Button
+                android:id="@+id/modify"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="修改响应"
+                />
+
+        </LinearLayout>
+
+        <TextView
+            android:id="@+id/resp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textSize="14sp"
+            android:textColor="#333"
+            android:layout_marginTop="8dp"
+            />
+
+    </LinearLayout>
 
     <View
         android:layout_width="match_parent"

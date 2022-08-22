@@ -53,6 +53,10 @@ public class MockInterceptor implements Interceptor {
         mMockList.add(mock);
     }
 
+    public void unregister(InfMock mock) {
+        mMockList.remove(mock);
+    }
+
     @NotNull
     @Override
     public Response intercept(@NotNull Chain chain) throws IOException {
@@ -70,17 +74,33 @@ public class MockInterceptor implements Interceptor {
                         json = "";
                     }
                 }
+
                 MediaType mediaType = MediaType.parse("application/json;charset=UTF-8");
                 ResponseBody responseBody = ResponseBody.create(mediaType, json);
                 return new Response.Builder()
                     .protocol(Protocol.HTTP_1_1)
                     .code(200)
                     .message("success")
+                    .header(InfMock.RESP_TYPE, getRespPrintText(infMock.getRespType(), result))
                     .request(request)
                     .body(responseBody)
                     .build();
             }
         }
         return chain.proceed(request);
+    }
+
+    private String getRespPrintText(int respType, String fileName) {
+        String result;
+        if (respType == InfMock.RESP_MOCK_ASSETS) {
+            result = "mock by assets: " + fileName;
+        } else if (respType == InfMock.RESP_MOCK_CODE) {
+            result = "mock by code";
+        } else if (respType == InfMock.RESP_MOCK_RANDOM) {
+            result = "mock by random";
+        } else {
+            return "";
+        }
+        return result;
     }
 }

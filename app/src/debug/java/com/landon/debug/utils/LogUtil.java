@@ -181,8 +181,9 @@ public class LogUtil {
      * @param body     请求体
      * @param url      url
      * @param response 响应体
+     * @param respType 响应体数据类型
      */
-    public static void http(String tag, String header, String body, String url, String response) {
+    public static void http(String tag, String header, String body, String url, String response, String respType) {
         if (!SHOW_LOG) {
             return;
         }
@@ -190,8 +191,11 @@ public class LogUtil {
             return;
         }
         StringBuilder stringBuilder = new StringBuilder();
-        stringBuilder.append(DOUBLE_DIVIDER).append(LINE_SEPARATOR)
-                .append("url: ").append(url).append(LINE_SEPARATOR)
+        stringBuilder.append(DOUBLE_DIVIDER).append(LINE_SEPARATOR);
+        if (!TextUtils.isEmpty(respType)) {
+            stringBuilder.append("response data type: ").append(respType).append(LINE_SEPARATOR);
+        }
+        stringBuilder.append("url: ").append(url).append(LINE_SEPARATOR)
                 .append("header: ").append(LINE_SEPARATOR)
                 .append(header).append(LINE_SEPARATOR)
                 .append("body: ").append(body).append(LINE_SEPARATOR)
@@ -201,10 +205,10 @@ public class LogUtil {
                 .append(DOUBLE_DIVIDER);
         String content = stringBuilder.toString();
         int count = 0;
-        int maxWords = 1024 * 4;
+        int maxWords = 3800; // 不要超过4k，还需要考虑额外字段以及换行符
         int length = content.length();
         while (count < length) {
-            debug(tag, content.substring(count, Math.min(length, count + maxWords)));
+            debug(tag, LINE_SEPARATOR + content.substring(count, Math.min(length, count + maxWords)));
             count += maxWords;
         }
         DebugLogManager.getInstance().put(content);

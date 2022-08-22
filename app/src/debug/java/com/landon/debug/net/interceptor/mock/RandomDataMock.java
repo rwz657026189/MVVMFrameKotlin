@@ -72,4 +72,9 @@ public class RandomDataMock extends CommMock {
         }
         return result;
     }
+
+    @Override
+    public int getRespType() {
+        return InfMock.RESP_MOCK_RANDOM;
+    }
 }

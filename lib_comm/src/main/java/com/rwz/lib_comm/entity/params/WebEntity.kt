@@ -10,6 +10,7 @@ import kotlinx.android.parcel.Parcelize
  * author： rwz
  * description：webView传递参数
  **/
+@Parcelize
 data class WebEntity(
     //链接
     val url: String,
@@ -19,28 +20,4 @@ data class WebEntity(
     val params: Bundle? = null,
     //类型（部分H5页面需要特殊处理）
     val type: Int = 0
-) : Parcelable {
-    constructor(source: Parcel) : this(
-        source.readString(),
-        source.readString(),
-        source.readParcelable<Bundle>(Bundle::class.java.classLoader),
-        source.readInt()
-    )
-
-    override fun describeContents() = 0
-
-    override fun writeToParcel(dest: Parcel, flags: Int) = with(dest) {
-        writeString(url)
-        writeString(title)
-        writeParcelable(params, 0)
-        writeInt(type)
-    }
-
-    companion object {
-        @JvmField
-        val CREATOR: Parcelable.Creator<WebEntity> = object : Parcelable.Creator<WebEntity> {
-            override fun createFromParcel(source: Parcel): WebEntity = WebEntity(source)
-            override fun newArray(size: Int): Array<WebEntity?> = arrayOfNulls(size)
-        }
-    }
-}
+) : Parcelable

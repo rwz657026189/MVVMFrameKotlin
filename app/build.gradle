@@ -2,6 +2,8 @@ apply plugin: 'com.android.application'
 apply plugin: 'kotlin-android'
 apply plugin: 'kotlin-android-extensions'
 apply plugin: 'kotlin-kapt'
+//apply from: "task.gradle"
+//apply from: "${project.rootDir}/app/src/debug/script/task.gradle"
 
 android {
     compileSdkVersion rootProject.ext.android.compileSdkVersion
@@ -19,6 +21,9 @@ android {
     compileOptions {
         sourceCompatibility = 1.8
         targetCompatibility = 1.8
+    }
+    kotlinOptions {
+        jvmTarget = '1.8'
     }
     //支持DataBinding
     dataBinding {
@@ -71,5 +76,5 @@ dependencies {
     api project(':module_puppet')
 
     // aspectj
-    implementation ('org.aspectj:aspectjrt:1.9.6')
+//    implementation ('org.aspectj:aspectjrt:1.9.6')
 }

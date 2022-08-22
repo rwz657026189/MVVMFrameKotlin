@@ -4,19 +4,15 @@
 
 package com.landon.debug.net;
 
-import android.util.Log;
-
-import com.landon.debug.adapter.NetDevManager;
-import com.landon.debug.utils.ContextUtils;
+import com.landon.debug.DebugConfig;
+import com.landon.debug.manager.DebugLogManager;
+import com.landon.debug.net.interceptor.mock.InfMock;
 import com.landon.debug.utils.LogUtil;
+import com.landon.debug.view.NetDevManager;
 
 import java.io.EOFException;
-import java.io.File;
 import java.io.IOException;
 import java.nio.charset.StandardCharsets;
-import java.text.SimpleDateFormat;
-import java.util.Date;
-import java.util.Locale;
 
 import okhttp3.FormBody;
 import okhttp3.Interceptor;
@@ -34,20 +30,6 @@ import okio.Buffer;
  */
 public class LogInterceptor implements Interceptor {
     private static final String TAG = "HttpLog";
-
-    private final SimpleDateFormat FORMAT = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss.SSS", Locale.getDefault());
-
-    private final String cacheDir;
-
-    public LogInterceptor() {
-        String dir = ContextUtils.getContext().getExternalFilesDir("") + File.separator + "cache";
-        String date = new SimpleDateFormat("yyyy-MM-dd", Locale.getDefault()).format(new Date(System.currentTimeMillis()));
-        File file = new File(dir + File.separator + date);
-        if (!file.exists()) {
-            file.mkdirs();
-        }
-        cacheDir = dir;
-    }
 
     @Override
     public Response intercept(Chain chain) throws IOException {
@@ -93,11 +75,11 @@ public class LogInterceptor implements Interceptor {
         String url = request.url() + "";
         String method = request.method();
         long dt = System.currentTimeMillis() - startTime;
-
+        String respType = response.header(InfMock.RESP_TYPE);
         LogUtil.http(TAG, header, sb.toString(), url + System.lineSeparator() + "method：" + method
-                + System.lineSeparator() + "dt：" + dt + "ms", resp);
-//        cache(startTime, header, sb.toString(), url, resp, request.url().encodedPath());
-        NetDevManager.INSTANCE.addNetResponse(url, sb.toString(), method, dt, resp);
+                + System.lineSeparator() + "dt：" + dt + "ms", resp, respType);
+//        DebugLogManager.getInstance().download(startTime, header, sb.toString(), url, resp, request.url().encodedPath());
+        NetDevManager.INSTANCE.addNetResponse(url, header, sb.toString(), method, dt, resp);
         return response;
     }
 
@@ -123,20 +105,4 @@ public class LogInterceptor implements Interceptor {
         }
     }
 
-    private void cache(long timestamp, String header, String body, String url, String response, String encodePath) {
-        String lineSeparator = System.lineSeparator();
-        String time = FORMAT.format(new Date(timestamp));
-        String text = url;
-        text += lineSeparator + "start-time: " + time;
-        text += lineSeparator + "header: " + lineSeparator + header;
-        text += lineSeparator + "body: " + lineSeparator + body;
-        text += lineSeparator + lineSeparator +
-            "────────────────────────────────────────────────────────────────────────────────────────" + lineSeparator;
-        text += LogUtil.formatJson(response);
-        String fileName = time + "-" + encodePath + ".txt";
-        fileName = fileName.replaceAll(" ", "_");
-        fileName = fileName.replaceAll("/", "_");
-        Log.d(TAG, "cache: " + (cacheDir + File.separator + fileName));
-//        NetEcoFileUtil.writeToFile(cacheDir + File.separator + fileName, text, false);
-    }
 }

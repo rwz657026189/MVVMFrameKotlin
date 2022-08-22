@@ -18,7 +18,6 @@ android {
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
         }
     }
-
 }
 
 dependencies {
@@ -40,12 +39,16 @@ dependencies {
     api rootProject.ext.dependencies["multidex"]
     api rootProject.ext.dependencies["rxjava2"]
     api rootProject.ext.dependencies["rxandroid"]
+    api rootProject.ext.dependencies["okhttp"]
+    api rootProject.ext.dependencies["okio"]
     api rootProject.ext.dependencies["retrofit2"]
     api rootProject.ext.dependencies["converter-gson"]
     api rootProject.ext.dependencies["adapter-rxjava2"]
     api rootProject.ext.dependencies["rxpermissions"]
 
     api rootProject.ext.dependencies["SmartRefreshLayout"]
+    api rootProject.ext.dependencies["refreshClassicsFooter"]
+    api rootProject.ext.dependencies["refreshClassicsHeader"]
     api rootProject.ext.dependencies["androidx"]
     api rootProject.ext.dependencies["material"]
     api rootProject.ext.dependencies["androidx_kotlin"]

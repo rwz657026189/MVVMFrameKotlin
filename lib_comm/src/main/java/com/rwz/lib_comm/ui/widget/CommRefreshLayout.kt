@@ -3,11 +3,9 @@ package com.rwz.lib_comm.ui.widget
 import android.content.Context
 import android.util.AttributeSet
 import com.rwz.lib_comm.manager.ContextManager
-import com.scwang.smartrefresh.layout.SmartRefreshLayout
-import com.scwang.smartrefresh.layout.SmartRefreshLayout.setDefaultRefreshFooterCreator
-import com.scwang.smartrefresh.layout.SmartRefreshLayout.setDefaultRefreshHeaderCreator
-import com.scwang.smartrefresh.layout.footer.ClassicsFooter
-import com.scwang.smartrefresh.layout.header.ClassicsHeader
+import com.scwang.smart.refresh.footer.ClassicsFooter
+import com.scwang.smart.refresh.header.ClassicsHeader
+import com.scwang.smart.refresh.layout.SmartRefreshLayout
 
 /**
  * date： 2019/11/29 13:35

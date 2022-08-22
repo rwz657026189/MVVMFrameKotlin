@@ -41,8 +41,12 @@ public class CompoundButtonBindingAdapter {
      * android:checked : 必不可少， 省略时，如果checked先调用，如该控件已选中，会调用OnCheckedChanged(), 但此时setTag()还未更改过来
      */
     @BindingAdapter({"onCheckedChange","setEntity", "android:checked"})
-    public static void onCheckedChange(final CompoundButton cb, final Consumer<BiCommandEntity<Boolean, IBaseEntity>> command,
-                                       IBaseEntity entity, boolean checked) {
+    public static void onCheckedChange(
+            final CompoundButton cb,
+            final Consumer<BiCommandEntity<Boolean, IBaseEntity>> command,
+            IBaseEntity entity,
+            boolean checked
+    ) {
         if(command == null)
             return;
         final int id = cb.getId();

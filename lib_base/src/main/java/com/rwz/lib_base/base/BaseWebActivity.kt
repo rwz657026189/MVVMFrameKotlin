@@ -82,7 +82,7 @@ abstract class BaseWebActivity<VB : ViewDataBinding, VM : IViewModule<IView>> : 
         requestedOrientation = ActivityInfo.SCREEN_ORIENTATION_PORTRAIT
         super.init(savedInstanceState)
         setSwipeBackEnable(false)
-        mWebEntity = intent.getParcelableExtra(PARCELABLE_ENTITY)
+        mWebEntity = intent.getParcelableExtra(PARCELABLE_ENTITY) ?: return
         val postParams = intent.getStringExtra(STRING)
         mType = mWebEntity.type
         mToolbarProxy.titleView?.text = mWebEntity.title

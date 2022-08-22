@@ -20,7 +20,7 @@
         </activity>
 
         <activity
-            android:name="com.landon.debug.adapter.DebugNetActivity"
+            android:name="com.landon.debug.view.DebugNetActivity"
             android:screenOrientation="portrait" />
     </application>
 

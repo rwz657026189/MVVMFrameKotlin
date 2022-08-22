@@ -2,30 +2,54 @@
 
 buildscript {
     apply from: 'config.gradle'
-    ext.gradle_version = '3.3.2'
     ext.kotlin_version = '1.4.30'
     repositories {
-        google()
+        maven {
+            allowInsecureProtocol = true
+            url 'http://maven.aliyun.com/nexus/content/groups/public/'
+        }
+        maven {
+            allowInsecureProtocol = true
+            url 'http://maven.aliyun.com/nexus/content/repositories/releases/'
+        }
+        maven {
+            allowInsecureProtocol = true
+            url 'http://developer.huawei.com/repo/'
+        }
+        mavenCentral()
         jcenter()
-
+        google()
     }
     dependencies {
-        classpath "com.android.tools.build:gradle:$gradle_version"
+        classpath "com.android.tools.build:gradle:4.2.1"
         classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlin_version"
         // NOTE: Do not place your application dependencies here; they belong
         // in the individual module build.gradle files
 
         // aspectj
-        classpath "com.android.tools.build:gradle:4.2.1"
-        classpath 'org.aspectj:aspectjtools:1.9.6'
+//        classpath "com.android.tools.build:gradle:4.2.1"
+//        classpath 'org.aspectj:aspectjtools:1.9.6'
     }
 }
 
 allprojects {
     repositories {
-        google()
-        jcenter()
+        maven {
+            allowInsecureProtocol = true
+            url 'http://maven.aliyun.com/nexus/content/groups/public/'
+        }
+        maven {
+            allowInsecureProtocol = true
+            url 'http://maven.aliyun.com/nexus/content/repositories/releases/'
+        }
+        maven {
+            allowInsecureProtocol = true
+            url 'http://developer.huawei.com/repo/'
+        }
+        mavenCentral()
         maven { url 'https://jitpack.io' }
+        jcenter()
+        google()
     }
 }
 

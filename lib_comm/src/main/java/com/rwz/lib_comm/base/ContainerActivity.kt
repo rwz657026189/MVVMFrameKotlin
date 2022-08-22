@@ -23,13 +23,13 @@ class ContainerActivity : BaseActivity<ActivityContainerBinding, IViewModule<IVi
     override fun init(savedInstanceState: Bundle?) {
         super.init(savedInstanceState)
         val entity = intent.getParcelableExtra<ContainerEntity>(PARCELABLE_ENTITY)
-        mToolbarProxy.titleView?.text = entity.title
-        val cls  = Class.forName(entity.className)
+        mToolbarProxy.titleView?.text = entity?.title
+        val cls  = Class.forName(entity?.className)
         val instance = cls.newInstance()
         if (instance is Fragment) {
-            instance.arguments = entity.args
+            instance.arguments = entity?.args
             supportFragmentManager.beginTransaction()
-                .add(R.id.container, instance, entity.className)
+                .add(R.id.container, instance, entity?.className)
                 .commit()
         } else{
             finish()

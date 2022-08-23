@@ -23,6 +23,7 @@
     <ScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:fillViewport="true"
         xmlns:android="http://schemas.android.com/apk/res/android">
 
         <LinearLayout
@@ -63,6 +64,7 @@
                     android:hint="请输入完整地址，如：https://www.baidu.com/path"
                     android:padding="8dp"
                     android:background="@null"
+                    android:maxLines="3"
                     />
 
             </LinearLayout>
@@ -96,6 +98,7 @@
                     android:hint="get/post/delete/put"
                     android:padding="8dp"
                     android:background="@null"
+                    android:singleLine="true"
                     />
 
             </LinearLayout>
@@ -129,6 +132,7 @@
                     android:hint="a=1&amp;b=2&amp;c=3"
                     android:padding="8dp"
                     android:background="@null"
+                    android:maxLines="10"
                     />
 
             </LinearLayout>
@@ -162,6 +166,7 @@
                     android:hint="a=1&amp;b=2&amp;c=3 或 json"
                     android:padding="8dp"
                     android:background="@null"
+                    android:maxLines="10"
                     />
 
             </LinearLayout>
@@ -195,6 +200,8 @@
                     android:inputType="number"
                     android:padding="8dp"
                     android:background="@null"
+                    android:singleLine="true"
+                    android:hint="60s"
                     />
 
             </LinearLayout>

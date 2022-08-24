@@ -3,6 +3,7 @@ package com.landon.debug.view.page;
 import android.app.Activity;
 import android.app.Application;
 import android.os.Bundle;
+import android.text.TextUtils;
 import android.view.Window;
 import android.view.WindowManager;
 
@@ -11,11 +12,12 @@ import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
+import androidx.lifecycle.Lifecycle;
 
 import com.landon.debug.DebugConfig;
-import com.landon.debug.view.NetDevManager;
 import com.landon.debug.utils.LogUtil;
 import com.landon.debug.utils.StackUtils;
+import com.landon.debug.view.NetDevManager;
 
 import java.util.HashMap;
 import java.util.List;
@@ -87,6 +89,11 @@ public class ActivityCallback implements Application.ActivityLifecycleCallbacks{
     @Override
     public void onActivityResumed(@NonNull Activity activity) {
         NetDevManager.INSTANCE.addGroup(activity.getClass().getSimpleName());
+    }
+
+    @Override
+    public void onActivityPostResumed(@NonNull Activity activity) {
+        Application.ActivityLifecycleCallbacks.super.onActivityPostResumed(activity);
         if (DebugConfig.SUPPORT_FRAGMENT) {
             StackUtils.safeRun(() -> {
                 printFragment(activity);
@@ -118,23 +125,9 @@ public class ActivityCallback implements Application.ActivityLifecycleCallbacks{
         String name = activity.getClass().getSimpleName();
         if (activity instanceof AppCompatActivity) {
             FragmentManager manager = ((AppCompatActivity) activity).getSupportFragmentManager();
-            List<Fragment> list = manager.getFragments();
-            if (list.isEmpty()) {
-                return;
-            }
-            StringBuilder sb = new StringBuilder();
-            sb.append("\n================== " + name + " ================== ");
-            for (Fragment fragment : list) {
-                boolean visible = !fragment.isHidden();
-                Bundle arguments = fragment.getArguments();
-                sb.append("\n")
-                        .append(visible ? "☆" : "")
-                        .append(fragment.getClass().getSimpleName())
-                        .append(" : [")
-                        .append(parseBundle(arguments))
-                        .append("]");
-            }
-            String text = sb.length() > 0 ? sb.substring(1) : "";
+            String sb = parseFragmentBuilder(manager.getFragments(), "");
+            String pre = "\n================== " + name + " ================== \n";
+            String text = pre + ((sb != null && sb.length() > 0) ? sb.substring(1) : "");
             LogUtil.debug(TAG, name + " args : " + text);
         } else {
             android.app.FragmentManager manager = activity.getFragmentManager();
@@ -157,5 +150,30 @@ public class ActivityCallback implements Application.ActivityLifecycleCallbacks{
                 LogUtil.debug(TAG, name + " args : " + text);
             }
         }
+    }
+
+    @Nullable
+    private String parseFragmentBuilder(List<Fragment> list, String space) {
+        if (list.isEmpty()) {
+            return "";
+        }
+        StringBuilder sb = new StringBuilder();
+        for (Fragment fragment : list) {
+            Lifecycle.State state = fragment.getLifecycle().getCurrentState();
+            boolean visible = state.isAtLeast(Lifecycle.State.RESUMED);
+            Bundle arguments = fragment.getArguments();
+            sb.append("\n")
+                    .append(space)
+                    .append(visible ? "★" : "  ")
+                    .append(fragment.getClass().getSimpleName())
+                    .append(" : [")
+                    .append(parseBundle(arguments))
+                    .append("]");
+            String result = parseFragmentBuilder(fragment.getChildFragmentManager().getFragments(), space + "    ");
+            if (!TextUtils.isEmpty(result)) {
+                sb.append(result);
+            }
+        }
+        return sb.toString();
     }
 }

@@ -82,7 +82,6 @@ abstract class BaseWebActivity<VB : ViewDataBinding, VM : IViewModule<IView>> : 
     override fun init(savedInstanceState: Bundle?) {
         requestedOrientation = ActivityInfo.SCREEN_ORIENTATION_PORTRAIT
         super.init(savedInstanceState)
-        setSwipeBackEnable(false)
         mWebEntity = intent.getParcelableExtra(PARCELABLE_ENTITY) ?: return
         val postParams = intent.getStringExtra(STRING)
         mType = mWebEntity.type
@@ -94,7 +93,7 @@ abstract class BaseWebActivity<VB : ViewDataBinding, VM : IViewModule<IView>> : 
         mTempEntity = TempEntity()
         LogUtil.d(TAG, "init", mWebEntity)
 //        mBinding?.setVariable(BR.entity, mTempEntity)
-        val reload = findViewById(R.id.reload)
+        val reload = findViewById<View>(R.id.reload)
         reload.setOnClickListener(this)
     }
 

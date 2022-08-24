@@ -7,6 +7,7 @@ import android.os.Build
 import android.os.Bundle
 import android.view.MotionEvent
 import android.view.View
+import androidx.appcompat.app.AppCompatActivity
 import androidx.databinding.DataBindingUtil
 import androidx.databinding.ViewDataBinding
 import com.rwz.lib_comm.BR
@@ -15,12 +16,9 @@ import com.rwz.lib_comm.abs.IView
 import com.rwz.lib_comm.abs.IViewModule
 import com.rwz.lib_comm.base.proxy.*
 import com.rwz.lib_comm.entity.turn.MsgDialogTurnEntity
+import com.rwz.lib_comm.extension.TAG
 import com.rwz.lib_comm.utils.ImageLoader.ImageLoaderUtil
 import com.rwz.lib_comm.utils.show.LogUtil
-import com.rwz.lib_comm.utils.system.ScreenUtil
-import me.imid.swipebacklayout.lib.SwipeBackLayout
-import me.imid.swipebacklayout.lib.app.SwipeBackActivity
-import com.rwz.lib_comm.extension.TAG
 
 /**
  * date： 2019/11/18 16:07
@@ -28,7 +26,7 @@ import com.rwz.lib_comm.extension.TAG
  * description：activity基类
  **/
 abstract class BaseActivity<VB : ViewDataBinding, VM : IViewModule<out IView>>
-    : SwipeBackActivity(), IView, View.OnClickListener {
+    : AppCompatActivity(), IView, View.OnClickListener {
 
     //activity是否存在
     var isAlive = false
@@ -56,7 +54,6 @@ abstract class BaseActivity<VB : ViewDataBinding, VM : IViewModule<out IView>>
         mTransitionProxy = TransitionProxy(this)
         mStatusBarProxy = StatusBarProxy(this)
         config()
-        initSwipeBackLayout()
         initialization()
         requestedOrientation = ActivityInfo.SCREEN_ORIENTATION_PORTRAIT
         mDialogProxy = DialogProxy(supportFragmentManager, this::onClickDialogEnter, this::onClickDialogCancel)
@@ -74,12 +71,6 @@ abstract class BaseActivity<VB : ViewDataBinding, VM : IViewModule<out IView>>
         if (isAutoLoadingData)
             requestData()
         mViewModule?.initCompleted()
-    }
-
-    private fun initSwipeBackLayout() {
-        val layout = swipeBackLayout
-        layout.setEdgeTrackingEnabled(SwipeBackLayout.EDGE_LEFT)
-        layout.setEdgeSize(ScreenUtil.getInstance().getScreenWidth(this) / 4)
     }
 
     override fun dispatchTouchEvent(ev: MotionEvent)

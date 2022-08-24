@@ -54,7 +54,6 @@ dependencies {
     api rootProject.ext.dependencies["androidx_kotlin"]
     api rootProject.ext.dependencies["recyclerview"]
     api rootProject.ext.dependencies["constraintlayout"]
-    api rootProject.ext.dependencies["swipebacklayout"]
     api rootProject.ext.dependencies["TabLayout"]
     api rootProject.ext.dependencies["banner"]
     api rootProject.ext.dependencies["logger"]

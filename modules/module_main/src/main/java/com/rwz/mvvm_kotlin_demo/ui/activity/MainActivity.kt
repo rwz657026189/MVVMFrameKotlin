@@ -4,6 +4,7 @@ import android.animation.Animator
 import android.animation.ValueAnimator
 import android.os.Bundle
 import android.util.Log
+import android.view.View
 import android.view.ViewGroup
 import android.view.animation.LinearInterpolator
 import android.widget.TextView
@@ -30,21 +31,20 @@ class MainActivity : BaseActivity<ActivityContainerBinding, IViewModule<IView>>(
 
     override fun init(savedInstanceState: Bundle?) {
         super.init(savedInstanceState)
-//        supportFragmentManager.beginTransaction()
-//            .add(R.id.container, MainFragment(), "MainFragment")
-//            .commit()
-
-        (findViewById(R.id.one) as TextView).text = System.currentTimeMillis().toString()
-        (findViewById(R.id.two) as TextView).text = System.currentTimeMillis().toString()
-        startAnim(findViewById(R.id.one) as TextView, findViewById(R.id.two) as TextView)
+        supportFragmentManager.beginTransaction()
+            .add(R.id.container, MainFragment(), "MainFragment")
+            .commit()
+        (findViewById<TextView>(R.id.one)).text = System.currentTimeMillis().toString()
+        (findViewById<TextView>(R.id.two)).text = System.currentTimeMillis().toString()
+        startAnim(findViewById(R.id.one), findViewById(R.id.two))
         Log.d(
             "TAG",
-            "init: ${(findViewById(R.id.one).layoutParams as? ViewGroup.MarginLayoutParams)?.topMargin}"
+            "init: ${(findViewById<View>(R.id.one).layoutParams as? ViewGroup.MarginLayoutParams)?.topMargin}"
         )
     }
 
     private fun startAnim(oneView: TextView, twoView: TextView) {
-        val height = DensityUtils.dp2px(26)
+        val height = DensityUtils.dp2px(64)
         var isReset = false
         ValueAnimator.ofFloat(0f, -height.toFloat()).apply {
             addUpdateListener {
